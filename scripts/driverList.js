@@ -48,66 +48,65 @@
 	__webpack_require__(8);
 
 	var React = __webpack_require__(10),
-	    DonorList = __webpack_require__(3);
+	    DriverList = __webpack_require__(4);
 
-	React.render(React.createElement(DonorList, null), document.getElementById('app-container'));
+	React.render(React.createElement(DriverList, null), document.getElementById('app-container'));
 
 
 
 /***/ },
 /* 1 */,
 /* 2 */,
-/* 3 */
+/* 3 */,
+/* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var _ = __webpack_require__(16),
 	    $ = __webpack_require__(11),
 	    React = __webpack_require__(10);
 
-	var DonorList = React.createClass({displayName: "DonorList",
+	var DriverList = React.createClass({displayName: "DriverList",
 	    getInitialState: function() {
-		     return {
-		     	 donors: []
-		     };
+	    		     return {
+			     	    drivers: []
+			     };
 	    },
 	    componentWillMount: function() {
-			this.getDonorsAjax();			
+	    			this.getDriversAjax();
 	    },
 	    render: function() {    
-		    return (
-	            React.createElement("div", null, 
-	                React.createElement("ul", null, 
-	                    this.renderDonorsList(this.state.donors)
-	                )	    	   
-	            )
+	    	    return (
+		    	   React.createElement("div", null, 
+				React.createElement("ul", null, 
+				this.renderDriversList(this.state.drivers)
+				)	    	   
+			   )
 		    );
 	    },
-	    renderDonorsList: function(donors) { 
-	        return _.map(donors, function(donor) {
-	            return (
-	                React.createElement("li", {className: "list-unstyled"}, 
-	                    donor.name, " - ", donor.phone
-	                )
-	            );
-	        }, this);
+	    renderDriversList: function(drivers) {
+	    		      return _.map(drivers, function(driver) {
+			      	     return (
+				     	    React.createElement("li", {className: "list-unstyled"}, 
+					    	driver.name, " - ", driver.phone
+					    )
+				     );
+			      }, this);
 	    },
-	    getDonorsAjax: function() {
-	        $.post('/donor/')
-	        .done(this.getDonorsDone)
-	        .fail(function(err) { 
-	            console.log(err); 
-	        });
+	    getDriversAjax: function() {
+	    		   $.post('/driver/')
+				.done(this.getDriversDone)
+				.fail(function(err) { 
+					console.log(err); 
+			   });
 	    },
-	    getDonorsDone: function(data) {
-	    	var parsedData = JSON.parse(data);
-			this.setState({donor: parsedData});
+	    getDriversDone: function(data) {
+			   this.setState({drivers: data});
 	    }
 	});
 
-	module.exports = DonorList;
+	module.exports = DriverList;
 
 /***/ },
-/* 4 */,
 /* 5 */,
 /* 6 */
 /***/ function(module, exports, __webpack_require__) {

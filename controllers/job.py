@@ -30,11 +30,23 @@ class List(BaseHandler):
         self.response.headers['Content-Type'] = 'application/json'
         self.response.write(json.dumps([dict_maker(j) for j in jobs]))
 
+class Details(BaseHandler):
+    def get(self, id):
+        template = JINJA_ENVIRONMENT.get_template('job_detail.html')
+        self.response.write(template.render(jobId=id))
+    def post(self):
+        job_id_str = self.request.get('id')
+        jobkey = ndb.Key(urlsafe = job_id_str)
+        job = jobkey.get()
+        self.response.headers['Content-Type'] = 'application/json'
+        self.response.write(json.dumps(dict_maker(job)))
+
 config = {}
 config['webapp2_extras.sessions'] = {'secret_key': 'secret-session-key-123'}
 
 app = webapp2.WSGIApplication([
     ('/job/',Index),
     ('/job/new',New),
+    ('/job/(\S+)/?',Details),
     ('/job/list/?',List)
 ], config=config, debug=True)

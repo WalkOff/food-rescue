@@ -46,69 +46,59 @@
 
 	__webpack_require__(6);
 	__webpack_require__(8);
+	var $ = __webpack_require__(11)
 
 	var React = __webpack_require__(10),
-	    DonorList = __webpack_require__(3);
+	      Job = __webpack_require__(5)
 
-	React.render(React.createElement(DonorList, null), document.getElementById('app-container'));
-
+	React.render(React.createElement(Job, {jobId: $(["data-jobid"])}), document.getElementById('job-container'));
 
 
 /***/ },
 /* 1 */,
 /* 2 */,
-/* 3 */
+/* 3 */,
+/* 4 */,
+/* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var _ = __webpack_require__(16),
 	    $ = __webpack_require__(11),
 	    React = __webpack_require__(10);
 
-	var DonorList = React.createClass({displayName: "DonorList",
+	var Job = React.createClass({displayName: "Job",
+	    propTypes: {
+	        jobId: React.propTypes.string
+	    },
 	    getInitialState: function() {
-		     return {
-		     	 donors: []
-		     };
+	        return {job: null};
 	    },
-	    componentWillMount: function() {
-			this.getDonorsAjax();			
+	    componentDidMount: function() {
+	    	this.getJobAjax();
 	    },
-	    render: function() {    
-		    return (
-	            React.createElement("div", null, 
-	                React.createElement("ul", null, 
-	                    this.renderDonorsList(this.state.donors)
-	                )	    	   
-	            )
+	    render: function() {
+	    	    return (
+		      React.createElement("div", {className: "job"}, 
+		        this.state.job.Description
+		      )
 		    );
 	    },
-	    renderDonorsList: function(donors) { 
-	        return _.map(donors, function(donor) {
-	            return (
-	                React.createElement("li", {className: "list-unstyled"}, 
-	                    donor.name, " - ", donor.phone
-	                )
-	            );
-	        }, this);
+	    getJobAjax: function() {
+	      $.post('/job/' + this.props.jobId)
+	       	.done(this.getJobDone)
+		.fail(function(err) {
+	 	  console.log(err);
+		});
 	    },
-	    getDonorsAjax: function() {
-	        $.post('/donor/')
-	        .done(this.getDonorsDone)
-	        .fail(function(err) { 
-	            console.log(err); 
-	        });
-	    },
-	    getDonorsDone: function(data) {
-	    	var parsedData = JSON.parse(data);
-			this.setState({donor: parsedData});
+	    getJobDone: function(data) {
+	      var parsedData = JSON.parse(data);
+	      this.setState({job: parsedData});
 	    }
 	});
 
-	module.exports = DonorList;
+	module.exports = Job;
 
 /***/ },
-/* 4 */,
-/* 5 */,
 /* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
