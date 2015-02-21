@@ -55,7 +55,7 @@ docs/_build/
 target/
 
 # Un-built JS
-_static_assets/
+_static_assets/node_modules
 
 # Vim
 *.swp
