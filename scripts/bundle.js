@@ -56,13 +56,14 @@
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var React = __webpack_require__(2);
+	var React = __webpack_require__(2),
+		Profile = __webpack_require__(155);
 
 	var App = React.createClass({displayName: "App",
 		render: function() {
 			return (
 				React.createElement("div", null, 
-					React.createElement("nav", {className: "navbar navbar-default navbar-fixed-top"}, 
+					React.createElement("nav", {className: "navbar navbar-default navbar-inverse navbar-fixed-top"}, 
 						React.createElement("div", {className: "container-fluid"}, 
 							React.createElement("div", {className: "navbar-header"}, 
 								React.createElement("button", {type: "button", className: "navbar-toggle collapsed", "data-toggle": "collapse", "data-target": "#bs-example-navbar-collapse-1"}, 
@@ -93,40 +94,140 @@
 						)
 					), 
 
-
 					React.createElement("div", {className: "container"}, 
 						React.createElement("div", {className: "row"}, 
-							React.createElement("div", {className: "profile panel col-xs-12"}, 
-								React.createElement("h2", null, "My Profile"), 
+							React.createElement("div", {className: "col-xs-12"}, 
+								React.createElement("form", null, 
 
-								React.createElement("dl", {className: "dl-horizontal"}, 
-								  React.createElement("dt", null, "Organization Name: "), 
-								  React.createElement("dd", null, "Big Burrito"), 
+									React.createElement("div", {class: "form-group"}, 
+										React.createElement("label", {for: "exampleInputEmail1"}, "Company/Organization"), 
+										React.createElement("input", {type: "text", class: "form-control", value: "East End Food Co-op"})
+									), 
 
-			  					  React.createElement("dt", null, "Address: "), 
-								  React.createElement("dd", null, "address here"), 
+									React.createElement("div", {class: "form-group"}, 
+										React.createElement("label", {for: "exampleInputEmail1"}, "Pick-up Address"), 
+										React.createElement("input", {type: "address", class: "form-control", value: "7516 Meade St, Pittsburgh, PA 15208"})
+									), 
 
-			  					  React.createElement("dt", null, "Phone: "), 
-								  React.createElement("dd", null, "Big Burrito")
-								), 
+									React.createElement("div", {class: "form-group"}, 
+										React.createElement("label", {for: "exampleInputEmail1"}, "Phone Number"), 
+										React.createElement("input", {type: "phone", class: "form-control", value: "(412) 242-359"})
+									), 
 
-								React.createElement("p", null, "To contact an administrator, call (888) 888-8888"), 
+									React.createElement("div", {className: "form-group"}, 
+										"Is it okay for your driver to text you?", 
 
-								React.createElement("button", {className: "btn btn-primary btn-large", 
-										onClick: this.editProfile}, 
-									"Edit"
+										React.createElement("div", {class: "radio"}, 
+											React.createElement("label", null, 
+												React.createElement("input", {type: "radio", name: "textOk", value: "yes", checked: true}), 
+												"Yes"
+											)
+										), 
+
+										React.createElement("div", {class: "radio"}, 
+											React.createElement("label", null, 
+												React.createElement("input", {type: "radio", name: "textOk", value: "no"}), 
+												"No"
+											)
+										)
+									), 
+
+
+
+									React.createElement("div", {className: "form-group"}, 
+										React.createElement("label", null, 
+											"Does this require a truck, or will car suffice?", 
+											React.createElement("textarea", {class: "form-control", rows: "3"})
+										)
+									), 
+
+
+
+									React.createElement("div", {className: "form-group"}, 
+										React.createElement("label", null, 
+											"Specific pick-up instructions", 
+											React.createElement("textarea", {class: "form-control", rows: "3"})
+										)
+									), 
+
+									React.createElement("button", {className: "btn btn-default", 
+											onClick: this.submitInfo}, 
+										"Submit"
+									)
+
 								)
+							)
+						), 
 
+						React.createElement("div", {className: "row"}, 
+							React.createElement("div", {className: "col-xs-12"}, 
+								React.createElement("button", {className: "btn btn-primary btn-large", onClick: this.requestPickup}, 
+									"Request Pickup"
+								)
 							)
 						)
 					)
 
-
 				)
 			);
 		},
-		editProfile: function() {
+		renderTimeDropdownFrom: function() {
+			// 30min, 1h, 2h (drop-down)
+			// 6:30am-8am
+			// Tomorrow morning
 
+									// <div className="form-group">
+									// 	*Time Frame
+									// 	<label>
+									// 		From
+									// 		{this.renderTimeDropdownFrom()}
+									// 	</label>
+									// 	<label>
+									// 		To
+									// 		{this.renderTimeDropdownTo()}
+									// 	</label>
+									// </div>
+
+
+
+			return (	
+				React.createElement("select", {class: "form-control"}, 
+					this.renderTimeDropdownFromOpts()
+				)
+			);
+		},
+		renderTimeDropdownFromOpts: function() {
+			return _.map(times, function(time) {
+				return (
+					React.createElement("option", null, time)
+				);
+			}, this);
+		},
+		renderTimeDropdownTo: function() {
+			return (	
+				React.createElement("select", {class: "form-control"}, 
+					this.renderTimeDropdownToOpts()
+				)
+			);
+		},
+		renderTimeDropdownToOpts: function() {
+			return _.map(times, function(time) {
+				return (
+					React.createElement("option", null, time)
+				);
+			}, this);
+		},
+		submitInfo: function() {
+			console.log('submit info');
+		},
+		requestPickup: function() {
+			console.log('rp');
+		},
+		showProfile: function() {
+			console.log('show profile');
+		},
+		editProfile: function() {
+			console.log('edit profile');
 		}
 	});
 
@@ -19232,6 +19333,47 @@
 	module.exports = toArray;
 	
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(34)))
+
+/***/ },
+/* 155 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(2);
+
+	var Profile = React.createClass({displayName: "Profile",
+		render: function() {
+			return (
+				React.createElement("div", {className: "container"}, 
+					React.createElement("div", {className: "row"}, 
+						React.createElement("div", {className: "profile panel col-xs-12"}, 
+							React.createElement("h2", null, "My Profile"), 
+
+							React.createElement("dl", {className: "dl-horizontal"}, 
+							  React.createElement("dt", null, "Organization Name: "), 
+							  React.createElement("dd", null, "Big Burrito"), 
+
+		  					  React.createElement("dt", null, "Address: "), 
+							  React.createElement("dd", null, "address here"), 
+
+		  					  React.createElement("dt", null, "Phone: "), 
+							  React.createElement("dd", null, "Big Burrito")
+							), 
+
+							React.createElement("p", null, "To contact an administrator, call (888) 888-8888"), 
+
+							React.createElement("button", {className: "btn btn-primary btn-large", 
+									onClick: this.editProfile}, 
+								"Edit"
+							)
+
+						)
+					)
+				)
+			);
+		}
+	});
+
+	module.exports = Profile;
 
 /***/ }
 /******/ ])
