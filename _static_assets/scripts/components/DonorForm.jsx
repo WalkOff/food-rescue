@@ -19,6 +19,7 @@ var DonorForm = React.createClass({
 		};
 	},
 	render: function() {
+		//todo: fix address
 		return (
 			<form onSubmit={this.formSubmit}>
 				<div className="form-group">

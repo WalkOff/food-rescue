@@ -39,7 +39,7 @@ var App = React.createClass({
 		);
 	},
 	submitInfoAjax: function(donorForm) {
-    	$.post('/job/new',{donorForm: donorForm})
+    	$.post('/job/new',{job: donorForm})
         .done(this.getSubmitDone)
         .fail(function(err) { 
             console.log(err); 

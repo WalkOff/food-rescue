@@ -12,7 +12,7 @@ class Job(ndb.Model):
     instructions = ndb.StringProperty(required=True)
     contact_phone = ndb.StringProperty(required=True)
     donor_name = ndb.StringProperty(required=True)
-    donor_address = ndb.StructuredProperty(Address, required=True)
+    pickup_location = ndb.StructuredProperty(Address, required=True)
     timeframe_start = ndb.DateTimeProperty(required=True)
     timeframe_end = ndb.DateTimeProperty(required=True)
     is_okay_to_text = ndb.BooleanProperty(required=True)
