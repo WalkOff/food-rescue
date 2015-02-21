@@ -20,7 +20,7 @@ var DonorList = React.createClass({
             </div>
 	    );
     },
-    renderDonorsList: function(donors) {
+    renderDonorsList: function(donors) { 
         return _.map(donors, function(donor) {
             return (
                 <li className="list-unstyled">

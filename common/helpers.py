@@ -1,7 +1,9 @@
+from datetime import datetime, date, time
+from google.appengine.ext import ndb
+from models.common import JobStatus
+
 def str2bool(v):
   return v.lower() in ("yes", "true", "t", "1")
-
-from datetime import datetime, date, time
 
 def dict_maker(o):
     out = {}

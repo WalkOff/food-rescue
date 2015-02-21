@@ -82,7 +82,7 @@
 	            )
 		    );
 	    },
-	    renderDonorsList: function(donors) {
+	    renderDonorsList: function(donors) { 
 	        return _.map(donors, function(donor) {
 	            return (
 	                React.createElement("li", {className: "list-unstyled"}, 
