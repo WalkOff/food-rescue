@@ -3,6 +3,7 @@ import json
 import jinja2
 import os
 from google.appengine.ext import ndb
+from base_handler import *
 from models.donor import Donor
 from common.helpers import dict_maker
 
@@ -11,7 +12,7 @@ JINJA_ENVIRONMENT = jinja2.Environment(
     extensions=['jinja2.ext.autoescape'],
     autoescape=True)
 
-class Index(webapp2.RequestHandler):
+class Index(BaseHandler):
     def get(self):
         template = JINJA_ENVIRONMENT.get_template('donor_list.html')
         self.response.write(template.render())
@@ -20,7 +21,7 @@ class Index(webapp2.RequestHandler):
         self.response.headers['Content-Type'] = 'application/json'   
         self.response.out.write(json.dumps(dict_maker(donors)))
 
-class CreateEdit(webapp2.RequestHandler):
+class CreateEdit(BaseHandler):
     def get(self, donor_id):
         template = JINJA_ENVIRONMENT.get_template('donor_edit.html')
         self.response.write(template.render())
@@ -30,7 +31,10 @@ class CreateEdit(webapp2.RequestHandler):
         self.response.headers['Content-Type'] = 'application/json'
         self.response.out.write(json.dumps(donor))
 
+config = {}
+config['webapp2_extras.sessions'] = {'secret_key': 'secret-session-key-123'}
+
 app = webapp2.WSGIApplication([
     ('/donor/?',Index),
     ('/donor/(\S+)/?',CreateEdit)
-], debug=True)
+], config=config, debug=True)

@@ -1,6 +1,7 @@
 import webapp2
 import json
 import jinja2
+from base_handler import *
 from models.driver import Driver
 from common.helpers import str2bool
 
@@ -46,7 +47,10 @@ class UpdateStatus(webapp2.RequestHandler):
             return
         self.response.out.write({'success':'true'})
 
+config = {}
+config['webapp2_extras.sessions'] = {'secret_key': 'secret-session-key-123'}
+
 app = webapp2.WSGIApplication([
     ('/driver/?',Index),
     ('/driver/(\S+)/?',CreateEdit)
-], debug=True)
+], config=config, debug=True)
