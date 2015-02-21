@@ -22,6 +22,7 @@ def dict_maker(o):
         value = getattr(o,property)
         if isinstance(value,ndb.Model):
             out[property]= dict_maker(value)
+            out['ndb_id'] = o.key.urlsafe()
         elif isinstance(value, ndb.Key):
             out[property] = value.urlsafe()
         elif isinstance(value, (datetime, date, time)):
