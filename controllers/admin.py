@@ -1,15 +1,23 @@
 import webapp2
+from datetime import datetime
 from models.job import Job
 from models.common import *
-from models.donor import Donor
-from datetime import datetime
+from models.donor import *
+from models.drop_off import *
+from seed_data import *
 
 class Seed(webapp2.RequestHandler):
     def get(self):
-        # Delete all existing donors:
+        # Delete all existing entities:
         ndb.delete_multi(Donor.query().fetch(keys_only=True))
+        ndb.delete_multi(DropOff.query().fetch(keys_only=True))
+
         for donor in donors:
             donor.put()
+
+        for drop_off in drop_offs:
+            drop_off.put()
+
         self.response.write("Success")
 
 class MakeJob(webapp2.RequestHandler):

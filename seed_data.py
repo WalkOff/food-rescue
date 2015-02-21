@@ -1,10 +1,18 @@
 from models.donor import *
+from models.drop_off import *
 from models.common import *
 
 donors = [
-        Donor(name = "Whole Foods", phone="4124417960", address = Address(address1="5880 Centre Ave", city="Pittsburgh", state="PA", zipcode="15206")),
-        Donor(name = "Big Burrito Catering", phone="4123613272", address = Address(address1="5740 Baum Blvd", address2 = "#2", city="Pittsburgh", state="PA", zipcode="15206")),
-        Donor(name = "McGinnis Sisters", phone="7247791212", address = Address(address1="700 Adams Shoppes", city="Mars", state="PA", zipcode="16046")),
-        Donor(name = "Costco - Waterfront Location", phone="4122051002", address = Address(address1="501 W Waterfront Dr", city="West Homestead", state="PA", zipcode="15120")),
-        Donor(name = "East End Food Co-op", phone="4122423598", address = Address(address1="7516 Meade St", city="Pittsburgh", state="PA", zipcode="15208")),
+    Donor(name = "Whole Foods", phone="4044466348", address = Address(address1="5880 Centre Ave", city="Pittsburgh", state="PA", zipcode="15206")),
+    Donor(name = "Big Burrito Catering", phone="4044466348", address = Address(address1="5740 Baum Blvd", address2 = "#2", city="Pittsburgh", state="PA", zipcode="15206")),
+    Donor(name = "McGinnis Sisters", phone="4044466348", address = Address(address1="700 Adams Shoppes", city="Mars", state="PA", zipcode="16046")),
+    Donor(name = "Costco - Waterfront Location", phone="4044466348", address = Address(address1="501 W Waterfront Dr", city="West Homestead", state="PA", zipcode="15120")),
+    Donor(name = "East End Food Co-op", phone="4044466348", address = Address(address1="7516 Meade St", city="Pittsburgh", state="PA", zipcode="15208")),
+]
+
+drop_offs = [
+    DropOff(name="Free Store", phone="8104449621", email="nathanjcochran@gmail.com", address=Address(address1="400 Braddock Ave", city="Braddock", state="PA", zipcode="15104")),
+    DropOff(name="Community Kitchen Pittsburgh", email="nathanjcochran@gmail.com", phone="8104449621", address=Address(address1="1323 Forbes Ave", city="Pittsburgh", state="PA", zipcode="15101")),
+    DropOff(name="McKeesport School District", email="nathanjcochran@gmail.com", phone="8104449621", address=Address(address1="3590 O'Neil Blvd", city="McKeesport", state="PA", zipcode="15132")),
+    DropOff(name="Bethlehem Haven", phone="8104449621", email="nathanjcochran@gmail.com", address=Address(address1="1410 Fifth Ave", city="Pittsburgh", state="PA", zipcode="15219")),
 ]

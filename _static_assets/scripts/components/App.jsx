@@ -1,5 +1,21 @@
-var React = require('react'),
+var _ = require('lodash'),
+	React = require('react'),
 	Profile = require('./Profile.jsx');
+
+
+var date = new Date(), 
+	interval=30, 
+	times=[];
+
+for(var i=0;i<10;i++){
+	date.setMinutes((date.getMinutes() + interval) / 30);
+	times.push({
+		display: '' + date.getHours() + '.' + date.getMinutes() + '',
+		value: date.getHours() + '.' + date.getMinutes()
+	});
+}
+
+console.log('times', times);
 
 var App = React.createClass({
 	render: function() {
@@ -83,6 +99,20 @@ var App = React.createClass({
 									</label>
 								</div>
 
+								<div className="form-group">
+									Date
+									<input type="date" />
+
+									Time Frame
+									<label>
+										From
+										{this.renderTimeDropdownFrom()}
+									</label>
+									<label>
+										To
+										{this.renderTimeDropdownTo()}
+									</label>
+								</div>
 
 
 								<div className="form-group">
@@ -117,20 +147,6 @@ var App = React.createClass({
 		// 30min, 1h, 2h (drop-down)
 		// 6:30am-8am
 		// Tomorrow morning
-
-								// <div className="form-group">
-								// 	*Time Frame
-								// 	<label>
-								// 		From
-								// 		{this.renderTimeDropdownFrom()}
-								// 	</label>
-								// 	<label>
-								// 		To
-								// 		{this.renderTimeDropdownTo()}
-								// 	</label>
-								// </div>
-
-
 
 		return (	
 			<select class="form-control">
