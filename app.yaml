@@ -14,6 +14,9 @@ handlers:
 - url: /donor/.*
   script: controllers.donor.app
 
+- url: /driver/.*
+  script: controllers.driver.app
+
 - url: /job/.*
   script: controllers.job.app
 
