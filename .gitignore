@@ -56,3 +56,7 @@ target/
 
 #Un-built JS
 static_assets/
+
+# Vim
+*.swp
+

@@ -8,10 +8,6 @@ JINJA_ENVIRONMENT = jinja2.Environment(
     extensions=['jinja2.ext.autoescape'],
     autoescape=True)
 
-class HelloWorld(webapp2.RequestHandler):
-    def get(self):
-        self.response.write("Hello Liu's world!!")
-
 class Index(webapp2.RequestHandler):
     def get(self):
         template = JINJA_ENVIRONMENT.get_template('index.html')
@@ -22,6 +18,5 @@ class EndPoint1(webapp2.RequestHandler):
         self.response.write(json.dumps({'test':['1','two']}))
 
 app = webapp2.WSGIApplication([
-    ('/', Index),
-    ('/endpoints/',EndPoint1)
+    ('/',Index)
 ], debug=True)
