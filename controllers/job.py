@@ -31,14 +31,11 @@ class New(BaseHandler):
         template = JINJA_ENVIRONMENT.get_template('new.html')
         self.response.write(template.render())
 
-    def post(self):
-
 
 config = {}
 config['webapp2_extras.sessions'] = {'secret_key': 'secret-session-key-123'}
 
 app = webapp2.WSGIApplication([
     ('/job/',Index),
-    ('/job/new',New),
-    ('/job/list/?',List)
+    ('/job/new',New)
 ], config=config, debug=True)
