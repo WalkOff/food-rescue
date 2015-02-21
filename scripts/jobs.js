@@ -48,13 +48,12 @@
 	__webpack_require__(4);
 
 	var React = __webpack_require__(3),
-		Jobs = __webpack_require__(2);
+		Jobs = __webpack_require__(1);
 
 	React.render(React.createElement(Jobs, null), document.getElementById('jobs-container'));
 
 /***/ },
-/* 1 */,
-/* 2 */
+/* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var _ = __webpack_require__(10),
@@ -99,12 +98,6 @@
 			// 
 		},
 		getJobsAjax: function() {
-			// $.ajax({
-			// 	type: "POST",
-	  // 			url: "job/list",
-	  // 			data: {},
-	  // 			dataType: 'jsonp'
-			// })
 			$.get('job/list')
 			.done(this.getJobsDone)
 			.fail(function(err) {
@@ -119,6 +112,7 @@
 	module.exports = Jobs;
 
 /***/ },
+/* 2 */,
 /* 3 */
 /***/ function(module, exports, __webpack_require__) {
 

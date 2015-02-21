@@ -40,12 +40,6 @@ var Jobs = React.createClass({
 		// 
 	},
 	getJobsAjax: function() {
-		// $.ajax({
-		// 	type: "POST",
-  // 			url: "job/list",
-  // 			data: {},
-  // 			dataType: 'jsonp'
-		// })
 		$.get('job/list')
 		.done(this.getJobsDone)
 		.fail(function(err) {
