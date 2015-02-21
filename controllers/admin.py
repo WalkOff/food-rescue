@@ -26,12 +26,12 @@ class Seed(webapp2.RequestHandler):
 
 class MakeJob(webapp2.RequestHandler):
     def get(self):
-        address = Address(address1="123 Street Dr", address2="Floor 2", city="Pittsburgh",state="PA", zipcode="15239")
-        donor = Donor(name="good will", address=address,phone="3379620553")
+        address = Address(address1="123 Street Dr", address2="Floor 2", city="Pittsburgh", state="PA", zipcode="15239")
+        donor = Donor(name="Good Will", address=address, phone="3379620553")
         donor.put()
-        job = Job(donor_id=donor.key, donor_name=donor.name, donor_address=donor.address,timeframe_start=datetime.now(),is_okay_to_text=True,
-                  should_notify_donor=True, is_truck_required=True, contact_phone='123-123-1234', description='awesome job',
-                  instructions='instructions0', timeframe_end=datetime.now(), status=JobStatus.submitted)
+        job = Job(donor_id=donor.key, donor_name=donor.name, donor_address=donor.address, timeframe_start=datetime.now(), is_okay_to_text=True,
+                  should_notify_donor=True, is_truck_required=True, contact_phone='123-123-1234', description='Pick up food from catering event',
+                  instructions='Do this thing and another thing', timeframe_end=datetime.now(), status=JobStatus.submitted)
         job.put()
         self.response.write('done')
 

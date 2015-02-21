@@ -294,7 +294,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(12)();
-	exports.push([module.id, "body { \n\tpadding-top: 70px;\n}", ""]);
+	exports.push([module.id, "body { \n\tpadding-top: 70px;\n}\n.jobs-list {\n\tpadding-left: 0;\n\tmargin-left: 0;\n}\n.jobs-list-item {\n\tborder-bottom: 1px solid #ddd;\n\tmargin-bottom: 5px;\n}\n.job-status {\n\tcolor: #5cb85c;\n\ttext-transform: uppercase;\n\tfont-weight: 600;\n}\n.job-description {\n\n}", ""]);
 
 /***/ },
 /* 6 */
