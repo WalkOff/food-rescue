@@ -4,6 +4,7 @@ import jinja2
 from models.job import Job
 from common.helpers import dict_maker
 from base_handler import *
+
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader("./views/job"),
     extensions=['jinja2.ext.autoescape'],
@@ -13,6 +14,12 @@ class Index(BaseHandler):
     def get(self):
         template = JINJA_ENVIRONMENT.get_template('index.html')
         self.response.write(template.render())
+
+class New(BaseHandler):
+    def get(self):
+        template = JINJA_ENVIRONMENT.get_template('new.html')
+        self.response.write(template.render())
+
 
 class List(BaseHandler):
     def get(self):
@@ -28,5 +35,6 @@ config['webapp2_extras.sessions'] = {'secret_key': 'secret-session-key-123'}
 
 app = webapp2.WSGIApplication([
     ('/job/',Index),
+    ('/job/new',New),
     ('/job/list/?',List)
 ], config=config, debug=True)

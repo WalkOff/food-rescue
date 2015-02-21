@@ -28,28 +28,31 @@ class Login(BaseHandler):
         # User signed in, but not assigned role:
         elif user:
             if self.isDonor(user):
-                role = "donor"
+                role = 'donor'
             elif self.isDriver(user):
-                role = "driver"
+                role = 'driver'
             else:
-                self.response.write("Not a valid user")
+                self.response.write('Not a valid user. Go to <a href="' + users.create_logout_url('/login') + '">Logout</a> to logout and try a different account')
                 return
 
             self.session['role'] = role
             self.response.write("Signed in with role of: " + role)
 
+        # User not logged in, redirect to google account login page (with return url of this method):
         else:
-            self.redirect(users.create_login_url("/login"))
+            self.redirect(users.create_login_url('/login'))
 
     def isDonor(self, user):
-        donor = Donor.query(Donor.email == user.email()).fetch(1)
+        email = user.email().lower()
+        donor = Donor.query(Donor.email == email).fetch(1)
         if donor:
             return True
         else:
             return False
 
     def isDriver(self, user):
-        driver = Driver.query(Donor.email == user.email()).fetch(1)
+        email = user.email().lower()
+        driver = Driver.query(Donor.email == email).fetch(1)
         if driver:
             return True
         else:
@@ -60,9 +63,6 @@ class Logout(BaseHandler):
         user = users.get_current_user()
         self.session.clear()
         self.redirect(users.create_logout_url('/'))
-
-
-
         
 config = {}
 config['webapp2_extras.sessions'] = {'secret_key': 'secret-session-key-123'}
