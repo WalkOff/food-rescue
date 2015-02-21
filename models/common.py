@@ -13,3 +13,21 @@ class JobStatus(messages.Enum):
     pending = 2     # Pending driver acceptance
     accepted = 3    # Accepted by a driver
     completed = 4   # Job completed
+
+from datetime import datetime, date, time
+
+def dict_maker(o):
+    out = {}
+    for property in vars(o)['_values'].keys():
+        value = getattr(o,property)
+        if isinstance(value,ndb.Model):
+            out[property]= dict_maker(value)
+        elif isinstance(value, ndb.Key):
+            out[property] = value.urlsafe()
+        elif isinstance(value, (datetime, date, time)):
+            out[property] = str(value)
+        elif isinstance(value,JobStatus):
+            out[property] = str(value)
+        else:
+            out[property] = value
+    return out
