@@ -5,8 +5,11 @@ api_version: 1
 threadsafe: yes
 
 handlers:
+- url: /static_assets
+  static_dir: static_assets
+
 - url: /*
-  script: main.app
+  script: controllers.main.app
 
 libraries:
 - name: webapp2
