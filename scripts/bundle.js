@@ -71,51 +71,62 @@
 									React.createElement("span", {className: "icon-bar"}), 
 									React.createElement("span", {className: "icon-bar"})
 								), 
-								React.createElement("a", {className: "navbar-brand", href: "#"}, "Food Rescue Project")
+								React.createElement("a", {className: "navbar-brand", href: "#"}, "412 Food Rescue App")
 							), 
 
 							React.createElement("div", {className: "collapse navbar-collapse", id: "bs-example-navbar-collapse-1"}, 
-								React.createElement("ul", {className: "nav navbar-nav"}, 
-									React.createElement("li", {className: "active"}, React.createElement("a", {href: "#"}, "Link ", React.createElement("span", {className: "sr-only"}, "(current)"))), 
-									React.createElement("li", null, React.createElement("a", {href: "#"}, "Link")), 
+								React.createElement("ul", {className: "nav navbar-nav navbar-right"}, 
 									React.createElement("li", {className: "dropdown"}, 
-									React.createElement("a", {href: "#", className: "dropdown-toggle", "data-toggle": "dropdown", role: "button", "aria-expanded": "false"}, "Dropdown ", React.createElement("span", {className: "caret"})), 
-									React.createElement("ul", {className: "dropdown-menu", role: "menu"}, 
-									React.createElement("li", null, React.createElement("a", {href: "#"}, "Action")), 
-									React.createElement("li", null, React.createElement("a", {href: "#"}, "Another action")), 
-									React.createElement("li", null, React.createElement("a", {href: "#"}, "Something else here")), 
-									React.createElement("li", {className: "divider"}), 
-									React.createElement("li", null, React.createElement("a", {href: "#"}, "Separated link")), 
-									React.createElement("li", {className: "divider"}), 
-									React.createElement("li", null, React.createElement("a", {href: "#"}, "One more separated link"))
-									)
-									)
-									), 
-
-									React.createElement("ul", {className: "nav navbar-nav navbar-right"}, 
-									React.createElement("li", null, React.createElement("a", {href: "#"}, "Link")), 
-									React.createElement("li", {className: "dropdown"}, 
-									React.createElement("a", {href: "#", className: "dropdown-toggle", "data-toggle": "dropdown", role: "button", "aria-expanded": "false"}, "Dropdown ", React.createElement("span", {className: "caret"})), 
-									React.createElement("ul", {className: "dropdown-menu", role: "menu"}, 
-									React.createElement("li", null, React.createElement("a", {href: "#"}, "Action")), 
-									React.createElement("li", null, React.createElement("a", {href: "#"}, "Another action")), 
-									React.createElement("li", null, React.createElement("a", {href: "#"}, "Something else here")), 
-									React.createElement("li", {className: "divider"}), 
-									React.createElement("li", null, React.createElement("a", {href: "#"}, "Separated link"))
-									)
-
+										React.createElement("a", {href: "#", className: "dropdown-toggle", "data-toggle": "dropdown", role: "button", "aria-expanded": "false"}, 
+											"My Profile", React.createElement("span", {className: "caret"})
+										), 
+										React.createElement("ul", {className: "dropdown-menu", role: "menu"}, 
+											React.createElement("li", null, React.createElement("a", {href: "#"}, "Action")), 
+											React.createElement("li", null, React.createElement("a", {href: "#"}, "Another action")), 
+											React.createElement("li", null, React.createElement("a", {href: "#"}, "Something else here")), 
+											React.createElement("li", {className: "divider"}), 
+											React.createElement("li", null, React.createElement("a", {href: "#"}, "Separated link"))
+										)
 									)
 								)
+							)
+						)
+					), 
+
+
+					React.createElement("div", {className: "container"}, 
+						React.createElement("div", {className: "row"}, 
+							React.createElement("div", {className: "profile panel col-xs-12"}, 
+								React.createElement("h2", null, "My Profile"), 
+
+								React.createElement("dl", {className: "dl-horizontal"}, 
+								  React.createElement("dt", null, "Organization Name: "), 
+								  React.createElement("dd", null, "Big Burrito"), 
+
+			  					  React.createElement("dt", null, "Address: "), 
+								  React.createElement("dd", null, "address here"), 
+
+			  					  React.createElement("dt", null, "Phone: "), 
+								  React.createElement("dd", null, "Big Burrito")
+								), 
+
+								React.createElement("p", null, "To contact an administrator, call (888) 888-8888"), 
+
+								React.createElement("button", {className: "btn btn-primary btn-large", 
+										onClick: this.editProfile}, 
+									"Edit"
+								)
+
 							)
 						)
 					)
 
 
-					
-
-
 				)
 			);
+		},
+		editProfile: function() {
+
 		}
 	});
 
