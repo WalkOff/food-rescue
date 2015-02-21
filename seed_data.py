@@ -1,6 +1,8 @@
-from models.donor import *
-from models.drop_off import *
 from models.common import *
+from models.donor import *
+from models.driver import *
+from models.drop_off import *
+from models.job import *
 
 donors = [
     Donor(name = "Whole Foods", phone="4044466348", address = Address(address1="5880 Centre Ave", city="Pittsburgh", state="PA", zipcode="15206")),
@@ -15,4 +17,8 @@ drop_offs = [
     DropOff(name="Community Kitchen Pittsburgh", email="nathanjcochran@gmail.com", phone="8104449621", address=Address(address1="1323 Forbes Ave", city="Pittsburgh", state="PA", zipcode="15101")),
     DropOff(name="McKeesport School District", email="nathanjcochran@gmail.com", phone="8104449621", address=Address(address1="3590 O'Neil Blvd", city="McKeesport", state="PA", zipcode="15132")),
     DropOff(name="Bethlehem Haven", phone="8104449621", email="nathanjcochran@gmail.com", address=Address(address1="1410 Fifth Ave", city="Pittsburgh", state="PA", zipcode="15219")),
+]
+
+drivers = [
+    Driver(name="Nathan Cochran", phone="7175800419", email="nathanjcochran@gmail.com", is_active=True),
 ]
