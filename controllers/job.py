@@ -3,6 +3,7 @@ import json
 import jinja2
 from models.job import Job
 from common.helpers import dict_maker
+from base_handler import *
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader("./views/job"),
     extensions=['jinja2.ext.autoescape'],
