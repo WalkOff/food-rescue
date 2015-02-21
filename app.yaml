@@ -11,7 +11,7 @@ handlers:
 - url: /admin/.*
   script: controllers.admin.app
 
-- url: /donor/*
+- url: /donor/.*
   script: controllers.donor.app
 
 - url: /*
