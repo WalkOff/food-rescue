@@ -1,10 +1,15 @@
 import webapp2
+from seed_data import *
 
-class HelloAdmin(webapp2.RequestHandler):
+class Seed(webapp2.RequestHandler):
     def get(self):
-        self.response.write("Hello Admin")
+        # Delete all existing donors:
+        ndb.delete_multi(Donor.query().fetch(keys_only=True))
+        for donor in donors:
+            donor.put()
+        self.response.write("Success")
 
 app = webapp2.WSGIApplication([
-    ('/admin', HelloAdmin)
+    ('/admin/seed', Seed)
 ], debug=True)
 
