@@ -16,13 +16,17 @@ class Index(BaseHandler):
 
 class List(BaseHandler):
     def get(self):
-        jobs = Job.query().fetch(10)
+        template = JINJA_ENVIRONMENT.get_template('job_list.html')
+        self.response.write(template.render())
+    def post(self):
+        jobs = Job.query().fetch()
+        self.response.headers['Content-Type'] = 'application/json'
         self.response.write(json.dumps([dict_maker(j) for j in jobs]))
 
 config = {}
 config['webapp2_extras.sessions'] = {'secret_key': 'secret-session-key-123'}
 
 app = webapp2.WSGIApplication([
-    ('/job/index',Index),
-    ('/job/list',List)
+    ('/job/',Index),
+    ('/job/list/?',List)
 ], config=config, debug=True)
