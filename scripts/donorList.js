@@ -66,41 +66,41 @@
 
 	var DonorList = React.createClass({displayName: "DonorList",
 	    getInitialState: function() {
-	    		     return {
-			     	    donors: []
-			     };
+		     return {
+		     	 donors: []
+		     };
 	    },
 	    componentWillMount: function() {
-	    			this.getDonorsAjax();			
+			this.getDonorsAjax();			
 	    },
 	    render: function() {    
-	    	    return (
-		    	   React.createElement("div", null, 
-				React.createElement("ul", null, 
-				this.renderDonorsList(this.state.donors)
-				)	    	   
-			   )
+		    return (
+	            React.createElement("div", null, 
+	                React.createElement("ul", null, 
+	                    this.renderDonorsList(this.state.donors)
+	                )	    	   
+	            )
 		    );
 	    },
 	    renderDonorsList: function(donors) {
-	    		      return _.map(donors, function(donor) {
-			      	     return (
-				     	    React.createElement("li", {className: "list-unstyled"}, 
-					    	donor.name, " - ", donor.phone
-					    )
-				     );
-			      }, this);
+	        return _.map(donors, function(donor) {
+	            return (
+	                React.createElement("li", {className: "list-unstyled"}, 
+	                    donor.name, " - ", donor.phone
+	                )
+	            );
+	        }, this);
 	    },
 	    getDonorsAjax: function() {
-	    		   $.post('/donor/')
-				.done(this.getDonorsDone)
-				.fail(function(err) { 
-					console.log(err); 
-			   });
+	        $.post('/donor/')
+	        .done(this.getDonorsDone)
+	        .fail(function(err) { 
+	            console.log(err); 
+	        });
 	    },
 	    getDonorsDone: function(data) {
-	    		   var parsedData = JSON.parse(data);
-			   this.setState({donor: parsedData});
+	    	var parsedData = JSON.parse(data);
+			this.setState({donor: parsedData});
 	    }
 	});
 
