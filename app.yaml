@@ -8,6 +8,9 @@ handlers:
 - url: /static_assets
   static_dir: static_assets
 
+- url: /endpoints/*
+  script: controllers.main.endpoints
+
 - url: /*
   script: controllers.main.app
 
