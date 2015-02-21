@@ -11,12 +11,16 @@ class Seed(webapp2.RequestHandler):
         # Delete all existing entities:
         ndb.delete_multi(Donor.query().fetch(keys_only=True))
         ndb.delete_multi(DropOff.query().fetch(keys_only=True))
+        ndb.delete_multi(Driver.query().fetch(keys_only=True))
 
         for donor in donors:
             donor.put()
 
         for drop_off in drop_offs:
             drop_off.put()
+        
+        for driver in drivers:
+            driver.put()
 
         self.response.write("Success")
 
