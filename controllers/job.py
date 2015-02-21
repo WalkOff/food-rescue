@@ -10,25 +10,29 @@ JINJA_ENVIRONMENT = jinja2.Environment(
     extensions=['jinja2.ext.autoescape'],
     autoescape=True)
 
+'''
+Job listing
+'''
 class Index(BaseHandler):
     def get(self):
         template = JINJA_ENVIRONMENT.get_template('index.html')
         self.response.write(template.render())
 
+    def post(self):
+        jobs = Job.query().fetch()
+        self.response.headers['Content-Type'] = 'application/json'
+        self.response.write(json.dumps([dict_maker(j) for j in jobs]))
+
+'''
+New job/donation creation form
+'''
 class New(BaseHandler):
     def get(self):
         template = JINJA_ENVIRONMENT.get_template('new.html')
         self.response.write(template.render())
 
-
-class List(BaseHandler):
-    def get(self):
-        template = JINJA_ENVIRONMENT.get_template('job_list.html')
-        self.response.write(template.render())
     def post(self):
-        jobs = Job.query().fetch()
-        self.response.headers['Content-Type'] = 'application/json'
-        self.response.write(json.dumps([dict_maker(j) for j in jobs]))
+
 
 config = {}
 config['webapp2_extras.sessions'] = {'secret_key': 'secret-session-key-123'}
