@@ -37,7 +37,7 @@ var DonorList = React.createClass({
         });
     },
     getDonorsDone: function(data) {
-    	var parsedData = JSON.parse(data);
+    	var parsedData = data;
 		this.setState({donor: parsedData});
     }
 });
