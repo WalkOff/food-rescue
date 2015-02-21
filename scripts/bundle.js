@@ -97,7 +97,7 @@
 			);
 		},
 		submitInfoAjax: function(donorForm) {
-	    	$.post('/job/new',{donorForm: donorForm})
+	    	$.post('/job/new',{job: donorForm})
 	        .done(this.getSubmitDone)
 	        .fail(function(err) { 
 	            console.log(err); 
@@ -29968,6 +29968,7 @@
 			};
 		},
 		render: function() {
+			//todo: fix address
 			return (
 				React.createElement("form", {onSubmit: this.formSubmit}, 
 					React.createElement("div", {className: "form-group"}, 
