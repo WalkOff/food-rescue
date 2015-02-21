@@ -8,9 +8,8 @@ handlers:
 - url: /scripts
   static_dir: scripts
 
-- url: /admin/*
+- url: /admin/.*
   script: controllers.admin.app
-  login: admin
 
 - url: /*
   script: controllers.main.app
