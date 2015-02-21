@@ -32,7 +32,16 @@ class JobDetails(BaseHandler):
 
 class AssignDropOff(BaseHandler):
     def post(self):
-        return
+        job_id = ndb.Key(self.request.get('jobId'))
+        job = job_id.get()
+        drop_off_id = ndb.Key(self.request.get('dropoffId'))
+        drop_off = DropOff()
+        drop_off = drop_off_id.get()
+        job.drop_off_location = drop_off.address
+        job.drop_off_name = drop_off.name
+        job.drop_off_id = drop_off.key
+        self.response.headers['Content-Type'] = 'application/json'
+        self.response.out.write(json.dumps(job))
 
 
 config = {}
