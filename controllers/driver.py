@@ -1,8 +1,6 @@
 import webapp2
 import json
 import jinja2
-import os
-from google.appengine.ext import ndb
 from models.driver import Driver
 
 JINJA_ENVIRONMENT = jinja2.Environment(
