@@ -75,25 +75,25 @@
 	    			this.getDriversAjax();
 	    },
 	    render: function() {    
-	    	    return (
-		    	   React.createElement("div", null, 
-				React.createElement("ul", null, 
-				this.renderDriversList(this.state.drivers)
-				)	    	   
-			   )
+	    	return (
+		    	React.createElement("div", null, 
+					React.createElement("ul", null, 
+						this.renderDriversList(this.state.drivers)
+					)	    	   
+				)
 		    );
 	    },
 	    renderDriversList: function(drivers) {
-	    		      return _.map(drivers, function(driver) {
-			      	     return (
-				     	    React.createElement("li", {className: "list-unstyled"}, 
-					    	driver.name, " - ", driver.phone
-					    )
-				     );
-			      }, this);
+		    return _.map(drivers, function(driver) {
+	      	     return (
+		     	    React.createElement("li", {className: "list-unstyled"}, 
+			    	driver.name, " - ", driver.phone
+			    )
+		     );
+	    	}, this);
 	    },
 	    getDriversAjax: function() {
-	    		   $.post('/driver/')
+	    	$.post('/driver/')
 				.done(this.getDriversDone)
 				.fail(function(err) { 
 					console.log(err); 

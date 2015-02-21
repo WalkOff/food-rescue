@@ -34,7 +34,7 @@ class MakeJob(BaseHandler):
         address = Address(address1="123 Street Dr", address2="Floor 2", city="Pittsburgh", state="PA", zipcode="15239")
         donor = Donor(name="Good Will", address=address, phone="3379620553", email="shawn.rancatore@gmail.com")
         donor.put()
-        job = Job(donor_id=donor.key, donor_name=donor.name, donor_address=donor.address, timeframe_start=datetime.now(), is_okay_to_text=True,
+        job = Job(donor_id=donor.key, donor_name=donor.name, pickup_location=donor.address, timeframe_start=datetime.now(), is_okay_to_text=True,
                   should_notify_donor=True, is_truck_required=True, contact_phone='123-123-1234', description='Pick up food from catering event',
                   instructions='Do this thing and another thing', timeframe_end=datetime.now(), status=JobStatus.submitted)
         job.put()

@@ -61,7 +61,7 @@
 		$ = __webpack_require__(11),
 		React = __webpack_require__(10);
 
-
+	// admin jobs queue 
 	var Jobs = React.createClass({displayName: "Jobs",
 		getInitialState: function() {
 			return {
@@ -146,7 +146,7 @@
 		expandCard: function() {
 		},
 		getJobsAjax: function() {
-			$.get('job/list')
+			$.get('/admin/job')
 			.done(this.getJobsDone)
 			.fail(function(err) {
 				console.log(err);

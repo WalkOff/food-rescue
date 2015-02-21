@@ -38,8 +38,8 @@ var App = React.createClass({
 			</button>
 		);
 	},
-	submitInfoAjax: function() {
-    	$.post('/jobs/create')
+	submitInfoAjax: function(donorForm) {
+    	$.post('/job/new',{job: donorForm})
         .done(this.getSubmitDone)
         .fail(function(err) { 
             console.log(err); 
