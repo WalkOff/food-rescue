@@ -5,8 +5,8 @@ api_version: 1
 threadsafe: yes
 
 handlers:
-- url: /static_assets
-  static_dir: static_assets
+- url: /scripts
+  static_dir: scripts
 
 - url: /admin/*
   script: controllers.admin.app
