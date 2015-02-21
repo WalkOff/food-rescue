@@ -32,7 +32,11 @@ class JobDetails(BaseHandler):
 
 class AssignDropOff(BaseHandler):
     def post(self):
-        return
+        job_id = self.request.get('jobId')
+        job = job_id.get(job_id)
+        job.drop_off_location =
+        self.response.headers['Content-Type'] = 'application/json'
+        self.response.out.write(json.dumps(job))
 
 
 config = {}
