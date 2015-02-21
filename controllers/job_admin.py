@@ -7,12 +7,16 @@ from models.donor import *
 from models.drop_off import *
 from seed_data import *
 
+class JobAdmin(BaseHandler):
+    def get(self):
+        return
+    def post(self):
+        return
 
 config = {}
 config['webapp2_extras.sessions'] = {'secret_key': 'secret-session-key-123'}
 
 app = webapp2.WSGIApplication([
-    ('/admin/seed', Seed),
-    ('/admin/make_job', MakeJob)
+    ('/admin/job', Seed)
 ], config=config, debug=True)
 
