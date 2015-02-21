@@ -2,6 +2,7 @@ import webapp2
 import json
 import jinja2
 from models.driver import Driver
+from common.helpers import str2bool
 
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader("./views/driver"),
@@ -24,8 +25,26 @@ class CreateEdit(webapp2.RequestHandler):
     def post(self):
         driver_id = self.request.get('driverId')
         driver = driver_id.get()
+        driver_blob = self.request.get('driver')
+        try:
+            driver_vals = json.loads(driver_blob)
+        except:
+            self.response.out.write('Error!')
         self.response.headers['Content-Type'] = 'application/json'
         self.response.out.write(json.dumps(driver))
+
+class UpdateStatus(webapp2.RequestHandler):
+    def post(self):
+        try:
+            driver_id = self.request.get('driverId')
+            driver = driver_id.get()
+            status_val = self.request.get('status')
+            driver.is_active = str2bool(status_val)
+            driver.put()
+        except:
+            self.response.out.write({'success':'false'})
+            return
+        self.response.out.write({'success':'true'})
 
 app = webapp2.WSGIApplication([
     ('/driver/?',Index),

@@ -68,14 +68,14 @@
 				jobs: []
 			};
 		},
-		componentWillMount: function() {
-			// this.getJobsAjax();
-		},
 		render: function() {
 			return (
-				React.createElement("div", null, 
-					React.createElement("ul", null, 
-						this.renderJobsList(this.state.jobs)
+				React.createElement("div", {className: "container"}, 
+					React.createElement("div", {className: "row"}, 
+						React.createElement("h2", null, "Jobs Queue"), 
+						React.createElement("ul", {className: "jobs-list col-xs-12"}, 
+							this.renderJobsList(this.state.jobs)
+						)
 					)
 				)
 			);
@@ -85,26 +85,60 @@
 		},
 		renderJobsList: function(jobs) {
 			return _.map(jobs, function(job) {
-				// {job.status}
 				// {job.accepted_by_phone}
-				// {job.instructions}
-				// {job.contact_phone}
 				// {job.accepted_by_name}
-				// {job.description}
 				// {job.should_notify_donor}
-				// {job.timeframe_start}
-				// {job.timeframe_end}
-				// {job.drop_off_phone}
 				// {job.is_okay_to_text}
-				// {job.donor_name}
-				// {job.address}
-				// {job.drop_off_location}
 				// {job.is_truck_required}
-				// {job.drop_off_name}
-
 				return (
-					React.createElement("li", {className: "list-unstyled"}, 
-						job.status
+					React.createElement("li", {className: "list-unstyled jobs-list-item row"}, 
+
+						React.createElement("div", {className: "col-xs-3"}, 
+							React.createElement("dl", {className: ""}, 
+								React.createElement("dt", null, "Location: "), 
+								React.createElement("dd", null, job.donor_address), 
+
+								React.createElement("dt", null, "Donor name: "), 
+								React.createElement("dd", null, job.donor_name), 
+
+								React.createElement("dt", null, "Donor Phone: "), 
+								React.createElement("dd", null, job.contact_phone)
+							)
+						), 
+						
+						React.createElement("div", {className: "col-xs-3"}, 
+							React.createElement("dl", {className: ""}, 
+								React.createElement("dt", null, "Drop off Location: "), 
+								React.createElement("dd", null, job.drop_off_location), 
+								React.createElement("dt", null, "Drop off Name: "), 
+								React.createElement("dd", null, job.drop_off_name), 
+								React.createElement("dt", null, "Drop off Phone: "), 
+								React.createElement("dd", null, job.drop_off_phone)
+							)
+						), 
+
+						React.createElement("div", {className: "col-xs-3"}, 
+							React.createElement("dl", {className: ""}, 
+								React.createElement("dt", null, "From: "), 
+								React.createElement("dd", null, job.timeframe_start), 
+								React.createElement("dt", null, "To: "), 
+								React.createElement("dd", null, job.timeframe_end)
+							)
+						), 
+
+						React.createElement("div", {className: "col-xs-3"}, 
+							React.createElement("dl", {className: ""}, 
+								React.createElement("dt", null, "Status: "), 
+								React.createElement("dd", {className: "job-status"}, job.status), 
+
+								React.createElement("dt", null, "Description: "), 
+								React.createElement("dd", {className: "job-description"}, job.description), 
+
+								React.createElement("dt", null, "Instructions: "), 
+								React.createElement("dd", {className: "job-instructions"}, job.instructions)
+							)
+						)
+
 					)
 				);
 			}, this);
@@ -155,7 +189,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(13)();
-	exports.push([module.id, "body { \n\tpadding-top: 70px;\n}", ""]);
+	exports.push([module.id, "body { \n\tpadding-top: 70px;\n}\n.jobs-list {\n\tpadding-left: 0;\n\tmargin-left: 0;\n}\n.jobs-list-item {\n\tborder-bottom: 1px solid #ddd;\n\tmargin-bottom: 5px;\n}\n.job-status {\n\tcolor: #5cb85c;\n\ttext-transform: uppercase;\n\tfont-weight: 600;\n}\n.job-description {\n\n}", ""]);
 
 /***/ },
 /* 6 */
