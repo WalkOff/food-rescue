@@ -35,6 +35,6 @@ config = {}
 config['webapp2_extras.sessions'] = {'secret_key': 'secret-session-key-123'}
 
 app = webapp2.WSGIApplication([
-    ('/donor/?',Index),
-    ('/donor/(\S+)/?',CreateEdit)
+    ('/admin/donor/?',Index),
+    ('/admin/donor/(\S+)/?',CreateEdit)
 ], config=config, debug=True)

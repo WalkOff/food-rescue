@@ -10,17 +10,17 @@ handlers:
 
 - url: /admin/job.*
   script: controllers.job_admin.app
-
-- url: /admin/.*
-  script: controllers.admin.app
-
-- url: /donor/.*
+      
+- url: /admin/donor.*
   script: controllers.donor.app
 
-- url: /driver/.*
+- url: /admin.*
+  script: controllers.admin.app
+
+- url: /driver.*
   script: controllers.driver.app
 
-- url: /job/.*
+- url: /job.*
   script: controllers.job.app
 
 - url: /.*
