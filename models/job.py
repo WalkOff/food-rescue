@@ -21,8 +21,12 @@ class Job(ndb.Model):
 
     # Once drop off location is assigned:
     drop_off_id = ndb.KeyProperty(kind="DropOff" required=False)
+    drop_off_name = ndb.StringProperty(required=False)
     drop_off_location = ndb.StructuredProperty(Address, required = False)
+    drop_off_phone = ndb.StringProperty(required=False)
 
     # Once accepted by a driver:
-    is_accepted = ndb.BooleanProperty(required=True)
-    accepted_by = ndb.KeyProperty(kind="Driver", required=False)
+    accepted_by_id = ndb.KeyProperty(kind="Driver", required=False)
+    accepted_by_name = ndb.StringProperty(required=False)
+    accepted_by_phone = ndb.StringProperty(required=False)
+
