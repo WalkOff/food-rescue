@@ -20,7 +20,7 @@ var DonorList = React.createClass({
 		   </div>
 	    );
     },
-    renderDonorsList: function(donors) {
+    renderDonorsList: function(donors) { 
     		      return _.map(donors, function(donor) {
 		      	     return (
 			     	    <li className="list-unstyled">
@@ -37,8 +37,7 @@ var DonorList = React.createClass({
 		   });
     },
     getDonorsDone: function(data) {
-    		   var parsedData = JSON.parse(data);
-		   this.setState({donor: parsedData});
+		   this.setState({donors: data});
     }
 });
 

@@ -18,7 +18,7 @@ class Index(webapp2.RequestHandler):
     def post(self):
         donors = Donor.query().fetch()
         self.response.headers['Content-Type'] = 'application/json'   
-        self.response.out.write(json.dumps(dict_maker(donors)))
+        self.response.out.write(json.dumps([dict_maker(d) for d in donors]))
 
 class CreateEdit(webapp2.RequestHandler):
     def get(self, donor_id):

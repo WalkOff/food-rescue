@@ -82,7 +82,7 @@
 			   )
 		    );
 	    },
-	    renderDonorsList: function(donors) {
+	    renderDonorsList: function(donors) { 
 	    		      return _.map(donors, function(donor) {
 			      	     return (
 				     	    React.createElement("li", {className: "list-unstyled"}, 
@@ -99,8 +99,7 @@
 			   });
 	    },
 	    getDonorsDone: function(data) {
-	    		   var parsedData = JSON.parse(data);
-			   this.setState({donor: parsedData});
+			   this.setState({donors: data});
 	    }
 	});
 
