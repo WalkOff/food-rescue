@@ -1,4 +1,5 @@
 import webapp2
+from google.appengine.api import users
 from webapp2_extras import sessions
 
 class BaseHandler(webapp2.RequestHandler):
@@ -17,3 +18,18 @@ class BaseHandler(webapp2.RequestHandler):
     def session(self):
         # Returns a session using the default cookie key.
         return self.session_store.get_session()
+
+    def user(self):
+        user = users.get_current_user()
+
+        if user and 'role' in self.session:
+            return user
+        return None
+
+    def user_role(self):
+        user = users.get_current_user()
+
+        if user and 'role' in self.session:
+            return session['role']
+        return None
+        

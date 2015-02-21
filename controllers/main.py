@@ -42,14 +42,16 @@ class Login(BaseHandler):
             self.redirect(users.create_login_url("/login"))
 
     def isDonor(self, user):
-        donor = Donor.query(Donor.email == user.email()).fetch(1)
+        email = user.email().lower()
+        donor = Donor.query(Donor.email == email).fetch(1)
         if donor:
             return True
         else:
             return False
 
     def isDriver(self, user):
-        driver = Driver.query(Donor.email == user.email()).fetch(1)
+        email = user.email().lower()
+        driver = Driver.query(Donor.email == email).fetch(1)
         if driver:
             return True
         else:
