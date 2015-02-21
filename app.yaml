@@ -20,7 +20,7 @@ handlers:
 - url: /job/.*
   script: controllers.job.app
 
-- url: /*
+- url: /.*
   script: controllers.main.app
 
 libraries:
