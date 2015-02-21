@@ -12,25 +12,25 @@ var DriverList = React.createClass({
     			this.getDriversAjax();
     },
     render: function() {    
-    	    return (
-	    	   <div>
-			<ul>
-			{this.renderDriversList(this.state.drivers)}
-			</ul>	    	   
-		   </div>
+    	return (
+	    	<div>
+				<ul>
+					{this.renderDriversList(this.state.drivers)}
+				</ul>	    	   
+			</div>
 	    );
     },
     renderDriversList: function(drivers) {
-    		      return _.map(drivers, function(driver) {
-		      	     return (
-			     	    <li className="list-unstyled">
-				    	{driver.name} - {driver.phone}
-				    </li>
-			     );
-		      }, this);
+	    return _.map(drivers, function(driver) {
+      	     return (
+	     	    <li className="list-unstyled">
+		    	{driver.name} - {driver.phone}
+		    </li>
+	     );
+    	}, this);
     },
     getDriversAjax: function() {
-    		   $.post('/driver/')
+    	$.post('/driver/')
 			.done(this.getDriversDone)
 			.fail(function(err) { 
 				console.log(err); 

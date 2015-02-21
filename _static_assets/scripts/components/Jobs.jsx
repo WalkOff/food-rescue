@@ -2,7 +2,7 @@ var _ = require('underscore'),
 	$ = require('jquery'),
 	React = require('react');
 
-
+// admin jobs queue 
 var Jobs = React.createClass({
 	getInitialState: function() {
 		return {
@@ -87,7 +87,7 @@ var Jobs = React.createClass({
 	expandCard: function() {
 	},
 	getJobsAjax: function() {
-		$.get('/job/list')
+		$.get('/admin/job')
 		.done(this.getJobsDone)
 		.fail(function(err) {
 			console.log(err);
