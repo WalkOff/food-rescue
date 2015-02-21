@@ -3,7 +3,7 @@ import json
 import jinja2
 from base_handler import *
 from models.driver import Driver
-from common.helpers import str2bool
+from common.helpers import str2bool,dict_maker
 
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader("./views/driver"),
@@ -15,9 +15,9 @@ class Index(webapp2.RequestHandler):
         template = JINJA_ENVIRONMENT.get_template('driver_list.html')
         self.response.write(template.render())
     def post(self):
-        drivers = Driver.all()
+        drivers = Driver.query().fetch()
         self.response.headers['Content-Type'] = 'application/json'
-        self.response.out.write(json.dumps(drivers))
+        self.response.out.write(json.dumps([dict_maker(d) for d in drivers]))
 
 class CreateEdit(webapp2.RequestHandler):
     def get(self, driver_id):
