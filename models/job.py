@@ -1,6 +1,6 @@
 from common import *
 from google.appengine.ext import ndb
-
+from google.appengine.ext.ndb import msgprop
 
 class Job(ndb.Model):
     # Status of the job:
@@ -20,7 +20,7 @@ class Job(ndb.Model):
     is_truck_required = ndb.BooleanProperty(required=True)
 
     # Once drop off location is assigned:
-    drop_off_id = ndb.KeyProperty(kind="DropOff" required=False)
+    drop_off_id = ndb.KeyProperty(kind="DropOff", required=False)
     drop_off_name = ndb.StringProperty(required=False)
     drop_off_location = ndb.StructuredProperty(Address, required = False)
     drop_off_phone = ndb.StringProperty(required=False)
