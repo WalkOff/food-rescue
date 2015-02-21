@@ -2,7 +2,6 @@ import webapp2
 import json
 import jinja2
 from models.drop_off import DropOff
-from common.helpers import str2bool
 
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader("./views/drop_off"),
