@@ -35,7 +35,6 @@ class MakeJob(webapp2.RequestHandler):
         job.put()
         self.response.write('done')
 
-
 app = webapp2.WSGIApplication([
     ('/admin/seed', Seed),
     ('/admin/make_job', MakeJob)
