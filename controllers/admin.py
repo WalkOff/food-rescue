@@ -27,8 +27,12 @@ class Seed(BaseHandler):
 
 class MakeJob(BaseHandler):
     def get(self):
+        # Delete all existing entities:
+        ndb.delete_multi(Donor.query().fetch(keys_only=True))
+        ndb.delete_multi(DropOff.query().fetch(keys_only=True))
+        ndb.delete_multi(Driver.query().fetch(keys_only=True))
         address = Address(address1="123 Street Dr", address2="Floor 2", city="Pittsburgh", state="PA", zipcode="15239")
-        donor = Donor(name="Good Will", address=address, phone="3379620553")
+        donor = Donor(name="Good Will", address=address, phone="3379620553", email="shawn.rancatore@gmail.com")
         donor.put()
         job = Job(donor_id=donor.key, donor_name=donor.name, donor_address=donor.address, timeframe_start=datetime.now(), is_okay_to_text=True,
                   should_notify_donor=True, is_truck_required=True, contact_phone='123-123-1234', description='Pick up food from catering event',
