@@ -5,3 +5,4 @@ class Donor(ndb.Model):
     name = ndb.StringProperty(required=True)
     address = ndb.StructuredProperty(Address, required=True)
     phone = ndb.StringProperty(required=True)
+    email = ndb.StringProperty(required=True)
