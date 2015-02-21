@@ -1,4 +1,4 @@
-import common
+from common import *
 from google.appengine.ext import ndb
 
 class Donor(ndb.Model):
