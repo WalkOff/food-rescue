@@ -12,6 +12,9 @@ handlers:
   script: controllers.admin.app
   login: admin
 
+- url: /endpoints/*
+  script: controllers.main.endpoints
+
 - url: /*
   script: controllers.main.app
 
