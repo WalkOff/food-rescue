@@ -1,7 +1,8 @@
 module.exports = {
     entry: {
         bundle: './scripts/app-entry.js',
-        jobs: './scripts/jobs-entry.js'
+        jobs: './scripts/jobs-entry.js',
+	donorList: './scripts/donor-list-entry.js'
     },
     output: {
         path: "../scripts",
