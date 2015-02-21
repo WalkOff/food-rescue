@@ -54,7 +54,7 @@ docs/_build/
 # PyBuilder
 target/
 
-#Un-built JS
+# Un-built JS
 _static_assets/
 
 # Vim
