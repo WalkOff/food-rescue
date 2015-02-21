@@ -84,5 +84,4 @@ app = webapp2.WSGIApplication([
     ('/job/',Index),
     ('/job/new',New),
     ('/job/(\S+)/?',Details),
-    ('/job/list/?',List)
 ], config=config, debug=True)
