@@ -60,3 +60,5 @@ _static_assets/
 # Vim
 *.swp
 
+# Emacs
+*~

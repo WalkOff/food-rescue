@@ -12,6 +12,9 @@ handlers:
   script: controllers.admin.app
   login: admin
 
+- url: /donor/*
+  script: controllers.donor.app
+
 - url: /*
   script: controllers.main.app
 
