@@ -21,7 +21,12 @@ class Login(BaseHandler):
     def get(self):
         user = users.get_current_user()
 
-        if user:
+        # User fully signed in:
+        if user and 'role' in self.session:
+            self.response.write('Aleady signed in.  Email: ' + user.email() + ' Role: ' + self.session['role'])
+
+        # User signed in, but not assigned role:
+        elif user:
             if self.isDonor(user):
                 role = "donor"
             elif self.isDriver(user):
@@ -34,26 +39,36 @@ class Login(BaseHandler):
             self.response.write("Signed in with role of: " + role)
 
         else:
-            self.response.redirect(users.create_login_url("/Login"))
+            self.redirect(users.create_login_url("/login"))
 
     def isDonor(self, user):
-        donor = Donor.query(Donor.email == user.email())
+        donor = Donor.query(Donor.email == user.email()).fetch(1)
         if donor:
             return True
         else:
             return False
 
     def isDriver(self, user):
-        driver = Driver.query(Donor.email == user.email())
-        if donor:
+        driver = Driver.query(Donor.email == user.email()).fetch(1)
+        if driver:
             return True
         else:
             return False
 
+class Logout(BaseHandler):
+    def get(self):
+        user = users.get_current_user()
+        self.session.clear()
+        self.redirect(users.create_logout_url('/'))
+
+
+
+        
 config = {}
 config['webapp2_extras.sessions'] = {'secret_key': 'secret-session-key-123'}
 
 app = webapp2.WSGIApplication([
     ('/',Index),
-    ('/login', Login)
+    ('/login', Login),
+    ('/logout', Logout),
 ], config=config, debug=True)
