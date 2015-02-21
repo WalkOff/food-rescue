@@ -18,7 +18,9 @@ class JobList(BaseHandler):
     def get(self):
         template = JINJA_ENVIRONMENT.get_template('job_list.html')
         self.response.write(template.render())
-    def post(self):
+
+class GetJobs(BaseHandler):
+    def get(self):
         jobs = Job.query().fetch()
         self.response.headers['Content-Type'] = 'application/json'
         self.response.write(json.dumps([dict_maker(j) for j in jobs]))
@@ -38,6 +40,7 @@ config['webapp2_extras.sessions'] = {'secret_key': 'secret-session-key-123'}
 
 app = webapp2.WSGIApplication([
     ('/admin/job', JobDetails),
-    ('/job/?',JobList)
+    ('/admin/jobs', JobList),
+    ('/admin/job/list',GetJobs)
 ], config=config, debug=True)
 

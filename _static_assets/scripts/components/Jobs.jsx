@@ -87,7 +87,7 @@ var Jobs = React.createClass({
 	expandCard: function() {
 	},
 	getJobsAjax: function() {
-		$.get('/job/list')
+		$.get('job/list')
 		.done(this.getJobsDone)
 		.fail(function(err) {
 			console.log(err);
