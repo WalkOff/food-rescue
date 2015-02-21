@@ -30,7 +30,7 @@ var DonorList = React.createClass({
         }, this);
     },
     getDonorsAjax: function() {
-        $.post('/donor/')
+        $.post('/admin/donor/')
         .done(this.getDonorsDone)
         .fail(function(err) { 
             console.log(err); 
