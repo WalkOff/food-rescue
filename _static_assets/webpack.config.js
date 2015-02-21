@@ -1,6 +1,7 @@
 module.exports = {
     entry: {
-        bundle: './scripts/app-entry.js'
+        bundle: './scripts/app-entry.js',
+        jobs: './scripts/jobs-entry.js'
     },
     output: {
         path: "../scripts",

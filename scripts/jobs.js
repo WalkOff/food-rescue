@@ -48,218 +48,77 @@
 	__webpack_require__(4);
 
 	var React = __webpack_require__(3),
-		App = __webpack_require__(1);
+		Jobs = __webpack_require__(2);
 
-	React.render(React.createElement(App, null), document.getElementById('app-container'));
+	React.render(React.createElement(Jobs, null), document.getElementById('jobs-container'));
 
 /***/ },
-/* 1 */
+/* 1 */,
+/* 2 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var _ = __webpack_require__(10),
 		$ = __webpack_require__(12),
-		React = __webpack_require__(3),
-		Profile = __webpack_require__(9);
+		React = __webpack_require__(3);
 
-	//todo: generate a list of times based on the date
-	var times = ['9:00 AM', '9:30 AM', '10:00 AM', '10:30 AM'];
 
-	var App = React.createClass({displayName: "App",
+	var jobs = [{
+
+
+	}];	
+
+	var Jobs = React.createClass({displayName: "Jobs",
 		render: function() {
 			return (
 				React.createElement("div", null, 
-					React.createElement("nav", {className: "navbar navbar-default navbar-inverse navbar-fixed-top"}, 
-						React.createElement("div", {className: "container-fluid"}, 
-							React.createElement("div", {className: "navbar-header"}, 
-								React.createElement("button", {type: "button", className: "navbar-toggle collapsed", "data-toggle": "collapse", "data-target": "#bs-example-navbar-collapse-1"}, 
-									React.createElement("span", {className: "sr-only"}, "Toggle navigation"), 
-									React.createElement("span", {className: "icon-bar"}), 
-									React.createElement("span", {className: "icon-bar"}), 
-									React.createElement("span", {className: "icon-bar"})
-								), 
-								React.createElement("a", {className: "navbar-brand", href: "#"}, "412 Food Rescue App")
-							), 
 
-							React.createElement("div", {className: "collapse navbar-collapse", id: "bs-example-navbar-collapse-1"}, 
-								React.createElement("ul", {className: "nav navbar-nav navbar-right"}, 
-									React.createElement("li", {className: "dropdown"}, 
-										React.createElement("a", {href: "#", className: "dropdown-toggle", "data-toggle": "dropdown", role: "button", "aria-expanded": "false"}, 
-											"My Profile", React.createElement("span", {className: "caret"})
-										), 
-										React.createElement("ul", {className: "dropdown-menu", role: "menu"}, 
-											React.createElement("li", null, React.createElement("a", {href: "#"}, "Action")), 
-											React.createElement("li", null, React.createElement("a", {href: "#"}, "Another action")), 
-											React.createElement("li", null, React.createElement("a", {href: "#"}, "Something else here")), 
-											React.createElement("li", {className: "divider"}), 
-											React.createElement("li", null, React.createElement("a", {href: "#"}, "Separated link"))
-										)
-									)
-								)
-							)
-						)
-					), 
-
-					React.createElement("div", {className: "container"}, 
-						React.createElement("div", {className: "row"}, 
-							React.createElement("div", {className: "col-xs-12"}, 
-								React.createElement("form", null, 
-
-									React.createElement("div", {className: "form-group"}, 
-										React.createElement("label", {for: "exampleInputEmail1"}, "Company/Organization"), 
-										React.createElement("input", {type: "text", className: "form-control", value: "East End Food Co-op"})
-									), 
-
-									React.createElement("div", {className: "form-group"}, 
-										React.createElement("label", {for: "exampleInputEmail1"}, "Pick-up Location"), 
-										React.createElement("input", {type: "address", className: "form-control", value: "7516 Meade St, Pittsburgh, PA 15208"})
-									), 
-
-
-									React.createElement("div", {className: "form-group"}, 
-										React.createElement("label", {for: "exampleInputEmail1"}, "Contact Name"), 
-										React.createElement("input", {type: "text", className: "form-control", value: "Joe Smith"})
-									), 
-
-									React.createElement("div", {className: "form-group"}, 
-										React.createElement("label", {for: "exampleInputEmail1"}, "Contact Number"), 
-										React.createElement("input", {type: "phone", className: "form-control", value: "(412) 242-359"})
-									), 
-
-									React.createElement("div", {className: "form-group"}, 
-										"Is it okay for your driver to text you?", 
-
-										React.createElement("div", {className: "radio"}, 
-											React.createElement("label", null, 
-												React.createElement("input", {type: "radio", name: "textOk", value: "yes", checked: true}), 
-												"Yes"
-											)
-										), 
-
-										React.createElement("div", {className: "radio"}, 
-											React.createElement("label", null, 
-												React.createElement("input", {type: "radio", name: "textOk", value: "no"}), 
-												"No"
-											)
-										)
-									), 
-
-
-									React.createElement("div", {className: "form-group"}, 
-										"Does this require a truck, or will car suffice?", 
-
-										React.createElement("div", {className: "checkbox"}, 
-											React.createElement("label", null, 
-												React.createElement("input", {type: "checkbox", name: "truck", value: "yes", checked: true}), 
-												"Truck"
-											)
-										)
-									), 
-
-
-									React.createElement("div", {className: "form-group"}, 
-										React.createElement("label", null, 
-											"What food items will you be donating?", 
-											React.createElement("textarea", {className: "form-control", rows: "3", placeholder: "I have 25 pounds of broccoli and 10 pounds of sweet potatoes"})
-										)
-									), 
-
-									React.createElement("div", {className: "form-group"}, 
-										"Date", 
-										React.createElement("input", {type: "date", className: "form-control"}), 
-
-										"Time Frame", 
-										React.createElement("label", null, 
-											"From", 
-											this.renderTimeDropdownFrom()
-										), 
-										React.createElement("label", null, 
-											"To", 
-											this.renderTimeDropdownTo()
-										)
-									), 
-
-
-									React.createElement("div", {className: "form-group"}, 
-										React.createElement("label", null, 
-											"Are there any specific pick up instructions for the driver?", 
-											React.createElement("textarea", {className: "form-control", rows: "3", placeholder: "pick up will be easier if driver parks at back entrance"})
-										)
-									), 
-
-									React.createElement("button", {className: "btn btn-default", 
-											onClick: this.submitInfo}, 
-										"Submit"
-									)
-
-								)
-							)
-						), 
-
-						React.createElement("div", {className: "row"}, 
-							React.createElement("div", {className: "col-xs-12"}, 
-								React.createElement("button", {className: "btn btn-primary btn-large", onClick: this.requestPickup}, 
-									"Request Pickup"
-								)
-							)
-						)
+					React.createElement("ul", null, 
+						this.renderJobsList()
 					)
 
-				)
-			);
-		},
-		componentDidMount: function() {
-			
-		},
-		renderTimeDropdownFrom: function() {
-			// 30min, 1h, 2h (drop-down)
-			// 6:30am-8am
-			// Tomorrow morning
 
-			return (	
-				React.createElement("select", {className: "form-control"}, 
-					this.renderTimeDropdownFromOpts()
+
 				)
 			);
 		},
-		renderTimeDropdownFromOpts: function() {
-			return _.map(times, function(time) {
+		renderJobsList: function(jobs) {
+			return _.map(jobs, function(job) {
 				return (
-					React.createElement("option", null, time)
+					React.createElement("li", {className: "list-unstyled"}
+
+
+					)
 				);
 			}, this);
 		},
-		renderTimeDropdownTo: function() {
-			return (	
-				React.createElement("select", {className: "form-control"}, 
-					this.renderTimeDropdownToOpts()
-				)
-			);
+		expandCard: function() {
+			// 
+			// 
+			// 
+			// 
+			// 
 		},
-		renderTimeDropdownToOpts: function() {
-			return _.map(times, function(time) {
-				return (
-					React.createElement("option", null, time)
-				);
-			}, this);
+		getJobsAjax: function() {
+			// $.ajax({
+			// 	type: "POST",
+	  // 			url: "job/list",
+	  // 			data: {},
+	  // 			dataType: 'jsonp'
+			// })
+			$.get('job/list')
+			.done(this.getJobsDone)
+			.fail(function(err) {
+				console.log(err);
+			});
 		},
-		submitInfo: function() {
-			console.log('submit info');
-		},
-		requestPickup: function() {
-			console.log('rp');
-		},
-		showProfile: function() {
-			console.log('show profile');
-		},
-		editProfile: function() {
-			console.log('edit profile');
+		getJobsDone: function(data) {
+			console.log(data);
 		}
 	});
 
-	module.exports = App;
+	module.exports = Jobs;
 
 /***/ },
-/* 2 */,
 /* 3 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -523,47 +382,7 @@
 
 
 /***/ },
-/* 9 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(3);
-
-	var Profile = React.createClass({displayName: "Profile",
-		render: function() {
-			return (
-				React.createElement("div", {className: "container"}, 
-					React.createElement("div", {className: "row"}, 
-						React.createElement("div", {className: "profile panel col-xs-12"}, 
-							React.createElement("h2", null, "My Profile"), 
-
-							React.createElement("dl", {className: "dl-horizontal"}, 
-							  React.createElement("dt", null, "Organization Name: "), 
-							  React.createElement("dd", null, "Big Burrito"), 
-
-		  					  React.createElement("dt", null, "Address: "), 
-							  React.createElement("dd", null, "address here"), 
-
-		  					  React.createElement("dt", null, "Phone: "), 
-							  React.createElement("dd", null, "Big Burrito")
-							), 
-
-							React.createElement("p", null, "To contact an administrator, call (888) 888-8888"), 
-
-							React.createElement("button", {className: "btn btn-primary btn-large", 
-									onClick: this.editProfile}, 
-								"Edit"
-							)
-
-						)
-					)
-				)
-			);
-		}
-	});
-
-	module.exports = Profile;
-
-/***/ },
+/* 9 */,
 /* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
