@@ -25,6 +25,11 @@ class CreateEdit(webapp2.RequestHandler):
     def post(self):
         driver_id = self.request.get('driverId')
         driver = driver_id.get()
+        driver_blob = self.request.get('driver')
+        try:
+            driver_vals = json.loads(driver_blob)
+        except:
+            self.response.out.write('Error!')
         self.response.headers['Content-Type'] = 'application/json'
         self.response.out.write(json.dumps(driver))
 
