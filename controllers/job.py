@@ -48,13 +48,6 @@ class New(BaseHandler):
         pickup_location.state = job_object['pickup_state']
         pickup_location.zipcode = job_object['pickup_zipcode']
 
-        drop_off_location = Address()
-        drop_off_location.address1 = job_object['drop_off_address1']
-        drop_off_location.address2 = job_object['drop_off_address2']
-        drop_off_location.city = job_object['drop_off_city']
-        drop_off_location.state = job_object['drop_off_state']
-        drop_off_location.zipcode = job_object['drop_off_zipcode']
-
         job = Job()
         job.status = JobStatus.submitted
         job.donor_id = ndb.Key(urlsafe = job_object['donor_id'])
