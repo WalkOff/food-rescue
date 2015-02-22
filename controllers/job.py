@@ -21,8 +21,17 @@ Job listing
 '''
 class Index(BaseHandler):
     def get(self):
+        jobUrlPrefix = "basic"
+        print self.user()
+        print self.user_role()
+        if self.user_role() == 'donor':
+            jobUrlPrefix= 'donor'
+        if self.user_role() == 'driver':
+            jobUrlPrefix = '/driver/job/'
+        if self.user_role() == 'admin':
+            jobUrlPrefix = '/admin/job/'
         template = JINJA_ENVIRONMENT.get_template('index.html')
-        self.response.write(template.render())
+        self.response.write(template.render(jobUrlPrefix=jobUrlPrefix))
 
     def post(self):
         jobs = Job.query().fetch()

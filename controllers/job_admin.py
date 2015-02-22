@@ -9,7 +9,7 @@ import json
 import jinja2
 from common.helpers import dict_maker
 from seed_data import *
-from twilio.rest import TwilioRestClient 
+from twilio.rest import TwilioRestClient
 
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader("./views/admin"),
@@ -37,7 +37,7 @@ class JobDetails(BaseHandler):
             self.abort(403)
 
         template = JINJA_ENVIRONMENT.get_template('job_view.html')
-        self.response.write(template.render())
+        self.response.write(template.render(jobId=jobId))
     def post(self):
         if self.user_role() != 'admin':
             self.abort(403)
@@ -76,8 +76,8 @@ config = {}
 config['webapp2_extras.sessions'] = {'secret_key': 'secret-session-key-123'}
 
 app = webapp2.WSGIApplication([
+    ('/admin/job/(\S+)', JobDetails),
     ('/admin/job/?', JobList),
-    ('/admin/job/(\S+)/?', JobDetails),
     ('/admin/job/assign', AssignDropOff)
 ], config=config, debug=True)
 
