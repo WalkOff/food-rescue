@@ -3,6 +3,7 @@ import json
 import jinja2
 from models.job import Job
 from models.donor import Donor
+from models.common import *
 from common.helpers import dict_maker
 from base_handler import *
 
