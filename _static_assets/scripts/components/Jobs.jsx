@@ -38,6 +38,12 @@ var Jobs = React.createClass({
 		this.getJobsAjax();
 	},
 	renderJobsList: function(jobs) {
+		if (jobs.length == 0) 	{
+		  return (
+		    <div>Sorry, there are no jobs available right now.</div>
+		  )
+		}
+
 		return _.map(jobs, function(job) {
 			return (
 				<li className="list-unstyled jobs-list-item row">
