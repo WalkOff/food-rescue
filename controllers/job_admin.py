@@ -21,7 +21,7 @@ class JobList(BaseHandler):
         if self.user_role() != 'admin':
             self.abort(403)
         template = JINJA_ENVIRONMENT.get_template('admin/job_list.html')
-        self.response.write(template.render())
+        self.response.write(template.render(loggedInUser = self.user() != None))
     def post(self):
         if self.user_role() != 'admin':
             self.abort(403)
