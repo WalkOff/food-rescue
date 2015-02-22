@@ -30,7 +30,8 @@ New job/donation creation form
 class New(BaseHandler):
     def get(self):
         if self.user_role() != 'donor':
-            self.redirect('/')
+            self.response.write('Sorry, only registered donors can view this page')
+            return
 
         template = JINJA_ENVIRONMENT.get_template('new.html')
         self.response.write(template.render())
