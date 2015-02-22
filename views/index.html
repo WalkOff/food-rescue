@@ -1,9 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title></title>
-	<style>
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block head %}
+    {{ super() }}
+    <meta charset="UTF-8">
+    <style>
 	  html, body, div
 	  {
 	    height: 100%;
@@ -16,10 +16,8 @@
 	        background-position: center; 
 	        cursor: pointer;
 	  }
-	</style>
-
-</head>
-<body>
+    </style>
+{% endblock %}
+{% block content %}
   <div onClick="window.location='/job/'"/>
-</body>
-</html>
+{% endblock %}

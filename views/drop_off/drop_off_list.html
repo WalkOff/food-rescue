@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Food Rescue Project</title>
-</head>
-<body>
-
+{% extends "base.html" %}
+{% block title %}Drop-offs{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
 	<!-- list of locations where you can drop things off -->
 
     <h1>Drop Off List!</h1>
@@ -13,6 +11,5 @@
 	<div id="app-container"></div>
 
 	<script src="../scripts/bundle.js"></script>
-</body>
-</html>
+{% endblock %}
 

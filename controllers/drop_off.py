@@ -6,13 +6,13 @@ from models.drop_off import DropOff
 from common.helpers import dict_maker
 
 JINJA_ENVIRONMENT = jinja2.Environment(
-    loader=jinja2.FileSystemLoader("./views/drop_off"),
+    loader=jinja2.FileSystemLoader("./views"),
     extensions=['jinja2.ext.autoescape'],
     autoescape=True)
 
 class Index(BaseHandler):
     def get(self):
-        template = JINJA_ENVIRONMENT.get_template('drop_off_list.html')
+        template = JINJA_ENVIRONMENT.get_template('drop_off/drop_off_list.html')
         self.response.write(template.render())
     def post(self):
         drop_offs = DropOff.all()
@@ -21,7 +21,7 @@ class Index(BaseHandler):
 
 class CreateEdit(BaseHandler):
     def get(self, drop_off_id):
-        template = JINJA_ENVIRONMENT.get_template('drop_off_edit.html')
+        template = JINJA_ENVIRONMENT.get_template('drop_off/drop_off_edit.html')
         self.response.write(template.render())
     def post(self):
         drop_off_id = self.request.get('drop_offId')

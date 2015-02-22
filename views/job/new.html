@@ -1,15 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Food Rescue Project</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %}Donate{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
 
 	<!-- donor form -->
 
 	<div id="app-container"></div>
 
 	<script src="../scripts/bundle.js"></script>
-</body>
-</html>
+{% endblock %}

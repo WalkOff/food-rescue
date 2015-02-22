@@ -12,16 +12,15 @@ from seed_data import *
 from twilio.rest import TwilioRestClient
 
 JINJA_ENVIRONMENT = jinja2.Environment(
-    loader=jinja2.FileSystemLoader("./views/admin"),
+    loader=jinja2.FileSystemLoader("./views"),
     extensions=['jinja2.ext.autoescape'],
     autoescape=True)
 
 class JobList(BaseHandler):
-    def get(self):
+    def get(self):        
         if self.user_role() != 'admin':
             self.abort(403)
-
-        template = JINJA_ENVIRONMENT.get_template('job_list.html')
+        template = JINJA_ENVIRONMENT.get_template('admin/job_list.html')
         self.response.write(template.render())
     def post(self):
         if self.user_role() != 'admin':
@@ -36,8 +35,9 @@ class JobDetails(BaseHandler):
         if self.user_role() != 'admin':
             self.abort(403)
 
-        template = JINJA_ENVIRONMENT.get_template('job_view.html')
+        template = JINJA_ENVIRONMENT.get_template('admin/job_view.html')
         self.response.write(template.render(jobId=jobId))
+
     def post(self):
         if self.user_role() != 'admin':
             self.abort(403)
