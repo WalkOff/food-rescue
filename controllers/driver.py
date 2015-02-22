@@ -59,11 +59,9 @@ class JobView(BaseHandler):
         driver = Driver.query(Donor.email == user_email).fetch()[0]
         self.response.write(template.render({'job_id':job_id, 'driver_id':driver.key.urlsafe()}))
     def post(self, jobId):
-        print jobId
         job_key = ndb.Key(urlsafe=jobId)
         job = job_key.get()
-        print job
-        return json.dumps(dict_maker(job))
+        return self.response.out.write(json.dumps(dict_maker(job)))
 
 config = {}
 config['webapp2_extras.sessions'] = {'secret_key': 'secret-session-key-123'}

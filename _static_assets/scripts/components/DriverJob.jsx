@@ -13,11 +13,17 @@ var Job = React.createClass({
     	this.getJobAjax();
     },
     render: function() {
+        if(this.state.job != null)
+        {
+            console.log(this.state.job);
     	    return (
 	      <div className="job">
-
+            {this.state.job.description}
 	      </div>
 	    );
+    } else{
+            return (<div className="job"></div>);
+        }
     },
     getJobAjax: function() {
       $.post('/driver/job/' + this.props.jobId)
@@ -29,6 +35,7 @@ var Job = React.createClass({
     getJobDone: function(data) {
       var parsedData = JSON.parse(data);
       this.setState({job: parsedData});
+
     }
 });
 
