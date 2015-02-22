@@ -18,13 +18,16 @@ h2 {
 .job-description {
 
 }
-.job-base {
+.job {
 	margin: 5px 0;
 	background: #fff;
 	border-radius: 1px;
 	padding: 15px 30px;
 	box-shadow: 0 0 1px 0 rgba(0,0,0,.1),
 				0 1px 2px 0 rgba(0,0,0,.12);
+}
+.job-base {
+
 }
 .address-text {
 	margin-right: 4px;
@@ -35,12 +38,12 @@ h2 {
 	font-weight: 600;
 	letter-spacing: .5px;
 	position: relative;
-	top: 16px;
-	right: 20px;
+	top: 0px;
+	right: 15px;
 }
 .job-base dl {
 	margin-bottom: 0;
-	margin-left: -30px;
+	margin-left: -15px;
 }
 .job-base dt {
 	color: #aaa;
@@ -60,6 +63,37 @@ h2 {
 	color: #666;
 	margin-top: 6px;
 }
+.show-job-details {
+	position: relative;
+	top: 5px;
+	right: 15px;
+	display: block;
+	white-space: nowrap;
+	color: #666;
+	cursor: pointer;
+}
+.fade-enter {
+	opacity: 0.01;
+	transition: opacity .5s ease-in;
+  	background: purple;
+}
+.fade-enter.fade-enter-active {
+	opacity: 1;
+	background: purple;
+}
+.fade-leave {
+	opacity: 1;
+	transition: opacity .5s ease-in;
+	background: purple;
+}
+.fade-leave.fade-leave-active {
+	opacity: 0.01;
+	background: purple;
+}
+
+
+
+
 
 
 
