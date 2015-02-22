@@ -25,8 +25,15 @@ class Index(BaseHandler):
         self.response.out.write(json.dumps([dict_maker(d) for d in drivers]))
 
 class CreateEdit(BaseHandler):
+    def template_for_get(self, role):
+        if role == 'donor':
+            return 'driver_info.html'
+        else:
+            return 'driver_edit.html'
+
     def get(self, driver_id):
-        template = JINJA_ENVIRONMENT.get_template('driver_edit.html')
+        role = self.session['role']
+        template = JINJA_ENVIRONMENT.get_template(self.template_for_get(role))
         self.response.write(template.render())
     def post(self):
         driver_id = self.request.get('driverId')
