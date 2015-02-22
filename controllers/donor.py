@@ -15,7 +15,7 @@ JINJA_ENVIRONMENT = jinja2.Environment(
 class Index(BaseHandler):
     def get(self):
         template = JINJA_ENVIRONMENT.get_template('donor_list.html')
-        self.response.write(template.render())
+        self.response.write(template.render(loggedInUser = self.user() != None))
     def post(self):
         donors = Donor.query().fetch()
         self.response.headers['Content-Type'] = 'application/json'   
@@ -24,7 +24,7 @@ class Index(BaseHandler):
 class CreateEdit(BaseHandler):
     def get(self, donor_id):
         template = JINJA_ENVIRONMENT.get_template('donor_edit.html')
-        self.response.write(template.render())
+        self.response.write(template.render(loggedInUser = self.user() != None))
     def post(self):
         donor_id = self.request.get('donorId')
         donor = donor_id.get()
