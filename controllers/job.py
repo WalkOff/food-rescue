@@ -1,11 +1,15 @@
 import webapp2
 import json
 import jinja2
+from datetime import datetime
 from models.job import Job
 from models.donor import Donor
 from models.common import *
+from models.job import Job, Address
 from common.helpers import dict_maker
+from models.common import JobStatus
 from base_handler import *
+from google.appengine.ext import ndb
 
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader("./views/job"),
@@ -56,10 +60,10 @@ class New(BaseHandler):
         job.contact_phone = job_object['contact_phone']
         job.donor_name = job_object['donor_name']
         job.pickup_location = pickup_location
-#        job.timeframe_start = job_object.
-#        job.timeframe_end = job_object.
+        job.timeframe_start = datetime.now()
+        job.timeframe_end = datetime.now() + datetime.timedelta(hours=1)
         job.is_okay_to_text = job_object['is_okay_to_text']
-        job.should_notify_driver = job_object['should_notify_driver']
+        job.should_notify_donor = job_object['should_notify_donor']
         job.is_truck_required = job_object['is_truck_required']
 
         job.put()
