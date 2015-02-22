@@ -1,7 +1,6 @@
 var _ = require('underscore'),
 	$ = require('jquery'),
 	React = require('react'),
-	Nav = require('./Nav.jsx'),
 	Job = require('./Job.jsx');
 
 var Jobs = React.createClass({
@@ -23,8 +22,6 @@ var Jobs = React.createClass({
 	render: function() {
 		return (
 			<div>
-				<Nav />
-
 				<div className="container">
 					<div className="row">
 						<h2>Jobs Queue</h2>

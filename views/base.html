@@ -1,0 +1,34 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    {% block head %}
+    <link rel="stylesheet" href="../scripts/main.css" />
+    <link rel="stylesheet" href="../scripts/bootstrap.css" />
+    <title>{% block title %}{% endblock %} - 412FoodRescue</title>
+    {% endblock %}
+</head>
+<body>
+  <nav class="navbar navbar-default navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+	<div class="navbar-header">
+	    <a class="navbar-brand" href="#">412 Food Rescue App</a>
+	</div>
+	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+	        <li class="dropdown">
+		    <a href="/login" class="dropdown-toggle" data-toggle="dropdown" role="button">Login
+		    </a>
+		</li>
+	    </ul>
+	</div>
+    </div>
+  </nav>
+
+  <div id="content">{% block content %}{% endblock %}</div>
+  <div id="footer">
+      {% block footer %}
+      &copy; Copyright 2015 by <a href="http://412FoodRescue.org">412 Food Rescue</a>.
+      {% endblock %}
+  </div>
+</body>

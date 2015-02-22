@@ -1,4 +1,5 @@
 import webapp2
+import json
 from base_handler import *
 from datetime import datetime
 from models.job import Job
@@ -6,6 +7,8 @@ from models.common import *
 from models.donor import *
 from models.drop_off import *
 from seed_data import *
+from google.appengine.api import urlfetch
+import urllib
 
 class Seed(BaseHandler):
     def get(self):
@@ -45,11 +48,27 @@ class MakeJob(BaseHandler):
         job.put()
         self.response.write('done')
 
+class TextJenny(BaseHandler):
+    def get(self):
+        drop_off = DropOff.query().fetch(1)[0]
+        job = Job.query().fetch(1)[0]
+
+        data = {'jobId':job.key.urlsafe(), 'dropoffId':drop_off.key.urlsafe()}
+
+        result = urlfetch.fetch(
+                url='http://localhost:8080/admin/job/assign',
+                payload = urllib.urlencode(data),
+                method = urlfetch.POST,
+                headers={'Content-Type': 'application/x-www-form-urlencoded'})
+
+        self.response.write(result.content)
+
 config = {}
 config['webapp2_extras.sessions'] = {'secret_key': 'secret-session-key-123'}
 
 app = webapp2.WSGIApplication([
     ('/admin/seed', Seed),
-    ('/admin/make_job', MakeJob)
+    ('/admin/make_job', MakeJob),
+    ('/admin/text_jenny', TextJenny)
 ], config=config, debug=True)
 
