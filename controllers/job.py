@@ -37,7 +37,7 @@ class New(BaseHandler):
         self.response.write(template.render())
 
     def post(self):
-        job_json = self.response.get('job')
+        job_json = self.request.get('job')
         job_object = json.loads(job_json)
 
         pickup_location = Address()
