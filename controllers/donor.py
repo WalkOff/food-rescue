@@ -31,10 +31,15 @@ class CreateEdit(BaseHandler):
         self.response.headers['Content-Type'] = 'application/json'
         self.response.out.write(json.dumps(donor))
 
+class Thanks(BaseHandler):
+    def get(self):
+        template = JINJA_ENVIRONMENT.get_template('thankyou.html')
+        self.response.write(template.render(loggedInUser = self.user() != None))
 config = {}
 config['webapp2_extras.sessions'] = {'secret_key': 'secret-session-key-123'}
 
 app = webapp2.WSGIApplication([
+    ('/admin/donor/thanks', Thanks),
     ('/admin/donor/?',Index),
     ('/admin/donor/(\S+)/?',CreateEdit)
 ], config=config, debug=True)
