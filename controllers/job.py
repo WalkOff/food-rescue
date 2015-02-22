@@ -10,6 +10,7 @@ from common.helpers import dict_maker
 from models.common import JobStatus
 from base_handler import *
 from google.appengine.ext import ndb
+import dateutil.parser;
 
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader("./views"),
@@ -71,9 +72,13 @@ class New(BaseHandler):
         job.instructions = job_object['instructions']
         job.contact_phone = job_object['contact_phone']
         job.donor_name = job_object['donor_name']
+
+        print(job_object['timeframe_start'])
+        print(job_object['timeframe_end'])
+
         job.pickup_location = pickup_location
-        job.timeframe_start = datetime.now()
-        job.timeframe_end = datetime.now() + timedelta(hours=1)
+        job.timeframe_start = datetime.strptime(job_object['timeframe_start'], "%Y-%m-%dT%H:%M:%S.%fZ")
+        job.timeframe_end  = datetime.strptime(job_object['timeframe_end'], "%Y-%m-%dT%H:%M:%S.%fZ")
         job.is_okay_to_text = job_object['is_okay_to_text']
         job.should_notify_donor = job_object['should_notify_donor']
         job.is_truck_required = job_object['is_truck_required']

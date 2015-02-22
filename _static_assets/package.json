@@ -11,9 +11,10 @@
     "react": "^0.12.2"
   },
   "devDependencies": {
-    "style-loader": "^0.8.3",
     "css-loader": "^0.9.1",
     "jsx-loader": "^0.12.2",
-    "less-loader": "^2.0.0"
+    "less-loader": "^2.0.0",
+    "moment": "^2.9.0",
+    "style-loader": "^0.8.3"
   }
 }
