@@ -11,13 +11,13 @@ from common.helpers import dict_maker
 from seed_data import *
 from twilio.rest import TwilioRestClient 
 JINJA_ENVIRONMENT = jinja2.Environment(
-    loader=jinja2.FileSystemLoader("./views/admin"),
+    loader=jinja2.FileSystemLoader("./views"),
     extensions=['jinja2.ext.autoescape'],
     autoescape=True)
 
 class JobList(BaseHandler):
     def get(self):
-        template = JINJA_ENVIRONMENT.get_template('job_list.html')
+        template = JINJA_ENVIRONMENT.get_template('admin/job_list.html')
         self.response.write(template.render())
     def post(self):
         jobs = Job.query().fetch()
@@ -26,7 +26,7 @@ class JobList(BaseHandler):
 
 class JobDetails(BaseHandler):
     def get(self):
-        template = JINJA_ENVIRONMENT.get_template('job_view.html')
+        template = JINJA_ENVIRONMENT.get_template('admin/job_view.html')
         self.response.write(template.render())
     def post(self):
         job_id = ndb.Key(self.request.get('jobId'))

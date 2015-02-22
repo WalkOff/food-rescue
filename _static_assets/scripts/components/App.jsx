@@ -1,7 +1,6 @@
 var _ = require('underscore'),
 	$ = require('jquery'),
 	React = require('react'),
-	Nav = require('./Nav.jsx'),
 	Profile = require('./Profile.jsx'),
 	DonorForm = require('./DonorForm.jsx');
 

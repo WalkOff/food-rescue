@@ -1,15 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Jobs Queue</title>
-</head>
-<body>
-
+{% extends "base.html" %}
+{% block title %}Jobs{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
 	<!-- list of jobs -->
 
 	<div id="jobs-container" data-jobsurl="/job/"></div>
 
 	<script src="../scripts/jobs.js"></script>
-</body>
-</html>
+{% endblock %}

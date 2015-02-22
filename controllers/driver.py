@@ -11,13 +11,13 @@ from base_handler import *
 from google.appengine.ext import ndb
 
 JINJA_ENVIRONMENT = jinja2.Environment(
-    loader=jinja2.FileSystemLoader("./views/driver"),
+    loader=jinja2.FileSystemLoader("./views"),
     extensions=['jinja2.ext.autoescape'],
     autoescape=True)
 
 class Index(BaseHandler):
     def get(self):
-        template = JINJA_ENVIRONMENT.get_template('driver_list.html')
+        template = JINJA_ENVIRONMENT.get_template('driver/driver_list.html')
         self.response.write(template.render())
     def post(self):
         drivers = Driver.query().fetch()
@@ -27,9 +27,9 @@ class Index(BaseHandler):
 class CreateEdit(BaseHandler):
     def template_for_get(self, role):
         if role == 'donor':
-            return 'driver_info.html'
+            return 'driver/driver_info.html'
         else:
-            return 'driver_edit.html'
+            return 'driver/driver_edit.html'
 
     def get(self, driver_id):
         role       = self.session['role']
@@ -54,7 +54,7 @@ class UpdateStatus(BaseHandler):
 
 class JobView(BaseHandler):
     def get(self, job_id):
-        template = JINJA_ENVIRONMENT.get_template('job_view.html')
+        template = JINJA_ENVIRONMENT.get_template('driver/job_view.html')
         user_email = self.user().email()
         driver = Driver.query(Donor.email == user_email).fetch()[0]
         self.response.write(template.render({'job_id':job_id, 'driver_id':driver.key.urlsafe()}))

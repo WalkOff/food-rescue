@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Driver Job View</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %}Driver Job View{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
 
 	<div id="job-container" data-jobid={{jobId}}></div>
 	<script src="../scripts/job.js"></script>	
-</body>
-</html>
+{% endblock %}

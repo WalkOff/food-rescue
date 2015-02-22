@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Food Rescue Project</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %}Driver Info{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
     <h1>Driver Info:</h1>
     <div id="app-container"></div>
     <script type="text/javascript">
@@ -12,5 +11,4 @@
         window.driver   = {{ driver|safe }};
     </script>
     <script src="../scripts/driverInfo.js"></script>
-</body>
-</html>
+{% endblock %}
