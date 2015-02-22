@@ -17,11 +17,11 @@ JINJA_ENVIRONMENT = jinja2.Environment(
     autoescape=True)
 
 class JobList(BaseHandler):
-    def get(self):        
+    def get(self):
         if self.user_role() != 'admin':
             self.abort(403)
         template = JINJA_ENVIRONMENT.get_template('admin/job_list.html')
-        self.response.write(template.render())
+        self.response.write(template.render(loggedInUser = self.user() != None))
     def post(self):
         if self.user_role() != 'admin':
             self.abort(403)
@@ -31,19 +31,18 @@ class JobList(BaseHandler):
         self.response.write(json.dumps([dict_maker(j) for j in jobs]))
 
 class JobDetails(BaseHandler):
-    def get(self):
+    def get(self,job_id):
         if self.user_role() != 'admin':
             self.abort(403)
 
         template = JINJA_ENVIRONMENT.get_template('admin/job_view.html')
-        self.response.write(template.render(jobId=jobId))
-
-    def post(self):
+        self.response.write(template.render(jobId=job_id))
+    def post(self,job_id):
         if self.user_role() != 'admin':
             self.abort(403)
-
-        job_id = ndb.Key(self.request.get('jobId'))
-        job = job_id.get()
+        job_key = ndb.Key(urlsafe=job_id)
+        job = job_key.get()
+        self.response.write(json.dumps(dict_maker(job)))
 
 class AssignDropOff(BaseHandler):
     def post(self):
@@ -79,8 +78,8 @@ config = {}
 config['webapp2_extras.sessions'] = {'secret_key': 'secret-session-key-123'}
 
 app = webapp2.WSGIApplication([
+    ('/admin/job/(\S+)/?', JobDetails),    
     ('/admin/job/?', JobList),
-    ('/admin/job/assign/?', AssignDropOff),
-    ('/admin/job/(\S+)/?', JobDetails),
+    ('/admin/job/assign/?', AssignDropOff)
 ], config=config, debug=True)
 

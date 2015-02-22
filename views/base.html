@@ -16,8 +16,11 @@
 	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
 	        <li class="dropdown">
-		    <a href="/login" class="dropdown-toggle" data-toggle="dropdown" role="button">Login
-		    </a>
+		  {% if loggedInUser %}
+		  <a href="/logout" class="dropdown-toggle" role="button">Logout</a>
+		  {% else %}
+		  <a href="/login" class="dropdown-toggle" role="button">Login</a>
+		  {% endif %}		    
 		</li>
 	    </ul>
 	</div>

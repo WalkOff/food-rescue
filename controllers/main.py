@@ -1,4 +1,5 @@
 from google.appengine.api import users
+from common.helpers import *
 from models.donor import *
 from models.driver import *
 from models.admin import *
@@ -16,7 +17,7 @@ JINJA_ENVIRONMENT = jinja2.Environment(
 class Index(BaseHandler):
     def get(self):
         template = JINJA_ENVIRONMENT.get_template('index.html')
-        self.response.write(template.render())
+        self.response.write(template.render(loggedInUser=self.user() != None))
 
 class Login(BaseHandler):
     def get(self):
@@ -24,13 +25,13 @@ class Login(BaseHandler):
 
         # User signed in via google, but not yet assigned role:
         if user:
-            if self.isDonor(user):
+            if isDonor(user):
                 self.session['role'] = 'donor'
                 self.redirect('/job/new')
-            elif self.isDriver(user):
+            elif isDriver(user):
                 self.session['role'] = 'driver'
                 self.redirect('/job')
-            elif self.isAdmin(user):
+            elif isAdmin(user):
                 self.session['role'] = 'admin'
                 self.redirect('admin/job')
             else:
@@ -41,29 +42,6 @@ class Login(BaseHandler):
         else:
             self.redirect(users.create_login_url('/login'))
 
-    def isDonor(self, user):
-        email = user.email().lower()
-        donor = Donor.query(Donor.email == email).fetch(1)
-        if donor:
-            return True
-        else:
-            return False
-
-    def isDriver(self, user):
-        email = user.email().lower()
-        driver = Driver.query(Donor.email == email).fetch(1)
-        if driver:
-            return True
-        else:
-            return False
-
-    def isAdmin(self, user):
-        email = user.email().lower()
-        admin = Admin.query(Admin.email == email).fetch(1)
-        if admin:
-            return True
-        else:
-            return False
 
 class Logout(BaseHandler):
     def get(self):
