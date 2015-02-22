@@ -22,7 +22,7 @@ class Login(BaseHandler):
     def get(self):
         user = users.get_current_user()
 
-        # User signed in, but not assigned role:
+        # User signed in via google, but not yet assigned role:
         if user:
             if self.isDonor(user):
                 self.session['role'] = 'donor'
