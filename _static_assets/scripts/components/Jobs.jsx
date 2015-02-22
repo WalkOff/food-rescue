@@ -7,7 +7,7 @@ var Jobs = React.createClass({
         	jobsUrl: React.PropTypes.string
         },
 	getInitialState: function() {
-		return {
+		return { 
 			jobs: []
 		};
 	},
@@ -34,7 +34,7 @@ var Jobs = React.createClass({
 			// {job.is_okay_to_text}
 			// {job.is_truck_required}
 			return (
-				<li className="list-unstyled jobs-list-item row" onclick={this.navToTab}>
+				<li className="list-unstyled jobs-list-item row" onClick={this.navToJob.bind(this, job)}>
 
 					<div className="col-xs-3">
 						<dl className="">
@@ -88,8 +88,7 @@ var Jobs = React.createClass({
 	},
 	expandCard: function() {
 	},
-	getJobsAjax: function() {
-		console.log(this.props.jobsUrl)
+	getJobsAjax: function() {  
 		$.post(this.props.jobsUrl)
 		.done(this.getJobsDone)
 		.fail(function(err) {
@@ -99,8 +98,10 @@ var Jobs = React.createClass({
 	getJobsDone: function(data) {
 		this.setState({jobs: data});
 	},
-	navToJob: function(jobId) { 
-		window.location = this.props.jobsUrl + jobId.urlsafe();
+	navToJob: function(job) { 
+		console.log(job.ndb_id);
+		console.log(this.props);
+		//window.location = this.props.jobsUrl + job.ndb_id;
 	}
 });
 
