@@ -8,7 +8,8 @@
     <h1>Driver Info:</h1>
     <div id="app-container"></div>
     <script type="text/javascript">
-        window.driver = {{ driver|safe }};
+        window.driverId = '{{ driverId|safe }}'
+        window.driver   = {{ driver|safe }};
     </script>
     <script src="../scripts/driverInfo.js"></script>
 </body>

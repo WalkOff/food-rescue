@@ -32,11 +32,12 @@ class CreateEdit(BaseHandler):
             return 'driver_edit.html'
 
     def get(self, driver_id):
-        role = self.session['role']
+        role       = self.session['role']
         driver_key = ndb.Key(urlsafe=driver_id)
         driver     = driver_key.get()
-        template = JINJA_ENVIRONMENT.get_template(self.template_for_get(role))
-        self.response.write(template.render(driver=json.dumps(dict_maker(driver))))
+        print(driver)
+        template   = JINJA_ENVIRONMENT.get_template(self.template_for_get(role))
+        self.response.write(template.render(driverId=driver.key.urlsafe(), driver=json.dumps(dict_maker(driver))))
 
 class UpdateStatus(BaseHandler):
     def post(self):
@@ -67,6 +68,7 @@ config['webapp2_extras.sessions'] = {'secret_key': 'secret-session-key-123'}
 
 app = webapp2.WSGIApplication([
     ('/driver/job/(\S+)', JobView),
+    ('/driver/status?',UpdateStatus),
     ('/driver/?',Index),
-    ('/driver/(\S+)/?',CreateEdit)
+    ('/driver/(\S+)/?',CreateEdit),
 ], config=config, debug=True)
