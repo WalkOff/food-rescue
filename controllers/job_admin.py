@@ -10,6 +10,7 @@ import jinja2
 from common.helpers import dict_maker
 from seed_data import *
 from twilio.rest import TwilioRestClient 
+
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader("./views/admin"),
     extensions=['jinja2.ext.autoescape'],
@@ -17,23 +18,38 @@ JINJA_ENVIRONMENT = jinja2.Environment(
 
 class JobList(BaseHandler):
     def get(self):
+        if self.user_role() != 'admin':
+            self.abort(403)
+
         template = JINJA_ENVIRONMENT.get_template('job_list.html')
         self.response.write(template.render())
     def post(self):
+        if self.user_role() != 'admin':
+            self.abort(403)
+
         jobs = Job.query().fetch()
         self.response.headers['Content-Type'] = 'application/json'
         self.response.write(json.dumps([dict_maker(j) for j in jobs]))
 
 class JobDetails(BaseHandler):
     def get(self):
+        if self.user_role() != 'admin':
+            self.abort(403)
+
         template = JINJA_ENVIRONMENT.get_template('job_view.html')
         self.response.write(template.render())
     def post(self):
+        if self.user_role() != 'admin':
+            self.abort(403)
+
         job_id = ndb.Key(self.request.get('jobId'))
         job = job_id.get()
 
 class AssignDropOff(BaseHandler):
     def post(self):
+        if self.user_role() != 'admin':
+            self.abort(403)
+
         job_id = ndb.Key(urlsafe=self.request.get('jobId'))
         drop_off_id = ndb.Key(urlsafe=self.request.get('dropoffId'))
         job = job_id.get()
