@@ -67,7 +67,7 @@ class AssignDropOff(BaseHandler):
 
         active_drivers = Driver.query(Driver.is_active == True).fetch()
         for driver in active_drivers:
-            if driver.phone = '7175800419':
+            if driver.phone == '7175800419':
                 client.messages.create(
                     to=driver.phone,
                     from_="+14124263647",
