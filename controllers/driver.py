@@ -70,7 +70,7 @@ class JobView(BaseHandler):
 
         template = JINJA_ENVIRONMENT.get_template('driver/job_view.html')
         user_email = self.user().email().lower()
-        driver = Driver.query(Driver.email == user_email).fetch()[0]
+        driver = Driver.query(Driver.email == user_email.lower()).fetch()[0]
         self.response.write(template.render({'job_id':job_id, 'driver_id':driver.key.urlsafe(), 'loggedInUser':self.user() != None, 'isDriver':self.user_role() == 'driver'}))
     def post(self, jobId):
         job_key = ndb.Key(urlsafe=jobId)
@@ -80,7 +80,7 @@ class JobView(BaseHandler):
 class TakeJob(BaseHandler):
     def post(self, jobId):
         user_email = self.user().email()
-        driver = Driver.query(Driver.email == user_email).fetch()[0]
+        driver = Driver.query(Driver.email == user_email.lower()).fetch()[0]
         job_key = ndb.Key(urlsafe=jobId)
         job = job_key.get()
         job.accepted_by_id= driver.key
@@ -93,7 +93,7 @@ class TakeJob(BaseHandler):
 class FinishJob(BaseHandler):
     def post(self, jobId):
         user_email = self.user().email()
-        driver = Driver.query(Driver.email == user_email).fetch()[0]
+        driver = Driver.query(Driver.email == user_email.lower()).fetch()[0]
         job_key = ndb.Key(urlsafe=jobId)
         job = job_key.get()
         job.status = JobStatus.completed
