@@ -70,6 +70,8 @@ class New(BaseHandler):
 
         job.put()
 
+        return self.response.out.write(json.dumps({'success': True}))
+
 class CurrentDonor(BaseHandler):
     def get(self):
         if self.user_role() != 'donor':
