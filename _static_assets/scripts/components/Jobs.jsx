@@ -34,7 +34,7 @@ var Jobs = React.createClass({
 			// {job.is_okay_to_text}
 			// {job.is_truck_required}
 			return (
-				<li className="list-unstyled jobs-list-item row">
+				<li className="list-unstyled jobs-list-item row" onclick={this.navToTab}>
 
 					<div className="col-xs-3">
 						<dl className="">
@@ -98,6 +98,9 @@ var Jobs = React.createClass({
 	},
 	getJobsDone: function(data) {
 		this.setState({jobs: data});
+	},
+	navToJob: function(jobId) { 
+		window.location = this.props.jobsUrl + jobId.urlsafe();
 	}
 });
 
