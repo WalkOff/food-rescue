@@ -22,24 +22,20 @@ class Login(BaseHandler):
     def get(self):
         user = users.get_current_user()
 
-        # User fully signed in:
-        if user and 'role' in self.session:
-            self.response.write('Aleady signed in.  Email: ' + user.email() + ' Role: ' + self.session['role'])
-
         # User signed in, but not assigned role:
-        elif user:
+        if user:
             if self.isDonor(user):
-                role = 'donor'
+                self.session['role'] = 'donor'
+                self.redirect('/job/new')
             elif self.isDriver(user):
-                role = 'driver'
+                self.session['role'] = 'driver'
+                self.redirect('/job')
             elif self.isAdmin(user):
-                role = 'admin'
+                self.session['role'] = 'admin'
+                self.redirect('admin/job')
             else:
-                self.response.write('Not a valid user. Go to <a href="' + users.create_logout_url('/login') + '">Logout</a> to logout and try a different account')
+                self.response.write('Not a valid user. Please <a href="' + users.create_logout_url('/login') + '">logout and try a different account</a>')
                 return
-
-            self.session['role'] = role
-            self.response.write("Signed in with role of: " + role)
 
         # User not logged in, redirect to google account login page (with return url of this method):
         else:
