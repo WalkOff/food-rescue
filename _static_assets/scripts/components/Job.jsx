@@ -139,7 +139,7 @@ var Job = React.createClass({
         );
     },
     navToJob: function() {
-        // this.props.navToJob(this.props.job);
+        this.props.navToJob(this.props.job);
     },
     getJobAjax: function() {
       $.post('/job/',{id: this.props.jobId})
