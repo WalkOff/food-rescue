@@ -29,9 +29,6 @@ var Job = React.createClass({
 	    return (
             <div className="job col-lg-12 col-xs-12" onClick={this.navToJob}>
                 {this.renderJobBase(this.state.job)}
-                {this.renderJobBase(this.state.job)}
-                {this.renderJobBase(this.state.job)}
-                {this.renderJobBase(this.state.job)}
                 {this.state.showDetails && this.renderJobDetails(this.state.job)}
             </div>
 	    );
