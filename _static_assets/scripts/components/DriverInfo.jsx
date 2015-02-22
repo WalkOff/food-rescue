@@ -15,13 +15,17 @@ var DriverInfo = React.createClass({
 
     renderDriver: function(driver) {
       return (
-        <div>
-          <span>
-            {driver.name} - {driver.phone}
-          </span>
-          <button onClick={this.updateStatus.bind(this, driver)}>{driver.is_active ? 'Activate': 'Deactivate'}</button>
+        <div className="row">
+          <div className="col-xs-12">
+              Name: {driver.name}
+          </div>
+          <div className="col-xs-12">
+              Phone: {driver.phone}
+          </div>
+          <div className="col-xs-12">
+            <button onClick={this.updateStatus.bind(this, driver)}>{driver.is_active ? 'Activate': 'Deactivate'}</button>
+          </div>
         </div>
-
        );
     },
     updateStatus: function(driver) {

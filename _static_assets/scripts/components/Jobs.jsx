@@ -39,8 +39,9 @@ var Jobs = React.createClass({
 	},
 	renderJobsList: function(jobs) {
 		if (jobs.length == 0) 	{
+			var style = {"marginLeft": "15px"};
 		  return (
-		    <div>Sorry, there are no jobs available right now.</div>
+		    <div className="well" style={style}>Sorry, there are no jobs available right now.</div>
 		  )
 		}
 

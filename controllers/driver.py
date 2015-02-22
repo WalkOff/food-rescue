@@ -25,14 +25,13 @@ class Index(BaseHandler):
         self.response.headers['Content-Type'] = 'application/json'
         self.response.out.write(json.dumps([dict_maker(d) for d in drivers]))
 
-class CreateEdit(BaseHandler):
-    def get(self, driver_id):
+class Profile(BaseHandler):
+    def get(self):
         role = self.user_role()
         if role != 'driver':
             self.abort(403)
 
-        driver_key = ndb.Key(urlsafe=driver_id)
-        driver = driver_key.get()
+        driver = Driver.query(Driver.email == self.user().email().lower()).fetch(1)[0]
         template = JINJA_ENVIRONMENT.get_template('driver/driver_info.html')
         self.response.write(template.render(driverId=driver.key.urlsafe(), driver=json.dumps(dict_maker(driver)), loggedInUser=self.user() != None, isDriver=self.user_role() == 'driver'))
 
@@ -110,5 +109,5 @@ app = webapp2.WSGIApplication([
     ('/driver/job/(\S+)', JobView),
     ('/driver/status?',UpdateStatus),
     ('/driver/?',Index),
-    ('/driver/(\S+)/?',CreateEdit),
+    ('/driver/profile/?',Profile),
 ], config=config, debug=True)
