@@ -2,6 +2,7 @@ import webapp2
 import json
 import jinja2
 from models.job import Job
+from models.donor import Donor
 from common.helpers import dict_maker
 from base_handler import *
 
@@ -28,6 +29,9 @@ New job/donation creation form
 '''
 class New(BaseHandler):
     def get(self):
+        if self.user_role() != 'donor':
+            self.redirect('/')
+
         template = JINJA_ENVIRONMENT.get_template('new.html')
         self.response.write(template.render())
 
@@ -36,18 +40,18 @@ class New(BaseHandler):
         job_object = json.loads(job_json)
 
         pickup_location = Address()
-        pickup_location.address1 = job_object.pickup_location.address1
-        pickup_location.address2 = job_object.pickup_location.address2
-        pickup_location.city = job_object.pickup_location.city
-        pickup_location.state = job_object.pickup_location.state
-        pickup_location.zipcode = job_object.pickup_loation.zipcode
+        pickup_location.address1 = job_object.pickup_address1
+        pickup_location.address2 = job_object.pickup_address2
+        pickup_location.city = job_object.pickup_city
+        pickup_location.state = job_object.pickup_state
+        pickup_location.zipcode = job_object.pickup_zipcode
 
         drop_off_location = Address()
-        drop_off_location.address1 = job_object.drop_off_location.address1
-        drop_off_location.address2 = job_object.drop_off_location.address2
-        drop_off_location.city = job_object.drop_off_location.city
-        drop_off_location.state = job_object.drop_off_location.state
-        drop_off_location.zipcode = job_object.drop_off_loation.zipcode
+        drop_off_location.address1 = job_object.drop_off_address1
+        drop_off_location.address2 = job_object.drop_off_address2
+        drop_off_location.city = job_object.drop_off_city
+        drop_off_location.state = job_object.drop_off_state
+        drop_off_location.zipcode = job_object.drop_off_zipcode
 
         job = Job()
         job.status = JobStatus.submitted
@@ -64,6 +68,16 @@ class New(BaseHandler):
         job.is_truck_required = job_object.is_truck_required
 
         job.put()
+
+class CurrentDonor(BaseHandler):
+    def get(self):
+        if self.user_role() != 'donor':
+            self.response.write('Error: not logged in as a donor')
+            return
+
+        donor = Donor.query(Donor.email == self.user().email().lower()).fetch(1)[0]
+        self.response.headers['Content-Type'] = 'application/json'
+        self.response.write(json.dumps(dict_maker(donor)))
 
 
 class Details(BaseHandler):
@@ -83,5 +97,6 @@ config['webapp2_extras.sessions'] = {'secret_key': 'secret-session-key-123'}
 app = webapp2.WSGIApplication([
     ('/job/?',Index),
     ('/job/new/?',New),
+    ('/job/current_donor/?',CurrentDonor),
     ('/job/(\S+)/?',Details),
 ], config=config, debug=True)
