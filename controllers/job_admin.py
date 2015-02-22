@@ -31,13 +31,13 @@ class JobList(BaseHandler):
         self.response.write(json.dumps([dict_maker(j) for j in jobs]))
 
 class JobDetails(BaseHandler):
-    def get(self):
+    def get(self,job_id):
         if self.user_role() != 'admin':
             self.abort(403)
 
         template = JINJA_ENVIRONMENT.get_template('admin/job_view.html')
-        self.response.write(template.render(jobId=jobId))
-    def post(self):
+        self.response.write(template.render(jobId=job_id))
+    def post(self,job_id):
         if self.user_role() != 'admin':
             self.abort(403)
         job_key = ndb.Key(urlsafe=job_id)
