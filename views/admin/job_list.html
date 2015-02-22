@@ -4,6 +4,10 @@
     {{ super() }}
 {% endblock %}
 {% block content %}
+    <div class="container">
+        <h2>Active Jobs:</h2>
+    </div>
+
 	<div id="jobs-container" data-jobsurl="/admin/job/" data-jobprefix="/admin/job/"></div>
 	<script src="../scripts/jobs.js"></script>
 {% endblock %}

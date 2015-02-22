@@ -26,7 +26,6 @@ var Jobs = React.createClass({
 			<div>
 				<div className="container">
 					<div className="row">
-						<h2>Opportunities to help!</h2>
 						<ul className="jobs-list col-xs-12">
 							{this.renderJobsList(this.state.jobs)}
 						</ul>
