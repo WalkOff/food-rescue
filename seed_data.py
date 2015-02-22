@@ -1,6 +1,7 @@
 from models.common import *
 from models.donor import *
 from models.driver import *
+from models.admin import *
 from models.drop_off import *
 from models.job import *
 
@@ -21,6 +22,9 @@ drop_offs = [
 
 drivers = [
     Driver(name="Geoff Misek", phone="8104449621", email="gmisek@gmail.com", is_active=True),
-    Driver(name="Nathan Cochran", phone="7175800419", email="cochran@niche.com", is_active=True),
     Driver(name="Shawn Rancatore", phone="3379620553", email="shawn.rancatore@gmail.com", is_active=True)
+]
+
+admins = [
+    Admin(name="Nathan Cochran", email="cochran@niche.com")
 ]

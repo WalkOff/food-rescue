@@ -13,6 +13,7 @@ class Seed(BaseHandler):
         ndb.delete_multi(Donor.query().fetch(keys_only=True))
         ndb.delete_multi(DropOff.query().fetch(keys_only=True))
         ndb.delete_multi(Driver.query().fetch(keys_only=True))
+        ndb.delete_multi(Admin.query().fetch(keys_only=True))
 
         for donor in donors:
             donor.put()
@@ -22,6 +23,9 @@ class Seed(BaseHandler):
         
         for driver in drivers:
             driver.put()
+
+        for admin in admins:
+            admin.put()
 
         self.response.write("Success")
 
