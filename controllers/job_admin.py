@@ -32,18 +32,18 @@ class JobList(BaseHandler):
         self.response.write(json.dumps([dict_maker(j) for j in jobs]))
 
 class JobDetails(BaseHandler):
-    def get(self):
+    def get(self,job_id):
         if self.user_role() != 'admin':
             self.abort(403)
-
+        print job_id
         template = JINJA_ENVIRONMENT.get_template('job_view.html')
-        self.response.write(template.render(jobId=jobId))
-    def post(self):
+        self.response.write(template.render(jobId=job_id))
+    def post(self,job_id):
         if self.user_role() != 'admin':
             self.abort(403)
-
-        job_id = ndb.Key(self.request.get('jobId'))
-        job = job_id.get()
+        job_key = ndb.Key(urlsafe=job_id)
+        job = job_key.get()
+        self.response.write(json.dumps(dict_maker(job)))
 
 class AssignDropOff(BaseHandler):
     def post(self):
