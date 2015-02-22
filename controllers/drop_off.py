@@ -13,7 +13,7 @@ JINJA_ENVIRONMENT = jinja2.Environment(
 class Index(BaseHandler):
     def get(self):
         template = JINJA_ENVIRONMENT.get_template('drop_off/drop_off_list.html')
-        self.response.write(template.render(loggedInUser = self.user() != None))
+        self.response.write(template.render(loggedInUser = self.user() != None, isDriver=self.user_role() == 'driver'))
     def post(self):
         drop_offs = DropOff.all()
         self.response.headers['Content-Type'] = 'application/json'
@@ -22,7 +22,7 @@ class Index(BaseHandler):
 class CreateEdit(BaseHandler):
     def get(self, drop_off_id):
         template = JINJA_ENVIRONMENT.get_template('drop_off/drop_off_edit.html')
-        self.response.write(template.render(loggedInUser = self.user() != None))
+        self.response.write(template.render(loggedInUser = self.user() != None, isDriver=self.user_role() == 'driver'))
     def post(self):
         drop_off_id = self.request.get('drop_offId')
         drop_off = drop_off_id.get()

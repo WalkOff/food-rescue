@@ -16,7 +16,17 @@
 	    <a class="navbar-brand" href="/">412 Food Rescue App</a>
 	</div>
 	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
+          <ul class="nav navbar-nav">
+	    <li class="dropdown">
+	      <a href="/job" class="dropdown-toggle" role="button">Jobs</a>
+	    </li>
+	    {% if isDriver %}
+	    <li class="dropdown">
+	      <a href="/driver/profile" class="dropdown-toggle" role="button">My profile</a>
+	    </li>
+	    {% endif %}
+	  </ul>
+	  <ul class="nav navbar-nav navbar-right">
 	        <li class="dropdown">
 		  {% if loggedInUser %}
 		  <a href="/logout" class="dropdown-toggle" role="button">Logout</a>

@@ -33,7 +33,7 @@ class Index(BaseHandler):
             jobUrlPrefix = '/admin/job/'
 
         template = JINJA_ENVIRONMENT.get_template('job/index.html')
-        self.response.write(template.render(jobUrlPrefix=jobUrlPrefix, loggedInUser=self.user() != None))
+        self.response.write(template.render(jobUrlPrefix=jobUrlPrefix, loggedInUser=self.user() != None, isDriver=self.user_role() == 'driver'))
 
     def post(self):
         jobs = Job.query(Job.status != JobStatus.submitted).order(Job.status).fetch()
@@ -49,7 +49,7 @@ class New(BaseHandler):
             self.abort(403)
 
         template = JINJA_ENVIRONMENT.get_template('job/new.html')
-        self.response.write(template.render(loggedInUser=self.user() != None))
+        self.response.write(template.render(loggedInUser=self.user() != None, isDriver=self.user_role() == 'driver'))
 
     def post(self):
         if self.user_role() != 'donor':
@@ -105,7 +105,7 @@ Returns job detail view
 class Details(BaseHandler):
     def get(self, id):
         template = JINJA_ENVIRONMENT.get_template('job/job_detail.html')
-        self.response.write(template.render(jobId=id, loggedInUser=self.user() != None))
+        self.response.write(template.render(jobId=id, loggedInUser=self.user() != None, isDriver=self.user_role() == 'driver'))
     def post(self):
         job_id_str = self.request.get('id')
         jobkey = ndb.Key(urlsafe = job_id_str)

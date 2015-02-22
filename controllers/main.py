@@ -17,7 +17,7 @@ JINJA_ENVIRONMENT = jinja2.Environment(
 class Index(BaseHandler):
     def get(self):
         template = JINJA_ENVIRONMENT.get_template('index.html')
-        self.response.write(template.render(loggedInUser=self.user() != None))
+        self.response.write(template.render(loggedInUser=self.user() != None, isDriver=self.user_role() == 'driver'))
 
 class Login(BaseHandler):
     def get(self):

@@ -21,7 +21,7 @@ class JobList(BaseHandler):
         if self.user_role() != 'admin':
             self.abort(403)
         template = JINJA_ENVIRONMENT.get_template('admin/job_list.html')
-        self.response.write(template.render(jobUrlPrefix='job/',loggedInUser = self.user() != None))
+        self.response.write(template.render(jobUrlPrefix='job/',loggedInUser = self.user() != None, isDriver=self.user_role() == 'driver'))
     def post(self):
         if self.user_role() != 'admin':
             self.abort(403)
@@ -37,7 +37,7 @@ class JobDetails(BaseHandler):
         drop_offs = DropOff.query().fetch()
         drop_off_json= json.dumps([dict_maker(drop_off) for drop_off in drop_offs])
         template = JINJA_ENVIRONMENT.get_template('admin/job_view.html')
-        self.response.write(template.render(jobId=job_id,drop_off_json=drop_off_json))
+        self.response.write(template.render(jobId=job_id,drop_off_json=drop_off_json,loggedInUser=self.user() != None, isDriver=self.user_role() == 'driver'))
     def post(self,job_id):
         if self.user_role() != 'admin':
             self.abort(403)
