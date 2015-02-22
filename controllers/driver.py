@@ -53,7 +53,25 @@ class UpdateStatus(BaseHandler):
         self.response.out.write({'success':'true'})
 
 class JobView(BaseHandler):
+    @login_required
     def get(self, job_id):
+
+        # User signed in via google, but not yet assigned role:
+        if not self.user_role():
+            user = users.get_current_user()
+        
+            if isDriver(user):
+                self.session['role'] = 'driver'
+            elif isDonor(user):
+                self.session['role'] = 'donor'
+                self.abort(403)
+            elif isAdmin(user):
+                self.session['role'] = 'admin'
+                self.abort(403)
+            else:
+                self.response.write('Not a valid user. Please <a href="' + users.create_logout_url('/login') + '">logout and try a different account</a>')
+                return
+
         template = JINJA_ENVIRONMENT.get_template('driver/job_view.html')
         user_email = self.user().email()
         driver = Driver.query(Donor.email == user_email).fetch()[0]
@@ -62,6 +80,7 @@ class JobView(BaseHandler):
         job_key = ndb.Key(urlsafe=jobId)
         job = job_key.get()
         return self.response.out.write(json.dumps(dict_maker(job)))
+
 class TakeJob(BaseHandler):
     def post(self, jobId):
         user_email = self.user().email()
@@ -73,6 +92,7 @@ class TakeJob(BaseHandler):
         job.accepted_by_phone=driver.phone
         job.put()
         return self.response.out.write(json.dumps({'success': True}))
+
 config = {}
 config['webapp2_extras.sessions'] = {'secret_key': 'secret-session-key-123'}
 
