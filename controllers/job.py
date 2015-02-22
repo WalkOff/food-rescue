@@ -42,32 +42,32 @@ class New(BaseHandler):
         job_object = json.loads(job_json)
 
         pickup_location = Address()
-        pickup_location.address1 = job_object.pickup_address1
-        pickup_location.address2 = job_object.pickup_address2
-        pickup_location.city = job_object.pickup_city
-        pickup_location.state = job_object.pickup_state
-        pickup_location.zipcode = job_object.pickup_zipcode
+        pickup_location.address1 = job_object['pickup_address1']
+        pickup_location.address2 = job_object['pickup_address2']
+        pickup_location.city = job_object['pickup_city']
+        pickup_location.state = job_object['pickup_state']
+        pickup_location.zipcode = job_object['pickup_zipcode']
 
         drop_off_location = Address()
-        drop_off_location.address1 = job_object.drop_off_address1
-        drop_off_location.address2 = job_object.drop_off_address2
-        drop_off_location.city = job_object.drop_off_city
-        drop_off_location.state = job_object.drop_off_state
-        drop_off_location.zipcode = job_object.drop_off_zipcode
+        drop_off_location.address1 = job_object['drop_off_address1']
+        drop_off_location.address2 = job_object['drop_off_address2']
+        drop_off_location.city = job_object['drop_off_city']
+        drop_off_location.state = job_object['drop_off_state']
+        drop_off_location.zipcode = job_object['drop_off_zipcode']
 
         job = Job()
         job.status = JobStatus.submitted
-        job.donor_id = ndb.Key(urlsafe = job_object.donor_id)
-        job.description = job_object.description
-        job.instructions = job_object.instructions
-        job.contact_phone = job_object.contact_phone
-        job.donor_name = job_object.donor_name
+        job.donor_id = ndb.Key(urlsafe = job_object['donor_id'])
+        job.description = job_object['description']
+        job.instructions = job_object['instructions']
+        job.contact_phone = job_object['contact_phone']
+        job.donor_name = job_object['donor_name']
         job.pickup_location = pickup_location
 #        job.timeframe_start = job_object.
 #        job.timeframe_end = job_object.
-        job.is_okay_to_text = job_object.is_okay_to_text
-        job.should_notify_driver = job_object.should_notify_driver
-        job.is_truck_required = job_object.is_truck_required
+        job.is_okay_to_text = job_object['is_okay_to_text']
+        job.should_notify_driver = job_object['should_notify_driver']
+        job.is_truck_required = job_object['is_truck_required']
 
         job.put()
 
