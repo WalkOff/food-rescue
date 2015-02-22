@@ -1,7 +1,7 @@
 import webapp2
 import json
 import jinja2
-import datetime
+from datetime import datetime
 from models.job import Job
 from models.donor import Donor
 from models.common import *
