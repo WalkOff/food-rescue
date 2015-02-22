@@ -34,9 +34,10 @@ class JobDetails(BaseHandler):
     def get(self,job_id):
         if self.user_role() != 'admin':
             self.abort(403)
-
+        drop_offs = DropOff.query().fetch()
+        drop_off_json= json.dumps([dict_maker(drop_off) for drop_off in drop_offs])
         template = JINJA_ENVIRONMENT.get_template('admin/job_view.html')
-        self.response.write(template.render(jobId=job_id))
+        self.response.write(template.render(jobId=job_id,drop_off_json=drop_off_json))
     def post(self,job_id):
         if self.user_role() != 'admin':
             self.abort(403)
@@ -50,12 +51,13 @@ class AssignDropOff(BaseHandler):
  #           self.abort(403)
 
         job_id = ndb.Key(urlsafe=self.request.get('jobId'))
-        drop_off_id = ndb.Key(urlsafe=self.request.get('dropoffId'))
+        drop_off_id = ndb.Key(urlsafe=self.request.get('dropOffId'))
         job = job_id.get()
         drop_off = drop_off_id.get()
         job.drop_off_location = drop_off.address
         job.drop_off_name = drop_off.name
         job.drop_off_id = drop_off.key
+        job.status = JobStatus.pending
         job.put()
 
         # TWILIO
@@ -65,10 +67,11 @@ class AssignDropOff(BaseHandler):
 
         active_drivers = Driver.query(Driver.is_active == True).fetch()
         for driver in active_drivers:
-            client.messages.create(
-                to=driver.phone, 
-                from_="+14124263647", 
-                body="Alert: New pickup request from 412 Food Rescue. http://food-rescue.appspot.com/driver/job/" + job.key.urlsafe())
+            if driver.phone == '3379620553':
+                client.messages.create(
+                    to=driver.phone,
+                    from_="+14124263647",
+                    body="Alert: New pickup request from 412 Food Rescue. http://food-rescue.appspot.com/driver/job/" + job.key.urlsafe())
         # /TWILIO
 
         self.response.headers['Content-Type'] = 'application/json'

@@ -11,19 +11,24 @@ var Job = React.createClass({
     },
     componentDidMount: function() {
     	this.getJobAjax();
-        this.getDropOffAjax();
     },
     render: function() {
         if(this.state.job != null)
         {
-            console.log(this.state.job);
     	    return (
-	      <div className="job">
-            {this.state.job.description}
-
+          <div className="job">
+              <p>Food Delivery opportunity to deliver </p>
+              <dt>Food donated by</dt>
+          <dd>{this.state.job.donor_name}</dd>
+              <dt>To be delivered to:</dt>
+          <dd>{this.state.job.drop_off_name}</dd>
+              <dt>Details:</dt>
+          <dd>{this.state.job.description}</dd>
               Assign Drop Off:
+          {this.renderDropOffDropdown()}
+              <button className="btn btn-primary" onClick={this.updateDropOffInfo}>Update</button>
+          </div>
 
-	      </div>
 	    );
     } else{
             return (<div className="job">{this.state.msg}</div>);
@@ -41,16 +46,32 @@ var Job = React.createClass({
       this.setState({job: parsedData});
 
     },
-    getDropOffAjax: function() {
-      $.get('/admin/drop_off/all')
-       	.done(this.getDropOffDone)
+  renderDropOffDropdown: function() {
+    return (
+      <select className="form-control" onChange={this.dropOffChanged}>
+        {this.renderDropOffDropdownOpts()}
+      </select>
+    );
+  },
+  renderDropOffDropdownOpts: function() {
+    return _.map(drop_off_list, function(dropOff) {
+      return (
+        <option value={dropOff.ndb_id}>{dropOff.name}</option>
+      );
+    }, this);
+  },
+  dropOffChanged: function(e) {
+    this.state.dropOffId = e.target.value;
+    this.setState(this.state);
+  },
+    updateDropOffInfo: function() {
+      $.post('/admin/job/assign/',{jobId: this.props.jobId,dropOffId: this.state.dropOffId})
+       	.done(this.getDropOffAssignDone)
 	.fail(function(err) {
  	  console.log(err);
 	});
     },
-    getDropOffDone: function(data) {
-      var parsedData = JSON.parse(data);
-      this.setState({dropOffs: parsedData});
+    getDropOffAssignDone: function(data) {
 
     }
 });

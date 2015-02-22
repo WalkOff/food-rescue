@@ -7,7 +7,7 @@ var Job = React.createClass({
       jobId: React.PropTypes.string
     },
     getInitialState: function() {
-      return {job: null, msg:"wait for job details"};
+      return {job: null, msg:"Waiting for job details"};
     },
     componentDidMount: function() {
       this.getJobAjax();
@@ -17,9 +17,15 @@ var Job = React.createClass({
       {
         return (
           <div className="job">
-          {this.state.job.description}
+              <p>Food Delivery opportunity to deliver </p>
+              <dt>Food donated by</dt>
+          <dd>{this.state.job.donor_name}</dd>
+              <dt>To be delivered to:</dt>
+          <dd>{this.state.job.drop_off_name}</dd>
+              <dt>Details:</dt>
+          <dd>{this.state.job.description}</dd>
           <button className="btn btn-primary" onClick={this.takeJobAjax}>I'll Do It!</button>
-          <button className="btn btn-primary" onClick={this.rejectJob}>No Thanks!</button>
+          <br/><a href="#" onClick={this.rejectJob}>Continue Browsing</a>
           </div>
         );
       } else{
@@ -41,7 +47,7 @@ var Job = React.createClass({
     takeJobAjax: function() {
       $.post('/driver/take/job/' + this.props.jobId)
       .done(function() {
-        this.setState({job: null, msg:"thank you!"});
+        this.setState({job: null, msg:"The donor and the destination have been informed. Thank you for making a difference in your community! "});
       }.bind(this))
       .fail(function(err) {
         console.log(err);

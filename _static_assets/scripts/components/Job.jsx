@@ -62,7 +62,7 @@ var Job = React.createClass({
                 <div className="col-lg-11 col-xs-9">
                     <dl className="">
                         <div className="col-lg-5 col-xs-12" onClick={this.navToJob}>
-                            <dt>Organization: </dt>
+                            <dt>Food Source: </dt>
                             <dd className="job-base-org-name"><a>{job.donor_name}</a></dd>
                         </div>
                         <div className="col-lg-7 col-xs-12">
@@ -74,6 +74,15 @@ var Job = React.createClass({
                                 <span className="address-text">{job.pickup_location.state}</span>
                                 <span className="address-text">{job.pickup_location.zipcode}</span>
                             </dd>
+                        <div className="col-lg-7 col-xs-12">
+                            <dt>Destination: </dt>
+                            <dd className="job-base-org-name">
+                                Blooming Lotus Food Bank
+                            </dd>
+                            <p>
+                                Serving warm meals to famililies in the the north-eastern Allegheny County.
+                            </p>
+                        </div>
                         </div>
                     </dl>
                 </div>
