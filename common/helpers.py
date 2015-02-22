@@ -1,9 +1,12 @@
 from datetime import datetime, date, time
 from google.appengine.ext import ndb
 from models.common import JobStatus
+from models.donor import Donor
+from models.driver import Driver
+from models.admin import Admin
 
 def str2bool(v):
-  return v.lower() in ("yes", "true", "t", "1")
+    return v.lower() in ("yes", "true", "t", "1")
 
 def dict_maker(o):
     out = {}
@@ -21,3 +24,27 @@ def dict_maker(o):
         else:
             out[property] = value
     return out
+
+def isDonor(user):
+    email = user.email().lower()
+    donor = Donor.query(Donor.email == email).fetch(1)
+    if donor:
+        return True
+    else:
+        return False
+
+def isDriver(user):
+    email = user.email().lower()
+    driver = Driver.query(Donor.email == email).fetch(1)
+    if driver:
+        return True
+    else:
+        return False
+
+def isAdmin(user):
+    email = user.email().lower()
+    admin = Admin.query(Admin.email == email).fetch(1)
+    if admin:
+        return True
+    else:
+       return False
