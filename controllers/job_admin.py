@@ -18,9 +18,7 @@ class JobList(BaseHandler):
     def get(self):
         template = JINJA_ENVIRONMENT.get_template('job_list.html')
         self.response.write(template.render())
-
-class GetJobs(BaseHandler):
-    def get(self):
+    def post(self):
         jobs = Job.query().fetch()
         self.response.headers['Content-Type'] = 'application/json'
         self.response.write(json.dumps([dict_maker(j) for j in jobs]))
@@ -29,6 +27,9 @@ class JobDetails(BaseHandler):
     def get(self):
         template = JINJA_ENVIRONMENT.get_template('job_view.html')
         self.response.write(template.render())
+    def post(self):
+        job_id = ndb.Key(self.request.get('jobId'))
+        job = job_id.get()
 
 class AssignDropOff(BaseHandler):
     def post(self):
@@ -43,13 +44,12 @@ class AssignDropOff(BaseHandler):
         self.response.headers['Content-Type'] = 'application/json'
         self.response.out.write(json.dumps(job))
 
-
 config = {}
 config['webapp2_extras.sessions'] = {'secret_key': 'secret-session-key-123'}
 
 app = webapp2.WSGIApplication([
-    ('/admin/job', JobDetails),
-    ('/admin/jobs', JobList),
-    ('/admin/job/list',GetJobs)
+    ('/admin/job/?', JobList),
+    ('/admin/job/(\S+)/?', JobDetails),
+    ('/admin/job/assign', AssignDropOff)
 ], config=config, debug=True)
 
