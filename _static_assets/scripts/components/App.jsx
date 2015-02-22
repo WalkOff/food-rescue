@@ -8,7 +8,7 @@ var _ = require('underscore'),
 var App = React.createClass({
 	getInitialState: function() {
 		return {
-			showDonorForm: false
+
 		};
 	},
 	render: function() {
@@ -19,23 +19,11 @@ var App = React.createClass({
 				<div className="container">
 					<div className="row">
 						<div className="col-xs-12">
-							{this.state.showDonorForm ? this.renderDonorForm() : this.renderPickupButton()}
+							<DonorForm donationRequest={this.state.donationRequest} onFormSubmit={this.submitInfoAjax} />
 						</div>
 					</div>
 				</div>
 			</div>
-		);
-	},
-	renderDonorForm: function() {
-		return (
-			<DonorForm donationRequest={this.state.donationRequest} onFormSubmit={this.submitInfoAjax} />
-		);
-	},
-	renderPickupButton: function() {
-		return (
-			<button className="btn btn-primary btn-large" onClick={this.requestPickup}>
-				Request Pickup
-			</button>
 		);
 	},
 	submitInfoAjax: function(donorForm) {
@@ -49,11 +37,6 @@ var App = React.createClass({
     	var parsedData = JSON.parse(data);
 		this.setState({donor: parsedData});
     },
-	requestPickup: function() {
-		this.setState({
-			showDonorForm: true
-		});
-	},
 	showProfile: function() {
 		console.log('show profile');
 	},

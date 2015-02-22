@@ -37,6 +37,7 @@ var DriverList = React.createClass({
 		   });
     },
     getDriversDone: function(data) {
+        console.log(data);
 		   this.setState({drivers: data});
     }
 });
