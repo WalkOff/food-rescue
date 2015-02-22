@@ -30,6 +30,6 @@ class BaseHandler(webapp2.RequestHandler):
         user = users.get_current_user()
 
         if user and 'role' in self.session:
-            return session['role']
+            return self.session['role']
         return None
         
