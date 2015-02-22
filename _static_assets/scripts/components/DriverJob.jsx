@@ -19,6 +19,8 @@ var Job = React.createClass({
     	    return (
 	      <div className="job">
             {this.state.job.description}
+            <button className="btn btn-primary">I Will Do It!</button>
+            <button className="btn btn-primary">No Thanks!</button>
 	      </div>
 	    );
     } else{
