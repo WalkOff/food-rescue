@@ -46,8 +46,8 @@ class JobDetails(BaseHandler):
 
 class AssignDropOff(BaseHandler):
     def post(self):
-        if self.user_role() != 'admin':
-            self.abort(403)
+ #       if self.user_role() != 'admin':
+ #           self.abort(403)
 
         job_id = ndb.Key(urlsafe=self.request.get('jobId'))
         drop_off_id = ndb.Key(urlsafe=self.request.get('dropoffId'))

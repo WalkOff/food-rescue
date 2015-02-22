@@ -56,7 +56,7 @@ class TextJenny(BaseHandler):
         data = {'jobId':job.key.urlsafe(), 'dropoffId':drop_off.key.urlsafe()}
 
         result = urlfetch.fetch(
-                url='http://localhost:8080/admin/job/assign',
+                url='http://food-rescue.appspot.com/admin/job/assign',
                 payload = urllib.urlencode(data),
                 method = urlfetch.POST,
                 headers={'Content-Type': 'application/x-www-form-urlencoded'})

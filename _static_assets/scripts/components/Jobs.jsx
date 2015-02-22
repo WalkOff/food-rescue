@@ -1,7 +1,9 @@
 var _ = require('underscore'),
 	$ = require('jquery'),
-	React = require('react'),
+	React = require('react/addons'),
 	Job = require('./Job.jsx');
+
+var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 var Jobs = React.createClass({
 	propTypes: {
@@ -40,7 +42,9 @@ var Jobs = React.createClass({
 		return _.map(jobs, function(job) {
 			return (
 				<li className="list-unstyled jobs-list-item row">
-					<Job job={job} navToJob={this.navToJob} />
+					<ReactCSSTransitionGroup transitionName="fade">
+						<Job job={job} navToJob={this.navToJob} />
+					</ReactCSSTransitionGroup>   
 				</li>
 			);
 		}, this);

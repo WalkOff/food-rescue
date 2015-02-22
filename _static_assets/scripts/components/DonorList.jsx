@@ -13,7 +13,8 @@ var DonorList = React.createClass({
     },
     render: function() {    
 	    return (
-            <div>
+            <div className="container">
+                <h2>Donor List</h2>
                 <ul>
                     {this.renderDonorsList(this.state.donors)}
                 </ul>	    	   
