@@ -1,9 +1,8 @@
 var _ = require('underscore'),
-  $ = require('jquery'),
-  React = require('react'),
-  Nav = require('./Nav.jsx'),
-  Profile = require('./Profile.jsx'),
-  DonorForm = require('./DonorForm.jsx');
+	$ = require('jquery'),
+	React = require('react'),
+	Profile = require('./Profile.jsx'),
+	DonorForm = require('./DonorForm.jsx');
 
 var App = React.createClass({
   getInitialState: function() {

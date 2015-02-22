@@ -1,16 +1,17 @@
 var _ = require('underscore'),
 	$ = require('jquery'),
 	React = require('react'),
-	Nav = require('./Nav.jsx'),
 	Job = require('./Job.jsx');
 
 var Jobs = React.createClass({
 	propTypes: {
-    	jobsUrl: React.PropTypes.string
+    	jobsUrl: React.PropTypes.string,
+        jobPrefix:React.PropTypes.string
     },
     getDefaultProps: function() {
     	return {
-    		jobsUrl: ''
+    		jobsUrl: '',
+            jobPrefix:''
     	};
     },
 	getInitialState: function() {
@@ -21,8 +22,6 @@ var Jobs = React.createClass({
 	render: function() {
 		return (
 			<div>
-				<Nav />
-
 				<div className="container">
 					<div className="row">
 						<h2>Jobs Queue</h2>
@@ -62,7 +61,8 @@ var Jobs = React.createClass({
 		console.log('navToJob');
 		console.log(job.ndb_id);
 		console.log(this.props);
-		window.location = this.props.jobsUrl + job.ndb_id;
+        console.log(this.props.jobPrefix);
+		window.location = this.props.jobPrefix + job.ndb_id;
 	}
 });
 

@@ -12,7 +12,7 @@ from base_handler import *
 from google.appengine.ext import ndb
 
 JINJA_ENVIRONMENT = jinja2.Environment(
-    loader=jinja2.FileSystemLoader("./views/job"),
+    loader=jinja2.FileSystemLoader("./views"),
     extensions=['jinja2.ext.autoescape'],
     autoescape=True)
 
@@ -21,8 +21,18 @@ Job listing
 '''
 class Index(BaseHandler):
     def get(self):
-        template = JINJA_ENVIRONMENT.get_template('index.html')
-        self.response.write(template.render())
+        jobUrlPrefix = "basic"
+        print self.user()
+        print self.user_role()
+        if self.user_role() == 'donor':
+            jobUrlPrefix= 'donor'
+        if self.user_role() == 'driver':
+            jobUrlPrefix = '/driver/job/'
+        if self.user_role() == 'admin':
+            jobUrlPrefix = '/admin/job/'
+
+        template = JINJA_ENVIRONMENT.get_template('job/index.html')
+        self.response.write(template.render(jobUrlPrefix=jobUrlPrefix))
 
     def post(self):
         jobs = Job.query().fetch()
@@ -37,7 +47,7 @@ class New(BaseHandler):
         if self.user_role() != 'donor':
             self.abort(403)
 
-        template = JINJA_ENVIRONMENT.get_template('new.html')
+        template = JINJA_ENVIRONMENT.get_template('job/new.html')
         self.response.write(template.render())
 
     def post(self):
@@ -89,7 +99,7 @@ Returns job detail view
 '''
 class Details(BaseHandler):
     def get(self, id):
-        template = JINJA_ENVIRONMENT.get_template('job_detail.html')
+        template = JINJA_ENVIRONMENT.get_template('job/job_detail.html')
         self.response.write(template.render(jobId=id))
     def post(self):
         job_id_str = self.request.get('id')

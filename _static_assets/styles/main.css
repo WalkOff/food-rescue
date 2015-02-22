@@ -6,14 +6,14 @@ h2 {
 	font-weight: 300;
 	margin-bottom: 30px;
 }
+a:hover {
+	text-decoration: none;
+	cursor: pointer;
+}
 .jobs-list {
 	padding-left: 0;
 	margin-left: 0;
 }
-/*.jobs-list-item {
-	border-bottom: 1px solid #ddd;
-	margin-bottom: 5px;
-}*/
 .job-status {
 	color: #5cb85c;
 	text-transform: uppercase;
@@ -22,13 +22,16 @@ h2 {
 .job-description {
 
 }
-.job-base {
+.job {
 	margin: 5px 0;
 	background: #fff;
 	border-radius: 1px;
 	padding: 15px 30px;
 	box-shadow: 0 0 1px 0 rgba(0,0,0,.1),
 				0 1px 2px 0 rgba(0,0,0,.12);
+}
+.job-base {
+
 }
 .address-text {
 	margin-right: 4px;
@@ -38,15 +41,19 @@ h2 {
 	text-transform: uppercase;
 	font-weight: 600;
 	letter-spacing: .5px;
+	position: relative;
+	top: 0px;
+	right: 15px;
 }
-
 .job-base dl {
 	margin-bottom: 0;
+	margin-left: -15px;
 }
 .job-base dt {
 	color: #aaa;
 	text-transform: uppercase;
-	font-size: 12px;
+	font-size: 11px;
+	font-weight: 500;
 }
 .job-base-org-name {
 	margin-bottom: 5px;
@@ -58,7 +65,39 @@ h2 {
 	font-size: 18px;
 	font-weight: 300;
 	color: #666;
+	margin-top: 6px;
 }
+.show-job-details {
+	position: relative;
+	top: 5px;
+	right: 15px;
+	display: block;
+	white-space: nowrap;
+	color: #666;
+	cursor: pointer;
+}
+.fade-enter {
+	opacity: 0.01;
+	transition: opacity .5s ease-in;
+  	background: purple;
+}
+.fade-enter.fade-enter-active {
+	opacity: 1;
+	background: purple;
+}
+.fade-leave {
+	opacity: 1;
+	transition: opacity .5s ease-in;
+	background: purple;
+}
+.fade-leave.fade-leave-active {
+	opacity: 0.01;
+	background: purple;
+}
+
+
+
+
 
 
 
