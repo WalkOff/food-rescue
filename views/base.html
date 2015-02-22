@@ -1,6 +1,5 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
-<html lang="en">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
     {% block head %}
     <link rel="stylesheet" href="../scripts/main.css" />
@@ -26,7 +25,7 @@
   </nav>
 
   <div id="content">{% block content %}{% endblock %}</div>
-  <div id="footer">
+  <div id="footer" class="container-fluid">
       {% block footer %}
       &copy; Copyright 2015 by <a href="http://412FoodRescue.org">412 Food Rescue</a>.
       {% endblock %}

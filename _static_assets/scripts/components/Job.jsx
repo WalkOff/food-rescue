@@ -31,9 +31,9 @@ var Job = React.createClass({
 	    return (
             <div className="job col-lg-12 col-xs-12">
                 {this.renderJobBase(this.state.job)}
-                <ReactCSSTransitionGroup transitionName="fade">
+                
                     {this.state.showDetails && this.renderJobDetails(this.state.job)}
-                </ReactCSSTransitionGroup>           
+                        
             </div>
 	    );
 
