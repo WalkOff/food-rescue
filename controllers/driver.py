@@ -5,10 +5,11 @@ from base_handler import *
 from models.donor import Donor
 from models.job import Job
 from models.driver import Driver
-from common.helpers import str2bool,dict_maker
+from common.helpers import *
 from models.common import JobStatus
 from base_handler import *
 from google.appengine.ext import ndb
+from google.appengine.ext.webapp.util import login_required
 
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader("./views"),
@@ -74,7 +75,7 @@ class JobView(BaseHandler):
 
         template = JINJA_ENVIRONMENT.get_template('driver/job_view.html')
         user_email = self.user().email()
-        driver = Driver.query(Donor.email == user_email).fetch()[0]
+        driver = Driver.query(Driver.email == user_email).fetch()[0]
         self.response.write(template.render({'job_id':job_id, 'driver_id':driver.key.urlsafe(), 'loggedInUser':self.user() != None}))
     def post(self, jobId):
         job_key = ndb.Key(urlsafe=jobId)
