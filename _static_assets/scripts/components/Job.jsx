@@ -76,7 +76,7 @@ var Job = React.createClass({
                         <div className="col-lg-7 col-xs-12">
                             <dt>Destination: </dt>
                             <dd className="job-base-org-name">
-                                Blooming Lotus Food Bank
+                               { job.drop_off_name}
                             </dd>
                             <p>
                                 Serving warm meals to famililies in the the north-eastern Allegheny County.

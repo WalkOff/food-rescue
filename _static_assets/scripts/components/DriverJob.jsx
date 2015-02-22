@@ -26,6 +26,8 @@ var Job = React.createClass({
           <dd>{this.state.job.description}</dd>
           <button className="btn btn-primary" onClick={this.takeJobAjax}>I'll Do It!</button>
           <br/><a href="#" onClick={this.rejectJob}>Continue Browsing</a>
+              <br/>
+            <button className="btn btn-primary" onClick={this.finishJobAjax}>All Done!</button>
           </div>
         );
       } else{
@@ -52,10 +54,17 @@ var Job = React.createClass({
       .fail(function(err) {
         console.log(err);
     });},
-
+    finishJobAjax: function() {
+      $.post('/driver/finish/job/' + this.props.jobId)
+      .done(function() {
+        this.setState({job: null, msg:"Thank you for making a difference in your community! "});
+      }.bind(this))
+      .fail(function(err) {
+        console.log(err);
+    });},
     rejectJob: function() {
       window.location.href = '/job'
-    },
+    }
 });
 
 module.exports = Job;

@@ -85,7 +85,7 @@ class JobView(BaseHandler):
 class TakeJob(BaseHandler):
     def post(self, jobId):
         user_email = self.user().email()
-        driver = Driver.query(Donor.email == user_email).fetch()[0]
+        driver = Driver.query(Driver.email == user_email).fetch()[0]
         job_key = ndb.Key(urlsafe=jobId)
         job = job_key.get()
         job.accepted_by_id= driver.key
@@ -95,11 +95,22 @@ class TakeJob(BaseHandler):
         job.put()
         return self.response.out.write(json.dumps({'success': True}))
 
+class FinishJob(BaseHandler):
+    def post(self, jobId):
+        user_email = self.user().email()
+        driver = Driver.query(Driver.email == user_email).fetch()[0]
+        job_key = ndb.Key(urlsafe=jobId)
+        job = job_key.get()
+        job.status = JobStatus.completed
+        job.put()
+        return self.response.out.write(json.dumps({'success': True}))
+
 config = {}
 config['webapp2_extras.sessions'] = {'secret_key': 'secret-session-key-123'}
 
 app = webapp2.WSGIApplication([
     ('/driver/take/job/(\S+)', TakeJob),
+    ('/driver/finish/job/(\S+)', FinishJob),
     ('/driver/job/(\S+)', JobView),
     ('/driver/status?',UpdateStatus),
     ('/driver/?',Index),
