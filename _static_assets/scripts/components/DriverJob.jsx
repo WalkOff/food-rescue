@@ -7,7 +7,7 @@ var Job = React.createClass({
         jobId: React.PropTypes.string
     },
     getInitialState: function() {
-        return {job: null};
+        return {job: null,msg:"wait for job details"};
     },
     componentDidMount: function() {
     	this.getJobAjax();
@@ -19,10 +19,12 @@ var Job = React.createClass({
     	    return (
 	      <div className="job">
             {this.state.job.description}
+            <button className="btn btn-primary" onClick={this.takeJobAjax}>I Will Do It!</button>
+            <button className="btn btn-primary">No Thanks!</button>
 	      </div>
 	    );
     } else{
-            return (<div className="job"></div>);
+            return (<div className="job">{this.state.msg}</div>);
         }
     },
     getJobAjax: function() {
@@ -36,6 +38,15 @@ var Job = React.createClass({
       var parsedData = JSON.parse(data);
       this.setState({job: parsedData});
 
+    },
+    takeJobAjax: function() {
+      $.post('/driver/take/job/' + this.props.jobId)
+       	.done(this.getJobDone)
+	.fail(function(err) {
+ 	  console.log(err);
+    });},
+    takeJobDone: function(data) {
+      this.setState({job: null,msg:"thank you!"});
     }
 });
 
