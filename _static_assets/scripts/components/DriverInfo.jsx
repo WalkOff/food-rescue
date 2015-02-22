@@ -5,32 +5,18 @@ var _ = require('underscore'),
 var DriverInfo = React.createClass({
     getInitialState: function() {
        return {
-         driver: {}
+         driver: window.driver
        };
     },
-    componentWillMount: function() {
-      this.getDriverAjax();
-    },
     render: function() {
-      return (
-        <div>
-          {this.renderDriver(this.state.driver)}
-        </div>
-      );
+      return this.renderDriver(this.state.driver);
     },
     renderDriver: function(driver) {
       return (
-         <li className="list-unstyled">
+        <div>
           {driver.name} - {driver.phone}
-        </li>
+        </div>
        );
-    },
-    getDriverAjax: function() {
-      $.post('/driver/')
-      .done(this.getDriverDone)
-      .fail(function(err) {
-        console.log(err);
-       });
     },
     getDriverDone: function(data) {
        console.log(data);

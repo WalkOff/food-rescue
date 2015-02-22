@@ -33,18 +33,10 @@ class CreateEdit(BaseHandler):
 
     def get(self, driver_id):
         role = self.session['role']
+        driver_key = ndb.Key(urlsafe=driver_id)
+        driver     = driver_key.get()
         template = JINJA_ENVIRONMENT.get_template(self.template_for_get(role))
-        self.response.write(template.render())
-    def post(self):
-        driver_id = self.request.get('driverId')
-        driver = driver_id.get()
-        driver_blob = self.request.get('driver')
-        try:
-            driver_vals = json.loads(driver_blob)
-        except:
-            self.response.out.write('Error!')
-        self.response.headers['Content-Type'] = 'application/json'
-        self.response.out.write(json.dumps(driver))
+        self.response.write(template.render(driver=json.dumps(dict_maker(driver))))
 
 class UpdateStatus(BaseHandler):
     def post(self):

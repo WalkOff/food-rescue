@@ -1,6 +1,7 @@
 from google.appengine.api import users
 from models.donor import *
 from models.driver import *
+from models.admin import *
 from base_handler import *
 import webapp2
 import json
@@ -31,6 +32,8 @@ class Login(BaseHandler):
                 role = 'donor'
             elif self.isDriver(user):
                 role = 'driver'
+            elif self.isAdmin(user):
+                role = 'admin'
             else:
                 self.response.write('Not a valid user. Go to <a href="' + users.create_logout_url('/login') + '">Logout</a> to logout and try a different account')
                 return
@@ -54,6 +57,14 @@ class Login(BaseHandler):
         email = user.email().lower()
         driver = Driver.query(Donor.email == email).fetch(1)
         if driver:
+            return True
+        else:
+            return False
+
+    def isAdmin(self, user):
+        email = user.email().lower()
+        admin = Admin.query(Admin.email == email).fetch(1)
+        if admin:
             return True
         else:
             return False

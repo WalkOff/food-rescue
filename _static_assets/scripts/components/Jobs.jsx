@@ -46,6 +46,8 @@ var Jobs = React.createClass({
 
 							<dt>Donor Phone: </dt>
 							<dd>{job.contact_phone}</dd>
+                            <dt>Take this job!</dt>
+                            <dd><a href={"/driver/job/" + job.ndb_id}>TAKE</a> </dd>
 						</dl>
 					</div>
 					
