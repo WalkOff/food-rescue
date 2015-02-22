@@ -36,7 +36,7 @@ class Index(BaseHandler):
         self.response.write(template.render(jobUrlPrefix=jobUrlPrefix, loggedInUser=self.user() != None))
 
     def post(self):
-        jobs = Job.query().fetch()
+        jobs = Job.query(Job.status != JobStatus.submitted).order(Job.status).fetch()
         self.response.headers['Content-Type'] = 'application/json'
         self.response.write(json.dumps([dict_maker(j) for j in jobs]))
 

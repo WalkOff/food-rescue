@@ -26,7 +26,7 @@ class JobList(BaseHandler):
         if self.user_role() != 'admin':
             self.abort(403)
 
-        jobs = Job.query().fetch()
+        jobs = Job.query().order(Job.status).fetch()
         self.response.headers['Content-Type'] = 'application/json'
         self.response.write(json.dumps([dict_maker(j) for j in jobs]))
 

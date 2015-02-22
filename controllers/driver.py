@@ -91,6 +91,7 @@ class TakeJob(BaseHandler):
         job.accepted_by_id= driver.key
         job.accepted_by_name =driver.name
         job.accepted_by_phone=driver.phone
+        job.status = JobStatus.accepted
         job.put()
         return self.response.out.write(json.dumps({'success': True}))
 

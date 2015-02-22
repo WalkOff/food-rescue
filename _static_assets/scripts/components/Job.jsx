@@ -26,13 +26,12 @@ var Job = React.createClass({
     	this.getJobAjax();
     },
     render: function() {
-        var job = this.state.job;
 
 	    return (
             <div className="job col-lg-12 col-xs-12">
-                {this.renderJobBase(this.state.job)}
+                {this.renderJobBase(this.props.job)}
                 
-                    {this.state.showDetails && this.renderJobDetails(this.state.job)}
+                    {this.state.showDetails && this.renderJobDetails(this.props.job)}
                         
             </div>
 	    );
