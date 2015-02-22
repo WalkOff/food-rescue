@@ -1,7 +1,7 @@
 import webapp2
 import json
 import jinja2
-from datetime import datetime
+from datetime import *
 from models.job import Job
 from models.donor import Donor
 from models.common import *
@@ -61,7 +61,7 @@ class New(BaseHandler):
         job.donor_name = job_object['donor_name']
         job.pickup_location = pickup_location
         job.timeframe_start = datetime.now()
-        job.timeframe_end = datetime.now() + datetime.timedelta(hours=1)
+        job.timeframe_end = datetime.now() + timedelta(hours=1)
         job.is_okay_to_text = job_object['is_okay_to_text']
         job.should_notify_donor = job_object['should_notify_donor']
         job.is_truck_required = job_object['is_truck_required']
