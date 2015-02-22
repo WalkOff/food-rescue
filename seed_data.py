@@ -22,4 +22,5 @@ drop_offs = [
 drivers = [
     Driver(name="Geoff Misek", phone="8104449621", email="gmisek@gmail.com", is_active=True),
     Driver(name="Nathan Cochran", phone="7175800419", email="cochran@niche.com", is_active=True),
+    Driver(name="Shawn Rancatore", phone="3379620553", email="shawn.rancatore@gmail.com", is_active=True)
 ]

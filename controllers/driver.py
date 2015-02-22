@@ -4,13 +4,16 @@ import jinja2
 from base_handler import *
 from models.driver import Driver
 from common.helpers import str2bool,dict_maker
+from models.common import JobStatus
+from base_handler import *
+from google.appengine.ext import ndb
 
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader("./views/driver"),
     extensions=['jinja2.ext.autoescape'],
     autoescape=True)
 
-class Index(webapp2.RequestHandler):
+class Index(BaseHandler):
     def get(self):
         template = JINJA_ENVIRONMENT.get_template('driver_list.html')
         self.response.write(template.render())
@@ -19,7 +22,7 @@ class Index(webapp2.RequestHandler):
         self.response.headers['Content-Type'] = 'application/json'
         self.response.out.write(json.dumps([dict_maker(d) for d in drivers]))
 
-class CreateEdit(webapp2.RequestHandler):
+class CreateEdit(BaseHandler):
     def get(self, driver_id):
         template = JINJA_ENVIRONMENT.get_template('driver_edit.html')
         self.response.write(template.render())
@@ -34,7 +37,7 @@ class CreateEdit(webapp2.RequestHandler):
         self.response.headers['Content-Type'] = 'application/json'
         self.response.out.write(json.dumps(driver))
 
-class UpdateStatus(webapp2.RequestHandler):
+class UpdateStatus(BaseHandler):
     def post(self):
         try:
             driver_id = self.request.get('driverId')
@@ -47,10 +50,23 @@ class UpdateStatus(webapp2.RequestHandler):
             return
         self.response.out.write({'success':'true'})
 
+class JobView(BaseHandler):
+    def get(self, job_id):
+        template = JINJA_ENVIRONMENT.get_template('job_view.html')
+        user_email = self.user().email()
+        driver = Driver.query(email=user_email)
+        print driver.name
+        self.response.write(template.render({'job_id':job_id, 'driver_id':driver.key.urlsafe()}))
+    def post(self):
+        job_key = ndb.Key(self.request.get('jobId'))
+        job = job_key.get()
+        return json.dumps(dict_maker(job))
+
 config = {}
 config['webapp2_extras.sessions'] = {'secret_key': 'secret-session-key-123'}
 
 app = webapp2.WSGIApplication([
     ('/driver/?',Index),
-    ('/driver/(\S+)/?',CreateEdit)
+    ('/driver/(\S+)/?',CreateEdit),
+    ('/driver/job/(\S+)', JobView)
 ], config=config, debug=True)
