@@ -5,4 +5,7 @@ var $ = require('jquery')
 var React = require('react'),
       Job = require('./components/Job.jsx')
 
-React.render(<Job jobId={$(["data-jobid"])} />, document.getElementById('job-container'));
+
+// console.log( $("#job-container").data() );
+
+React.render(<Job jobId={$("#job-container").data("jobid")} />, document.getElementById('job-container'));
