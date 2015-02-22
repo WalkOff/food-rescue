@@ -5,7 +5,7 @@
 {% endblock %}
 {% block content %}
 <!-- pride / motivation -->
-<div id="motivate-container">
+<div class="container">
     <div class="row">
         <div class="col-md-6">
             25 Volunteer deliveries this month!
@@ -13,12 +13,16 @@
         <div class="col-md-6">
             350 Lives touched this year!
         </div>
+    </div>
+    <div class="row">
         <div class="col-md-6">
             1 in 5 kids struggle with hunger
         </div>
         <div class="col-md-6">
             49 million americans are food insecure.
         </div>
+    </div>
+    <div class="row">
         <div class="col-md-6">
             <span style="color:green;">163 days since last donation opportunity missed. Keep it up team!</span>
         </div>
@@ -26,9 +30,10 @@
             <span style="color:red;">12 days since last donation opportunity missed.</span> <a href="">Invite a friend.</a>
         </div>
     </div>
+	<h2>Opportunities to help:</h2>
 </div>
-	<!-- list of jobs -->
 
+	<!-- list of jobs -->
 	<div id="jobs-container" data-jobsurl="" data-jobprefix="{{ jobUrlPrefix }}"></div>
 
 	<script src="../scripts/jobs.js"></script>
