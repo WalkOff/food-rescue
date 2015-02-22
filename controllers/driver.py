@@ -75,7 +75,7 @@ class JobView(BaseHandler):
 
         template = JINJA_ENVIRONMENT.get_template('driver/job_view.html')
         user_email = self.user().email()
-        driver = Driver.query(Donor.email == user_email).fetch()[0]
+        driver = Driver.query(Driver.email == user_email).fetch()[0]
         self.response.write(template.render({'job_id':job_id, 'driver_id':driver.key.urlsafe(), 'loggedInUser':self.user() != None}))
     def post(self, jobId):
         job_key = ndb.Key(urlsafe=jobId)
