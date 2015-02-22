@@ -10,7 +10,10 @@ handlers:
 
 - url: /admin/job.*
   script: controllers.job_admin.app
-      
+
+- url: /admin/drop_off.*
+  script: controllers.drop_off.app
+
 - url: /admin/donor.*
   script: controllers.donor.app
 

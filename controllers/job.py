@@ -4,8 +4,11 @@ import jinja2
 from models.job import Job
 from models.donor import Donor
 from models.common import *
+from models.job import Job, Address
 from common.helpers import dict_maker
+from models.common import JobStatus
 from base_handler import *
+from google.appengine.ext import ndb
 
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader("./views/job"),
