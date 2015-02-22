@@ -31,6 +31,7 @@ class MakeJob(BaseHandler):
         ndb.delete_multi(Donor.query().fetch(keys_only=True))
         ndb.delete_multi(DropOff.query().fetch(keys_only=True))
         ndb.delete_multi(Driver.query().fetch(keys_only=True))
+        ndb.delete_multi(Job.query().fetch(keys_only=True))
         address = Address(address1="123 Street Dr", address2="Floor 2", city="Pittsburgh", state="PA", zipcode="15239")
         donor = Donor(name="Good Will", address=address, phone="3379620553", email="shawn.rancatore@gmail.com")
         donor.put()
