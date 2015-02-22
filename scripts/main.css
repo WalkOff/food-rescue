@@ -64,7 +64,10 @@ ul {
 	position: relative;
 	left: -90px;
 }
-
+.destination-pull {
+	position: relative;
+	left: -14px;
+}
 
 
 

@@ -65,7 +65,8 @@ var Job = React.createClass({
                             <dt>Food Source: </dt>
                             <dd className="job-base-org-name"><a>{job.donor_name}</a></dd>
                         </div>
-                        <div className="col-lg-7 col-xs-12" className="dl-info-more">
+
+                        <div className="col-lg-7 col-xs-12">
                             <dt>Pick-up Location: </dt>
                             <dd className="job-base-address">
                                 <span className="address-text">{job.pickup_location.address1}</span>
@@ -74,16 +75,17 @@ var Job = React.createClass({
                                 <span className="address-text">{job.pickup_location.state}</span>
                                 <span className="address-text">{job.pickup_location.zipcode}</span>
                             </dd>
-                        <div className="col-lg-7 col-xs-12">
-                            <dt>Destination: </dt>
-                            <dd className="job-base-org-name">
-                               { job.drop_off_name}
-                            </dd>
-                            <p>
-                                Serving warm meals to famililies in the the north-eastern Allegheny County.
-                            </p>
+                            <div className="col-lg-7 col-xs-12 destination-pull">
+                                <dt>Destination: </dt>
+                                <dd className="job-base-org-name">
+                                   { job.drop_off_name}
+                                </dd>
+                                <p>
+                                    Serving warm meals to famililies in the the north-eastern Allegheny County.
+                                </p>
+                            </div>
                         </div>
-                        </div>
+
                     </dl>
                 </div>
 
@@ -104,7 +106,7 @@ var Job = React.createClass({
         return (
             <div className="job-details">
                 <div className="col-xs-12">
-                    <dl className="dl-horizontal">
+                    <dl className="dl-horizontal dl-info-more">
                         <dt>Phone</dt>
                         <dd>{job.contact_phone}</dd>
                         <dt>Description</dt>
