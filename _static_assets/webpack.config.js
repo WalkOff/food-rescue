@@ -4,7 +4,8 @@ module.exports = {
         jobs: './scripts/jobs-entry.js',
 	donorList: './scripts/donor-list-entry.js',
         driverList: './scripts/driver-list-entry.js',
-	job: './scripts/job-entry.js'
+	job: './scripts/job-entry.js',
+    driverJob: './scripts/driver-job-entry.js'
     },
     output: {
         path: "../scripts",

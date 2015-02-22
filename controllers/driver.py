@@ -3,6 +3,7 @@ import json
 import jinja2
 from base_handler import *
 from models.donor import Donor
+from models.job import Job
 from models.driver import Driver
 from common.helpers import str2bool,dict_maker
 from models.common import JobStatus
@@ -57,9 +58,11 @@ class JobView(BaseHandler):
         user_email = self.user().email()
         driver = Driver.query(Donor.email == user_email).fetch()[0]
         self.response.write(template.render({'job_id':job_id, 'driver_id':driver.key.urlsafe()}))
-    def post(self):
-        job_key = ndb.Key(self.request.get('jobId'))
+    def post(self, jobId):
+        print jobId
+        job_key = ndb.Key(urlsafe=jobId)
         job = job_key.get()
+        print job
         return json.dumps(dict_maker(job))
 
 config = {}
