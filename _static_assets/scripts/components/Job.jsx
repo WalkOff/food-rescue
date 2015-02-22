@@ -4,7 +4,7 @@ var _ = require('underscore'),
 
 var Job = React.createClass({
     propTypes: {
-        jobId: React.propTypes.string
+        jobId: React.PropTypes.string
     },
     getInitialState: function() {
         return {job: null};
