@@ -21,8 +21,18 @@ Job listing
 '''
 class Index(BaseHandler):
     def get(self):
+        jobUrlPrefix = "basic"
+        print self.user()
+        print self.user_role()
+        if self.user_role() == 'donor':
+            jobUrlPrefix= 'donor'
+        if self.user_role() == 'driver':
+            jobUrlPrefix = '/driver/job/'
+        if self.user_role() == 'admin':
+            jobUrlPrefix = '/admin/job/'
+
         template = JINJA_ENVIRONMENT.get_template('job/index.html')
-        self.response.write(template.render())
+        self.response.write(template.render(jobUrlPrefix=jobUrlPrefix))
 
     def post(self):
         jobs = Job.query().fetch()
@@ -35,13 +45,15 @@ New job/donation creation form
 class New(BaseHandler):
     def get(self):
         if self.user_role() != 'donor':
-            self.response.write('Sorry, only registered donors can view this page')
-            return
+            self.abort(403)
 
         template = JINJA_ENVIRONMENT.get_template('job/new.html')
         self.response.write(template.render())
 
     def post(self):
+        if self.user_role() != 'donor':
+            self.abort(403)
+
         job_json = self.request.get('job')
         job_object = json.loads(job_json)
 
@@ -68,16 +80,23 @@ class New(BaseHandler):
 
         job.put()
 
+        return self.response.out.write(json.dumps({'success': True}))
+
+'''
+Returns JSON representation of the currently logged-in donor
+'''
 class CurrentDonor(BaseHandler):
     def get(self):
         if self.user_role() != 'donor':
-            self.response.write('Error: not logged in as a donor')
-            return
+            self.abort(403)
 
         donor = Donor.query(Donor.email == self.user().email().lower()).fetch(1)[0]
         self.response.headers['Content-Type'] = 'application/json'
         self.response.write(json.dumps(dict_maker(donor)))
 
+'''
+Returns job detail view
+'''
 class Details(BaseHandler):
     def get(self, id):
         template = JINJA_ENVIRONMENT.get_template('job/job_detail.html')

@@ -64,12 +64,12 @@ var Job = React.createClass({
             <div className="job-base row">
                 <div className="col-lg-11 col-xs-9">
                     <dl className="">
-                        <div className="col-lg-4 col-xs-12">
+                        <div className="col-lg-5 col-xs-12">
                             <dt>Organization: </dt>
                             <dd className="job-base-org-name">{job.donor_name}</dd>
                         </div>
-                        <div className="col-lg-8 col-xs-12">
-                            <dt>Drop-off Location: </dt>
+                        <div className="col-lg-7 col-xs-12">
+                            <dt>Pick-up Location: </dt>
                             <dd className="job-base-address">
                                 <span className="address-text">{job.pickup_location.address1}</span>
                                 <span className="address-text">{job.pickup_location.address2}</span>
@@ -139,7 +139,7 @@ var Job = React.createClass({
         );
     },
     navToJob: function() {
-        // this.props.navToJob(this.props.job);
+        this.props.navToJob(this.props.job);
     },
     getJobAjax: function() {
       $.post('/job/',{id: this.props.jobId})

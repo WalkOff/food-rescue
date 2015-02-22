@@ -6,7 +6,8 @@ module.exports = {
     driverInfo: './scripts/driver-info-entry.js',
     driverList: './scripts/driver-list-entry.js',
     job: './scripts/job-entry.js',
-    driverJob: './scripts/driver-job-entry.js'
+    driverJob: './scripts/driver-job-entry.js',
+    adminJob: './scripts/admin-job-entry.js'
   },
 
   output: {
