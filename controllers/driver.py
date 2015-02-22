@@ -2,6 +2,7 @@ import webapp2
 import json
 import jinja2
 from base_handler import *
+from models.donor import Donor
 from models.driver import Driver
 from common.helpers import str2bool,dict_maker
 from models.common import JobStatus
@@ -54,8 +55,7 @@ class JobView(BaseHandler):
     def get(self, job_id):
         template = JINJA_ENVIRONMENT.get_template('job_view.html')
         user_email = self.user().email()
-        driver = Driver.query(email=user_email)
-        print driver.name
+        driver = Driver.query(Donor.email == user_email).fetch()[0]
         self.response.write(template.render({'job_id':job_id, 'driver_id':driver.key.urlsafe()}))
     def post(self):
         job_key = ndb.Key(self.request.get('jobId'))
@@ -66,7 +66,7 @@ config = {}
 config['webapp2_extras.sessions'] = {'secret_key': 'secret-session-key-123'}
 
 app = webapp2.WSGIApplication([
+    ('/driver/job/(\S+)', JobView),
     ('/driver/?',Index),
-    ('/driver/(\S+)/?',CreateEdit),
-    ('/driver/job/(\S+)', JobView)
+    ('/driver/(\S+)/?',CreateEdit)
 ], config=config, debug=True)
