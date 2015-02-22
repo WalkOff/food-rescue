@@ -78,8 +78,8 @@ config = {}
 config['webapp2_extras.sessions'] = {'secret_key': 'secret-session-key-123'}
 
 app = webapp2.WSGIApplication([
+    ('/admin/job/assign/?', AssignDropOff),
     ('/admin/job/(\S+)/?', JobDetails),    
     ('/admin/job/?', JobList),
-    ('/admin/job/assign/?', AssignDropOff)
 ], config=config, debug=True)
 

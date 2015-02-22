@@ -9,6 +9,7 @@ from common.helpers import str2bool,dict_maker
 from models.common import JobStatus
 from base_handler import *
 from google.appengine.ext import ndb
+from google.appengine.ext.webapp.util import login_required
 
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader("./views"),
