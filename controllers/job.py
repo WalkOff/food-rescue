@@ -72,6 +72,9 @@ class New(BaseHandler):
 
         return self.response.out.write(json.dumps({'success': True}))
 
+'''
+Returns JSON representation of the currently logged-in donor
+'''
 class CurrentDonor(BaseHandler):
     def get(self):
         if self.user_role() != 'donor':
@@ -81,6 +84,9 @@ class CurrentDonor(BaseHandler):
         self.response.headers['Content-Type'] = 'application/json'
         self.response.write(json.dumps(dict_maker(donor)))
 
+'''
+Returns job detail view
+'''
 class Details(BaseHandler):
     def get(self, id):
         template = JINJA_ENVIRONMENT.get_template('job_detail.html')
