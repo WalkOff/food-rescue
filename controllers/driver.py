@@ -26,18 +26,14 @@ class Index(BaseHandler):
         self.response.out.write(json.dumps([dict_maker(d) for d in drivers]))
 
 class CreateEdit(BaseHandler):
-    def template_for_get(self, role):
-        if role == 'donor':
-            return 'driver/driver_info.html'
-        else:
-            return 'driver/driver_edit.html'
-
     def get(self, driver_id):
-        role       = self.session['role']
+        role = self.user_role()
+        if role != 'driver':
+            self.abort(403)
+
         driver_key = ndb.Key(urlsafe=driver_id)
-        driver     = driver_key.get()
-        print(driver)
-        template   = JINJA_ENVIRONMENT.get_template(self.template_for_get(role))
+        driver = driver_key.get()
+        template = JINJA_ENVIRONMENT.get_template('driver/driver_info.html')
         self.response.write(template.render(driverId=driver.key.urlsafe(), driver=json.dumps(dict_maker(driver)), loggedInUser=self.user() != None))
 
 class UpdateStatus(BaseHandler):
