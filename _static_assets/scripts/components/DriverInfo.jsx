@@ -5,11 +5,8 @@ var _ = require('underscore'),
 var DriverInfo = React.createClass({
     getInitialState: function() {
        return {
-         driver: {}
+         driver: window.driver
        };
-    },
-    componentWillMount: function() {
-      this.getDriverAjax();
     },
     render: function() {
       return (
@@ -24,13 +21,6 @@ var DriverInfo = React.createClass({
           {driver.name} - {driver.phone}
         </li>
        );
-    },
-    getDriverAjax: function() {
-      $.post('/driver/')
-      .done(this.getDriverDone)
-      .fail(function(err) {
-        console.log(err);
-       });
     },
     getDriverDone: function(data) {
        console.log(data);
