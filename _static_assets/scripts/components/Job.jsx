@@ -102,7 +102,7 @@ var Job = React.createClass({
         // <dd>{job.timeframe_end}</dd>
         return (
             <div className="job-details">
-                <div className="col-xs-3">
+                <div className="col-xs-12">
                     <dl className="dl-horizontal">
                         <dt>Phone</dt>
                         <dd>{job.contact_phone}</dd>
