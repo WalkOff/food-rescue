@@ -29,7 +29,7 @@ var Job = React.createClass({
         var job = this.state.job;
 
 	    return (
-            <div className="job col-lg-12 col-xs-12" onClick={this.navToJob}>
+            <div className="job col-lg-12 col-xs-12">
                 {this.renderJobBase(this.state.job)}
                 <ReactCSSTransitionGroup transitionName="fade">
                     {this.state.showDetails && this.renderJobDetails(this.state.job)}
@@ -61,9 +61,9 @@ var Job = React.createClass({
             <div className="job-base row">
                 <div className="col-lg-11 col-xs-9">
                     <dl className="">
-                        <div className="col-lg-5 col-xs-12">
+                        <div className="col-lg-5 col-xs-12" onClick={this.navToJob}>
                             <dt>Organization: </dt>
-                            <dd className="job-base-org-name">{job.donor_name}</dd>
+                            <dd className="job-base-org-name"><a>{job.donor_name}</a></dd>
                         </div>
                         <div className="col-lg-7 col-xs-12">
                             <dt>Pick-up Location: </dt>
