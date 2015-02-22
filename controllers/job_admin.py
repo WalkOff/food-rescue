@@ -67,10 +67,11 @@ class AssignDropOff(BaseHandler):
 
         active_drivers = Driver.query(Driver.is_active == True).fetch()
         for driver in active_drivers:
-            client.messages.create(
-                to=driver.phone,
-                from_="+14124263647",
-                body="Alert: New pickup request from 412 Food Rescue. http://food-rescue.appspot.com/driver/job/" + job.key.urlsafe())
+            if driver.phone = '7175800419':
+                client.messages.create(
+                    to=driver.phone,
+                    from_="+14124263647",
+                    body="Alert: New pickup request from 412 Food Rescue. http://food-rescue.appspot.com/driver/job/" + job.key.urlsafe())
         # /TWILIO
 
         self.response.headers['Content-Type'] = 'application/json'
