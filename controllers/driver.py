@@ -18,7 +18,7 @@ JINJA_ENVIRONMENT = jinja2.Environment(
 class Index(BaseHandler):
     def get(self):
         template = JINJA_ENVIRONMENT.get_template('driver/driver_list.html')
-        self.response.write(template.render())
+        self.response.write(template.render(loggedInUser = self.user() != None))
     def post(self):
         drivers = Driver.query().fetch()
         self.response.headers['Content-Type'] = 'application/json'
@@ -37,7 +37,7 @@ class CreateEdit(BaseHandler):
         driver     = driver_key.get()
         print(driver)
         template   = JINJA_ENVIRONMENT.get_template(self.template_for_get(role))
-        self.response.write(template.render(driverId=driver.key.urlsafe(), driver=json.dumps(dict_maker(driver))))
+        self.response.write(template.render(driverId=driver.key.urlsafe(), driver=json.dumps(dict_maker(driver)), loggedInUser=self.user() != None))
 
 class UpdateStatus(BaseHandler):
     def post(self):
@@ -75,7 +75,7 @@ class JobView(BaseHandler):
         template = JINJA_ENVIRONMENT.get_template('driver/job_view.html')
         user_email = self.user().email()
         driver = Driver.query(Donor.email == user_email).fetch()[0]
-        self.response.write(template.render({'job_id':job_id, 'driver_id':driver.key.urlsafe()}))
+        self.response.write(template.render({'job_id':job_id, 'driver_id':driver.key.urlsafe(), 'loggedInUser':self.user() != None}))
     def post(self, jobId):
         job_key = ndb.Key(urlsafe=jobId)
         job = job_key.get()
