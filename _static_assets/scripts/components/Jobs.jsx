@@ -4,8 +4,8 @@ var _ = require('underscore'),
 
 var Jobs = React.createClass({
 	propTypes: {
-        	jobsUrl: React.PropTypes.string
-        },
+    	jobsUrl: React.PropTypes.string
+    },
 	getInitialState: function() {
 		return { 
 			jobs: []
@@ -39,7 +39,7 @@ var Jobs = React.createClass({
 					<div className="col-xs-3">
 						<dl className="">
 							<dt>Location: </dt>
-							<dd>{job.donor_address}</dd>
+							<dd>{job.pickup_location}</dd>
 
 							<dt>Donor name: </dt>
 							<dd>{job.donor_name}</dd>
