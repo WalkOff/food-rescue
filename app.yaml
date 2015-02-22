@@ -8,6 +8,9 @@ handlers:
 - url: /scripts
   static_dir: scripts
 
+- url: /img
+  static_dir: img
+
 - url: /admin/job.*
   script: controllers.job_admin.app
 

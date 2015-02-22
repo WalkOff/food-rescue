@@ -32,11 +32,12 @@ class CreateEdit(BaseHandler):
             return 'driver_edit.html'
 
     def get(self, driver_id):
-        role = self.session['role']
+        role       = self.session['role']
         driver_key = ndb.Key(urlsafe=driver_id)
         driver     = driver_key.get()
-        template = JINJA_ENVIRONMENT.get_template(self.template_for_get(role))
-        self.response.write(template.render(driver=json.dumps(dict_maker(driver))))
+        print(driver)
+        template   = JINJA_ENVIRONMENT.get_template(self.template_for_get(role))
+        self.response.write(template.render(driverId=driver.key.urlsafe(), driver=json.dumps(dict_maker(driver))))
 
 class UpdateStatus(BaseHandler):
     def post(self):
@@ -61,12 +62,24 @@ class JobView(BaseHandler):
         job_key = ndb.Key(urlsafe=jobId)
         job = job_key.get()
         return self.response.out.write(json.dumps(dict_maker(job)))
-
+class TakeJob(BaseHandler):
+    def post(self, jobId):
+        user_email = self.user().email()
+        driver = Driver.query(Donor.email == user_email).fetch()[0]
+        job_key = ndb.Key(urlsafe=jobId)
+        job = job_key.get()
+        job.accepted_by_id= driver.key
+        job.accepted_by_name =driver.name
+        job.accepted_by_phone=driver.phone
+        job.put()
+        return self.response.out.write(json.dumps({'success': True}))
 config = {}
 config['webapp2_extras.sessions'] = {'secret_key': 'secret-session-key-123'}
 
 app = webapp2.WSGIApplication([
+    ('/driver/take/job/(\S+)', TakeJob),
     ('/driver/job/(\S+)', JobView),
+    ('/driver/status?',UpdateStatus),
     ('/driver/?',Index),
-    ('/driver/(\S+)/?',CreateEdit)
+    ('/driver/(\S+)/?',CreateEdit),
 ], config=config, debug=True)
