@@ -33,7 +33,7 @@ var App = React.createClass({
     getSubmitDone: function(data) {
       var parsedData = JSON.parse(data);
       this.setState({donor: parsedData});
-      window.location.href = '/job'
+      window.location.href = '/admin/donor/thanks'
     },
   showProfile: function() {
     console.log('show profile');

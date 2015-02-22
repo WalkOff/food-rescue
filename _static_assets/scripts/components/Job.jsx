@@ -56,6 +56,7 @@ var Job = React.createClass({
 // timeframe_start: "2015-02-22 02:20:30.290316"
     },
     renderJobBase: function(job) {
+        
         return (
             <div className="job-base row">
                 <div className="col-lg-11 col-xs-9">
@@ -64,7 +65,7 @@ var Job = React.createClass({
                             <dt>Food Source: </dt>
                             <dd className="job-base-org-name"><a>{job.donor_name}</a></dd>
                         </div>
-                        <div className="col-lg-7 col-xs-12">
+                        <div className="col-lg-7 col-xs-12" className="dl-info-more">
                             <dt>Pick-up Location: </dt>
                             <dd className="job-base-address">
                                 <span className="address-text">{job.pickup_location.address1}</span>
