@@ -27,7 +27,7 @@ var App = React.createClass({
 		);
 	},
 	submitInfoAjax: function(donorForm) {
-    	$.post('/job/new',{job: donorForm})
+    	$.post('/job/new',{job: JSON.stringify(donorForm)})
         .done(this.getSubmitDone)
         .fail(function(err) { 
             console.log(err); 
