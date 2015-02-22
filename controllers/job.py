@@ -59,7 +59,7 @@ class New(BaseHandler):
 #        job.timeframe_start = job_object.
 #        job.timeframe_end = job_object.
         job.is_okay_to_text = job_object['is_okay_to_text']
-        job.should_notify_driver = job_object['should_notify_driver']
+        job.should_notify_donor = job_object['should_notify_donor']
         job.is_truck_required = job_object['is_truck_required']
 
         job.put()
