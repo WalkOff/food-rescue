@@ -11,6 +11,7 @@ donors = [
     Donor(name = "McGinnis Sisters", phone="4044466348", email="shawn.rancatore@gmail.com", address = Address(address1="700 Adams Shoppes", city="Mars", state="PA", zipcode="16046")),
     Donor(name = "Costco - Waterfront Location", phone="4044466348", email="jessieschalles@gmail.com", address = Address(address1="501 W Waterfront Dr", city="West Homestead", state="PA", zipcode="15120")),
     Donor(name = "East End Food Co-op", phone="4044466348", email="donor@gmail.com", address = Address(address1="7516 Meade St", city="Pittsburgh", state="PA", zipcode="15208")),
+    Donor(name = "Trader Joe's", phone="4042711164", email="seejee@gmail.com", address = Address(address1="7516 Meade St", city="Pittsburgh", state="PA", zipcode="15208")),
 ]
 
 drop_offs = [
@@ -23,7 +24,8 @@ drop_offs = [
 drivers = [
     Driver(name="Geoff Misek", phone="8104449621", email="gmisek@gmail.com", is_active=True),
     Driver(name="Shawn Rancatore", phone="3379620553", email="shawn.rancatore@gmail.com", is_active=True),
-    Driver(name="Jenny Personal", phone="4042711164", email="liumonade@gmail.com", is_active=True),
+    Driver(name="Jenny Personal", phone="4044466348", email="liumonade@gmail.com", is_active=True),
+    Driver(name="Chris Geihsler", phone="4042711164", email="seejee@gmail.com", is_active=True),
 ]
 
 admins = [
