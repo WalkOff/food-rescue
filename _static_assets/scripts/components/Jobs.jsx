@@ -2,8 +2,10 @@ var _ = require('underscore'),
 	$ = require('jquery'),
 	React = require('react');
 
-// admin jobs queue 
 var Jobs = React.createClass({
+	propTypes: {
+        	jobsUrl: React.PropTypes.string
+        },
 	getInitialState: function() {
 		return {
 			jobs: []
@@ -87,15 +89,15 @@ var Jobs = React.createClass({
 	expandCard: function() {
 	},
 	getJobsAjax: function() {
-		$.get('/admin/job')
+		console.log(this.props.jobsUrl)
+		$.post(this.props.jobsUrl)
 		.done(this.getJobsDone)
 		.fail(function(err) {
 			console.log(err);
 		});
 	},
 	getJobsDone: function(data) {
-		var parsedData = JSON.parse( data );
-		this.setState({jobs: parsedData});
+		this.setState({jobs: data});
 	}
 });
 

@@ -65,7 +65,6 @@ class New(BaseHandler):
 
         job.put()
 
-
 class Details(BaseHandler):
     def get(self, id):
         template = JINJA_ENVIRONMENT.get_template('job_detail.html')

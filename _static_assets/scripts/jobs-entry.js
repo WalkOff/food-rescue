@@ -1,7 +1,8 @@
 require('../styles/bootstrap.css');
 require('../styles/main.css');
 
-var React = require('react'),
-	Jobs = require('./components/Jobs.jsx');
+var $ = require('jquery'),
+    React = require('react'),
+    Jobs = require('./components/Jobs.jsx');
 
-React.render(<Jobs />, document.getElementById('jobs-container'));
+React.render(<Jobs jobsUrl={$(["data-jobsurl"]).attr('data-jobsurl')} />, document.getElementById('jobs-container'));
