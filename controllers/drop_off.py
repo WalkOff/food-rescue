@@ -3,6 +3,7 @@ import json
 import jinja2
 from base_handler import *
 from models.drop_off import DropOff
+from common.helpers import dict_maker
 
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader("./views/drop_off"),
@@ -33,10 +34,16 @@ class CreateEdit(BaseHandler):
         self.response.headers['Content-Type'] = 'application/json'
         self.response.out.write(json.dumps(drop_off))
 
+class GetAll(BaseHandler):
+    def get(self):
+        drop_offs = DropOff.query().fetch()
+        self.response.write(json.dumps([dict_maker(drop_off) for drop_off in drop_offs]))
+
 config = {}
 config['webapp2_extras.sessions'] = {'secret_key': 'secret-session-key-123'}
 
 app = webapp2.WSGIApplication([
-    ('/drop_off/',Index),
-    ('/drop_off/(\S+)/?',CreateEdit)
+    ('/admin/drop_off/?',Index),
+    ('/admin/drop_off/all/?',GetAll),
+    ('/admin/drop_off/(\S+)/?',CreateEdit),
 ], config=config, debug=True)
