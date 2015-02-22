@@ -9,17 +9,13 @@ var DriverInfo = React.createClass({
        };
     },
     render: function() {
-      return (
-        <div>
-          {this.renderDriver(this.state.driver)}
-        </div>
-      );
+      return this.renderDriver(this.state.driver);
     },
     renderDriver: function(driver) {
       return (
-         <li className="list-unstyled">
+        <div>
           {driver.name} - {driver.phone}
-        </li>
+        </div>
        );
     },
     getDriverDone: function(data) {
