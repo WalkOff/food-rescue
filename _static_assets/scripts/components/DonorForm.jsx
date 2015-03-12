@@ -89,11 +89,22 @@ var DonorForm = React.createClass({
               Address Line 1
               <input type="address1" className="form-control addr" placeholder="Address Line 1" valueLink={this.linkState('pickup_address1')} />
             </label>
-            
+            <label>
+              Address Line 2
               <input type="address2" className="form-control addr" placeholder="Address Line 2" valueLink={this.linkState('pickup_address2')} />
+            </label>
+            <label>
+              City
               <input type="city" className="form-control addr" placeholder="City" valueLink={this.linkState('pickup_city')} />
+            </label>
+            <label>
+              State
               <input type="state" className="form-control addr" placeholder="State" valueLink={this.linkState('pickup_state')} />
+            </label>
+            <label>
+              ZIP Code
               <input type="zipcode" className="form-control addr" placeholder="ZIP Code" valueLink={this.linkState('pickup_zipcode')} />
+            </label>
         </div>
 
         <div className="form-group">
@@ -129,12 +140,15 @@ var DonorForm = React.createClass({
           <label>
             When does your donation need to be picked up?
           </label>
-          <br/>
 
-          Between
-          {this.renderTimeDropdownFrom()}
-          and
-          {this.renderTimeDropdownTo()}
+          <label className="inline-50-label">
+              Between
+              {this.renderTimeDropdownFrom()}
+          </label>
+          <label className="inline-50-label">
+            and
+            {this.renderTimeDropdownTo()}
+          </label>
         </div>
 
         <div className="form-group">

@@ -77,9 +77,18 @@ textarea {
 }
 
 .addr {
-	position: relative;
-	top: 10px;
+	margin-bottom: 4px;
 }
+
+.inline-50-label {
+	width: 50%;
+	display: inline-block;
+	vertical-align: top;
+}
+
+
+
+
 
 
 
