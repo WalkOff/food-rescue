@@ -69,7 +69,9 @@ textarea {
 
 .dl-info-more {
 	position: relative;
-	left: -90px;
+	padding-left: 0;
+	margin-left: -15px;
+	/*left: -90px;*/
 }
 .destination-pull {
 	position: relative;
@@ -122,6 +124,20 @@ textarea {
 .update-button {
 	margin-top: 15px;
 }
+
+.job-dd dt {
+	position: relative;
+	top: 15px;
+}
+
+.job-details {
+	margin-top: 5px;
+	border-top: 1px dotted #ccc;
+	padding-top: 15px;
+}
+
+
+
 
 
 

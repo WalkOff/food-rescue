@@ -78,11 +78,8 @@ var Job = React.createClass({
                             <div className="col-lg-7 col-xs-12 destination-pull">
                                 <dt>Destination: </dt>
                                 <dd className="job-base-org-name">
-                                   { job.drop_off_name}
+                                   {job.drop_off_name}
                                 </dd>
-                                <p>
-                                    Serving warm meals to famililies in the the north-eastern Allegheny County.
-                                </p>
                             </div>
                         </div>
 
@@ -104,15 +101,15 @@ var Job = React.createClass({
         // <dt>To</dt>
         // <dd>{job.timeframe_end}</dd>
         return (
-            <div className="job-details">
+            <div className="job-base job-details">
                 <div className="col-xs-12">
                     <dl className="dl-horizontal dl-info-more">
                         <dt>Phone</dt>
-                        <dd>{job.contact_phone}</dd>
+                        <dd className="job-base-address">{job.contact_phone}</dd>
                         <dt>Description</dt>
-                        <dd>{job.description}</dd>
+                        <dd className="job-base-address">{job.description}</dd>
                         <dt>Instructions</dt>
-                        <dd>{job.instructions}</dd>
+                        <dd className="job-base-address">{job.instructions}</dd>
                     </dl>
                 </div>
             </div>

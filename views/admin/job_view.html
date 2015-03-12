@@ -4,7 +4,14 @@
     {{ super() }}
 {% endblock %}
 {% block content %}
-        <h2>Manage This Donation Opportunity</h2>
+       
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+        		<h2>Manage This Donation Opportunity</h2>
+        	</div>
+        </div>
+    </div>
 <script>
     var drop_off_list = {{ drop_off_json|safe}};
 </script>

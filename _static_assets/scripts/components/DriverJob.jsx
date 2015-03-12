@@ -16,7 +16,9 @@ var Job = React.createClass({
       if(this.state.job != null) {
         return (
           <div className="job">
-              <p>Food Delivery opportunity to deliver </p>
+              <h3>Food Delivery opportunity to deliver </h3>
+              <dl>
+
               <dt>Food donated by</dt>
           <dd>{this.state.job.donor_name}</dd>
               <dt>To be delivered to:</dt>
@@ -27,7 +29,7 @@ var Job = React.createClass({
           <dt>Pick Up Location:</dt>
           <dd>
             <div>{this.state.job.pickup_location.address1}</div>
-            {<div>this.state.job.pickup_location.address2}</div>
+            <div>{this.state.job.pickup_location.address2}</div>
             <div>{this.state.job.pickup_location.city} {this.state.job.pickup_location.state} {this.state.job.pickup_location.zipcode}</div>
               <a target="_blank" href={"https://maps.google.com?saddr=Current+Location&daddr="+this.state.job.pickup_location.address1.replace(/\ /g,'+') + '+'+ this.state.job.pickup_location.city.replace(/\ /g,'+')+'+'+this.state.job.pickup_location.state.replace(/\ /g,'+') +'+'+this.state.job.pickup_location.zipcode.replace(' ','+') }>Map it!</a>
           </dd>
@@ -39,6 +41,7 @@ var Job = React.createClass({
           {this.state.job.drop_off_location.city} {this.state.job.drop_off_location.state} {this.state.job.drop_off_location.zipcode}
              <a target="_blank" href={"https://maps.google.com?saddr=Current+Location&daddr="+this.state.job.drop_off_location.address1.replace(/\ /g,'+') + '+'+ this.state.job.drop_off_location.city.replace(/\ /g,'+')+'+'+this.state.job.drop_off_location.state.replace(/\ /g,'+') +'+'+this.state.job.drop_off_location.zipcode.replace(' ','+') }>Map it!</a>
           </dd>
+          </dl>
 
             <button className="btn btn-primary" onClick={this.takeJobAjax}>Ill Do It!</button>
 
