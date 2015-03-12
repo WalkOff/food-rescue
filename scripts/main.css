@@ -10,6 +10,13 @@ ul {
 	padding-left: 0;
 	margin-left: 0;
 }
+label {
+	width: 100%;
+}
+textarea {
+	width: 100%;
+	display: inline-block;
+}
 /*.jobs-list-item {
 	border-bottom: 1px solid #ddd;
 	margin-bottom: 5px;
@@ -69,6 +76,10 @@ ul {
 	left: -14px;
 }
 
+.addr {
+	position: relative;
+	top: 10px;
+}
 
 
 

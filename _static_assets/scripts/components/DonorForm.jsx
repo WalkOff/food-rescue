@@ -49,16 +49,16 @@ var DonorForm = React.createClass({
     console.log(data);
 
     //also: donor_email: data.email
-    // address: {address2: null, address1: "501 W Waterfront Dr", zipcode: "15120", city: "West Homestead",…}
-    // address1: "501 W Waterfront Dr"
-    // address2: null
-    // city: "West Homestead"
-    // state: "PA"
-    // zipcode: "15120"
-    // email: "jessieschalles@gmail.com"
-    // name: "Costco - Waterfront Location"
-    // ndb_id: "ag9kZXZ-Zm9vZC1yZXNjdWVyEgsSBURvbm9yGICAgICAwO8IDA"
-    // phone: "4044466348"
+      // address: {address2: null, address1: "501 W Waterfront Dr", zipcode: "15120", city: "West Homestead",…}
+      // address1: "501 W Waterfront Dr"
+      // address2: null
+      // city: "West Homestead"
+      // state: "PA"
+      // zipcode: "15120"
+      // email: "jessieschalles@gmail.com"
+      // name: "Costco - Waterfront Location"
+      // ndb_id: "ag9kZXZ-Zm9vZC1yZXNjdWVyEgsSBURvbm9yGICAgICAwO8IDA"
+      // phone: "4044466348"
 
     this.setState({
       day: "today",
@@ -85,11 +85,15 @@ var DonorForm = React.createClass({
         <div className="form-group">
           <label>Pick-up Location</label>
 
-              <input type="address1" className="form-control" valueLink={this.linkState('pickup_address1')} />
-              <input type="address2" className="form-control" valueLink={this.linkState('pickup_address2')} />
-              <input type="city" className="form-control" valueLink={this.linkState('pickup_city')} />
-              <input type="state" className="form-control" valueLink={this.linkState('pickup_state')} />
-              <input type="zipcode" className="form-control" valueLink={this.linkState('pickup_zipcode')} />
+            <label>
+              Address Line 1
+              <input type="address1" className="form-control addr" placeholder="Address Line 1" valueLink={this.linkState('pickup_address1')} />
+            </label>
+            
+              <input type="address2" className="form-control addr" placeholder="Address Line 2" valueLink={this.linkState('pickup_address2')} />
+              <input type="city" className="form-control addr" placeholder="City" valueLink={this.linkState('pickup_city')} />
+              <input type="state" className="form-control addr" placeholder="State" valueLink={this.linkState('pickup_state')} />
+              <input type="zipcode" className="form-control addr" placeholder="ZIP Code" valueLink={this.linkState('pickup_zipcode')} />
         </div>
 
         <div className="form-group">
@@ -99,7 +103,7 @@ var DonorForm = React.createClass({
 
 
         <div className="form-group">
-          Is it okay for your driver to text you?
+          <label>Is it okay for your driver to text you?</label>
 
           <div className="checkbox">
             <label>
@@ -111,7 +115,7 @@ var DonorForm = React.createClass({
 
 
         <div className="form-group">
-          Does this require a truck, or will car suffice?
+          <label>Does this require a truck, or will car suffice?</label>
 
           <div className="checkbox">
             <label>
@@ -155,18 +159,18 @@ var DonorForm = React.createClass({
       </form>
 
       // <div className="form-group">
-      //   Date
-      //   <input type="date" className="form-control" />
+        //   Date
+        //   <input type="date" className="form-control" />
 
-      //   Time Frame
-      //   <label>
-      //     From
-      //     {this.renderTimeDropdownFrom()}
-      //   </label>
-      //   <label>
-      //     To
-      //     {this.renderTimeDropdownTo()}
-      //   </label>
+        //   Time Frame
+        //   <label>
+        //     From
+        //     {this.renderTimeDropdownFrom()}
+        //   </label>
+        //   <label>
+        //     To
+        //     {this.renderTimeDropdownTo()}
+        //   </label>
       // </div>
     );
   },
