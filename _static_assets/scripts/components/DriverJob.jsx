@@ -13,8 +13,7 @@ var Job = React.createClass({
       this.getJobAjax();
     },
     render: function() {
-      if(this.state.job != null)
-      {
+      if(this.state.job != null) {
         return (
           <div className="job">
               <p>Food Delivery opportunity to deliver </p>
@@ -24,25 +23,30 @@ var Job = React.createClass({
           <dd>{this.state.job.drop_off_name}</dd>
               <dt>Details:</dt>
           <dd>{this.state.job.description}</dd>
+
           <dt>Pick Up Location:</dt>
           <dd>{this.state.job.pickup_location.address1}<br/>
           {this.state.job.pickup_location.address2}<br/>
           {this.state.job.pickup_location.city} {this.state.job.pickup_location.state} {this.state.job.pickup_location.zipcode}
               <a target="_blank" href={"https://maps.google.com?saddr=Current+Location&daddr="+this.state.job.pickup_location.address1.replace(/\ /g,'+') + '+'+ this.state.job.pickup_location.city.replace(/\ /g,'+')+'+'+this.state.job.pickup_location.state.replace(/\ /g,'+') +'+'+this.state.job.pickup_location.zipcode.replace(' ','+') }>Map it!</a>
           </dd>
+          
           <dt>Drop Off Location:</dt>
+
           <dd>{this.state.job.drop_off_location.address1}<br/>
           {this.state.job.drop_off_location.address2}<br/>
           {this.state.job.drop_off_location.city} {this.state.job.drop_off_location.state} {this.state.job.drop_off_location.zipcode}
              <a target="_blank" href={"https://maps.google.com?saddr=Current+Location&daddr="+this.state.job.drop_off_location.address1.replace(/\ /g,'+') + '+'+ this.state.job.drop_off_location.city.replace(/\ /g,'+')+'+'+this.state.job.drop_off_location.state.replace(/\ /g,'+') +'+'+this.state.job.drop_off_location.zipcode.replace(' ','+') }>Map it!</a>
           </dd>
-          <button className="btn btn-primary" onClick={this.takeJobAjax}>I'll Do It!</button>
-          <br/><a href="#" onClick={this.rejectJob}>Continue Browsing</a>
-              <br/>
+
+            <button className="btn btn-primary" onClick={this.takeJobAjax}>Ill Do It!</button>
+
+            <a href="#" onClick={this.rejectJob}>Continue Browsing</a>
             <button className="btn btn-primary" onClick={this.finishJobAjax}>All Done!</button>
+
           </div>
         );
-      } else{
+      } else {
         return (<div className="job">{this.state.msg}</div>);
       }
     },
@@ -57,7 +61,6 @@ var Job = React.createClass({
       var parsedData = JSON.parse(data);
       this.setState({job: parsedData});
     },
-
     takeJobAjax: function() {
       $.post('/driver/take/job/' + this.props.jobId)
       .done(function() {

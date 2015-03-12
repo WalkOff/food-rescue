@@ -16,6 +16,7 @@ var App = React.createClass({
         <div className="container">
           <div className="row">
             <div className="col-xs-12">
+              <h2>Donor Form</h2>
               <DonorForm donationRequest={this.state.donationRequest} onFormSubmit={this.submitInfoAjax} />
             </div>
           </div>

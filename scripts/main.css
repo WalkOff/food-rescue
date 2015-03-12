@@ -86,9 +86,39 @@ textarea {
 	vertical-align: top;
 }
 
-
-
-
+.donor-form {
+	margin-bottom: 100px;
+}
+.form-group {
+	position: relative;
+	margin: 30px auto;
+}
+/*.form-group.much-separate::before {
+	content: '';
+	position: absolute;
+	top: -15px;
+	left: -15px;
+	width: 110%;
+	height: 100%;
+	border-top: 1px solid #e3e3e3;
+}
+.form-group.much-separate::after {
+	content: '';
+	position: absolute;
+	top: 15px;
+	left: -15px;
+	width: 110%;
+	height: 100%;
+	border-bottom: 1px solid #e3e3e3;
+}
+.form-group.much-separate {
+	margin: 30px auto;
+}*/
+.submit-button {
+	float: right;
+	position: relative;
+	top: 15px;
+}
 
 
 

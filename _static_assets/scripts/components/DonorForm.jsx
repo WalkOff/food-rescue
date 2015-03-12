@@ -76,33 +76,33 @@ var DonorForm = React.createClass({
   },
   render: function() {
     return (
-      <form onSubmit={this.formSubmit}>
+      <form className="donor-form" onSubmit={this.formSubmit}>
         <div className="form-group">
           <label>Company/Organization</label>
           <input type="text" className="form-control" valueLink={this.linkState('donor_name')} />
         </div>
 
-        <div className="form-group">
+        <div className="form-group much-separate">
           <label>Pick-up Location</label>
 
             <label>
-              Address Line 1
+              <span className="text-muted">Address Line 1</span>
               <input type="address1" className="form-control addr" placeholder="Address Line 1" valueLink={this.linkState('pickup_address1')} />
             </label>
             <label>
-              Address Line 2
+              <span className="text-muted">Address Line 2</span>
               <input type="address2" className="form-control addr" placeholder="Address Line 2" valueLink={this.linkState('pickup_address2')} />
             </label>
             <label>
-              City
+              <span className="text-muted">City</span>
               <input type="city" className="form-control addr" placeholder="City" valueLink={this.linkState('pickup_city')} />
             </label>
             <label>
-              State
+              <span className="text-muted">State</span>
               <input type="state" className="form-control addr" placeholder="State" valueLink={this.linkState('pickup_state')} />
             </label>
             <label>
-              ZIP Code
+              <span className="text-muted">ZIP Code</span>
               <input type="zipcode" className="form-control addr" placeholder="ZIP Code" valueLink={this.linkState('pickup_zipcode')} />
             </label>
         </div>
@@ -169,7 +169,7 @@ var DonorForm = React.createClass({
           </label>
         </div>
 
-        <button className="btn btn-primary btn-large">Submit</button>
+        <button className="btn btn-primary btn-large submit-button">Submit</button>
       </form>
 
       // <div className="form-group">
