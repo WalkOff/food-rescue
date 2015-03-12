@@ -25,12 +25,13 @@ var Job = React.createClass({
           <dd>{this.state.job.description}</dd>
 
           <dt>Pick Up Location:</dt>
-          <dd>{this.state.job.pickup_location.address1}<br/>
-          {this.state.job.pickup_location.address2}<br/>
-          {this.state.job.pickup_location.city} {this.state.job.pickup_location.state} {this.state.job.pickup_location.zipcode}
+          <dd>
+            <div>{this.state.job.pickup_location.address1}</div>
+            {<div>this.state.job.pickup_location.address2}</div>
+            <div>{this.state.job.pickup_location.city} {this.state.job.pickup_location.state} {this.state.job.pickup_location.zipcode}</div>
               <a target="_blank" href={"https://maps.google.com?saddr=Current+Location&daddr="+this.state.job.pickup_location.address1.replace(/\ /g,'+') + '+'+ this.state.job.pickup_location.city.replace(/\ /g,'+')+'+'+this.state.job.pickup_location.state.replace(/\ /g,'+') +'+'+this.state.job.pickup_location.zipcode.replace(' ','+') }>Map it!</a>
           </dd>
-          
+
           <dt>Drop Off Location:</dt>
 
           <dd>{this.state.job.drop_off_location.address1}<br/>

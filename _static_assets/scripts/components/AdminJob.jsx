@@ -24,9 +24,10 @@ var Job = React.createClass({
           <dd>{this.state.job.drop_off_name}</dd>
               <dt>Details:</dt>
           <dd>{this.state.job.description}</dd>
-              Assign Drop Off:
-          {this.renderDropOffDropdown()}
-              <button className="btn btn-primary" onClick={this.updateDropOffInfo}>Update</button>
+              <dt>Assign Drop Off:</dt>
+            <dd>{this.renderDropOffDropdown()}</dd>
+
+              <button className="btn btn-primary update-button" onClick={this.updateDropOffInfo}>Update</button>
           </div>
 
 	    );
